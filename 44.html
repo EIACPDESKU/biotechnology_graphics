@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Block 44: Synthetic Biology</title>
+
+  
+<style>
+:root{
+  --bg:#f6f1e7;
+  --surface:#fffdf8;
+  --surface-2:#f0e8d8;
+  --ink:#252525;
+  --muted:#6d685f;
+  --accent:#d96f16;
+  --line:#d8d0c2;
+  --dark:#252525;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.65;
+}
+.page{
+  width:min(100% - 32px,980px);
+  margin:0 auto;
+  padding:36px 0 140px;
+}
+
+/* HERO */
+.hero{
+  position:relative;
+  overflow:hidden;
+  display:grid;
+  grid-template-columns:minmax(0,.9fr) minmax(400px,1.1fr);
+  align-items:center;
+  min-height:430px;
+  background:var(--surface-2);
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:42px 42px 34px;
+  margin-bottom:28px;
+}
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:390px;
+  padding-bottom:8px;
+}
+.eyebrow{
+  display:inline-block;
+  margin-bottom:16px;
+  color:var(--accent);
+  font-size:.76rem;
+  font-weight:800;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+h1{
+  font-size:clamp(2.5rem,5vw,3.65rem);
+  line-height:1.02;
+  letter-spacing:-.045em;
+  margin-bottom:18px;
+}
+h1 span{color:var(--accent)!important}
+.hero-description{
+  max-width:390px;
+  color:var(--muted);
+  font-size:clamp(.98rem,2vw,1.08rem);
+  line-height:1.7;
+}
+
+/* SVG */
+.dna-graphic{
+  position:relative;
+  z-index:1;
+  width:100%;
+  height:auto;
+  display:block;
+  pointer-events:none;
+  overflow:visible;
+}
+.dna-strand,
+.gene,
+.cell-outline,
+.transfer-arrow{
+  animation:none!important;
+}
+.dna-graphic text{letter-spacing:.02em}
+
+/* soften the illustration */
+.dna-graphic [stroke="#222222"]{
+  stroke:#303030;
+}
+.dna-graphic [stroke="#fa8112"]{
+  stroke:var(--accent);
+}
+.dna-graphic [fill="#fa8112"]{
+  fill:var(--accent);
+}
+.dna-graphic [fill="#f5e7c6"]{
+  fill:#f4ecdf;
+}
+.dna-graphic [fill="#faf3e1"]{
+  fill:#fffaf1;
+}
+
+/* CONTENT */
+.content-card{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:clamp(24px,5vw,42px);
+  box-shadow:0 8px 28px rgba(37,37,37,.05);
+}
+.content-card h2{
+  font-size:clamp(1.55rem,4vw,2.15rem);
+  line-height:1.18;
+  letter-spacing:-.025em;
+  margin-bottom:22px;
+}
+.experiment-intro{
+  padding:18px 20px;
+  margin-bottom:18px;
+  background:var(--surface-2);
+  border-left:3px solid var(--accent);
+  border-radius:10px;
+}
+.experiment-intro h3{margin-bottom:5px;font-size:1.08rem}
+.experiment-intro p{font-size:.94rem;line-height:1.62;color:#57524a}
+
+.timeline{
+  position:relative;
+  display:grid;
+  gap:10px;
+  margin-bottom:18px;
+}
+.timeline::before{
+  content:"";
+  position:absolute;
+  left:22px;
+  top:18px;
+  bottom:18px;
+  width:2px;
+  background:#e0a16f;
+  border-radius:10px;
+}
+.step{
+  position:relative;
+  display:grid;
+  grid-template-columns:46px 1fr;
+  gap:14px;
+  align-items:start;
+}
+.step-number{
+  position:relative;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:46px;
+  height:46px;
+  background:var(--dark);
+  color:var(--surface);
+  border:3px solid var(--surface);
+  outline:1px solid var(--dark);
+  border-radius:50%;
+  font-size:.9rem;
+  font-weight:900;
+}
+.step-content{
+  padding:15px 17px;
+  background:#faf7f0;
+  border:1px solid #e6dfd2;
+  border-radius:12px;
+}
+.step:nth-child(2) .step-content,
+.step:nth-child(4) .step-content{background:#f4eee3}
+.step-content strong{display:block;margin-bottom:3px;font-size:.98rem}
+.step-content p{font-size:.9rem;line-height:1.55;color:#57524a}
+
+.conclusion{
+  padding:20px;
+  background:var(--dark);
+  color:var(--surface);
+  border-radius:13px;
+  margin-top:4px;
+}
+.conclusion-label{
+  display:inline-block;
+  margin-bottom:7px;
+  color:#f2a15c;
+  font-size:.78rem;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.conclusion p{font-size:clamp(1rem,2.5vw,1.12rem);line-height:1.55}
+
+.note{
+  margin-top:12px;
+  padding:15px 17px;
+  background:#faf1e5;
+  border-left:3px solid var(--accent);
+  border-radius:9px;
+  font-size:.88rem;
+  line-height:1.55;
+}
+strong{font-weight:850}
+
+/* NAV */
+.floating-nav{
+  position:fixed;
+  left:50%;
+  bottom:18px;
+  transform:translateX(-50%);
+  z-index:1000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  padding:6px;
+  background:var(--dark);
+  border-radius:999px;
+  box-shadow:0 8px 24px rgba(37,37,37,.18);
+}
+.nav-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  min-width:92px;
+  height:40px;
+  padding:0 14px;
+  border:none;
+  border-radius:999px;
+  background:#f8f2e7;
+  color:var(--dark);
+  font:inherit;
+  font-size:.84rem;
+  font-weight:750;
+  text-decoration:none;
+  cursor:pointer;
+  transition:background .18s ease,transform .18s ease;
+}
+.nav-button:hover{background:#f0c39b;transform:translateY(-2px)}
+.nav-button:active{transform:translateY(0)}
+.nav-icon{font-size:1rem;line-height:1}
+
+@media (max-width:760px){
+  .page{width:min(100% - 22px,980px);padding-top:20px;padding-bottom:125px}
+  .hero{
+    grid-template-columns:1fr;
+    min-height:auto;
+    padding:30px 26px 12px;
+  }
+  .hero-content{max-width:100%;padding-bottom:0}
+  .hero-description{max-width:620px}
+  .dna-graphic{
+    width:min(100%,610px);
+    justify-self:center;
+    margin-top:0;
+    margin-bottom:0;
+  }
+  .content-card{padding:24px 20px}
+}
+@media (max-width:520px){
+  .hero{padding:27px 20px 8px;border-radius:18px}
+  h1{font-size:2.45rem}
+  .dna-graphic{
+    width:118%;
+    margin-left:-9%;
+    margin-top:2px;
+    margin-bottom:4px;
+  }
+  .step{grid-template-columns:42px 1fr;gap:12px}
+  .step-number{width:42px;height:42px}
+  .timeline::before{left:20px}
+  .floating-nav{bottom:10px;width:calc(100% - 20px);max-width:420px}
+  .nav-button{flex:1;min-width:0;padding:0 8px;font-size:.77rem}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+
+</head>
+
+<body>
+
+  <main class="page">
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
+      <div class="hero-content">
+
+        <span class="eyebrow">
+          Biology • Synthetic Biology
+        </span>
+
+        <h1>
+          DNA
+          <span style="color: #fa8112;">Takes Control</span>
+        </h1>
+
+        <p class="hero-description">
+          The J. Craig Venter experiment demonstrated that
+          synthetic DNA could take control of an existing
+          bacterial cell and direct its growth and division.
+        </p>
+
+      </div>
+
+
+      <!-- =========================
+           VECTOR GRAPHIC
+      ========================== -->
+
+      <svg
+        class="dna-graphic"
+        viewBox="0 0 700 430"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-label="Vector illustration showing synthetic DNA being inserted into a bacterial cell"
+        role="img"
+      >
+<!-- =========================
+             SYNTHETIC DNA
+        ========================== -->
+
+        <g>
+
+          <text
+            x="105"
+            y="93"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="11"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            SYNTHETIC DNA
+          </text>
+
+          <!-- DNA strands -->
+
+          <path
+            d="M65 112
+               C145 132 65 160 145 180
+               C65 200 145 228 65 248"
+            fill="none"
+            stroke="#222222"
+            stroke-width="5"
+            stroke-linecap="round"
+            class="dna-strand"
+          />
+
+          <path
+            d="M145 112
+               C65 132 145 160 65 180
+               C145 200 65 228 145 248"
+            fill="none"
+            stroke="#fa8112"
+            stroke-width="5"
+            stroke-linecap="round"
+            class="dna-strand"
+          />
+
+          <!-- DNA base pairs -->
+
+          <g stroke="#222222" stroke-width="2.5">
+
+            <line x1="83" y1="119" x2="127" y2="119"/>
+            <line x1="70" y1="139" x2="140" y2="139"/>
+            <line x1="83" y1="159" x2="127" y2="159"/>
+            <line x1="70" y1="180" x2="140" y2="180"/>
+            <line x1="83" y1="200" x2="127" y2="200"/>
+            <line x1="70" y1="220" x2="140" y2="220"/>
+            <line x1="83" y1="241" x2="127" y2="241"/>
+
+          </g>
+
+          <!-- Highlighted gene -->
+
+          <rect
+            class="gene"
+            x="77"
+            y="169"
+            width="56"
+            height="22"
+            rx="7"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="2"
+          />
+
+          <text
+            x="105"
+            y="184"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="9"
+            font-weight="950"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            GENES
+          </text>
+
+        </g>
+
+
+        <!-- =========================
+             ARROW TO CELL
+        ========================== -->
+
+        <path
+          d="M170 180 H265"
+          fill="none"
+          stroke="#222222"
+          stroke-width="4"
+          stroke-linecap="round"
+          class="transfer-arrow"
+        />
+
+        <path
+          d="M252 169 L268 180 L252 191"
+          fill="none"
+          stroke="#fa8112"
+          stroke-width="4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+
+        <text
+          x="218"
+          y="164"
+          text-anchor="middle"
+          fill="#222222"
+          font-size="9"
+          font-weight="850"
+          font-family="Inter, system-ui, sans-serif"
+        >
+          INSERT
+        </text>
+
+
+        <!-- =========================
+             EMPTIED BACTERIAL CELL
+        ========================== -->
+
+        <g>
+
+          <ellipse
+            cx="335"
+            cy="180"
+            rx="74"
+            ry="58"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="5"
+            class="cell-outline"
+          />
+
+          <!-- Cell membrane -->
+
+          <ellipse
+            cx="335"
+            cy="180"
+            rx="62"
+            ry="46"
+            fill="none"
+            stroke="#fa8112"
+            stroke-width="4"
+            stroke-dasharray="5 5"
+          />
+
+          <!-- Empty interior -->
+
+          <text
+            x="335"
+            y="177"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="10"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            CYTOPLASM
+          </text>
+
+          <text
+            x="335"
+            y="193"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="8"
+            font-weight="700"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            + MEMBRANE INTACT
+          </text>
+
+          <text
+            x="335"
+            y="263"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="9"
+            font-weight="850"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            DNA REMOVED
+          </text>
+
+        </g>
+
+
+        <!-- =========================
+             INSERTED DNA
+        ========================== -->
+
+        <path
+          d="M278 180
+             C298 166 306 192 326 180
+             C346 168 354 192 374 180"
+          fill="none"
+          stroke="#fa8112"
+          stroke-width="6"
+          stroke-linecap="round"
+          class="dna-strand"
+        />
+
+        <circle
+          cx="326"
+          cy="180"
+          r="8"
+          fill="#fa8112"
+          stroke="#222222"
+          stroke-width="2"
+        />
+
+
+        <!-- =========================
+             GROWTH / DIVISION
+        ========================== -->
+
+        <path
+          d="M410 180 H480"
+          fill="none"
+          stroke="#222222"
+          stroke-width="4"
+          stroke-linecap="round"
+          class="transfer-arrow"
+        />
+
+        <path
+          d="M468 169 L484 180 L468 191"
+          fill="none"
+          stroke="#fa8112"
+          stroke-width="4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+
+
+        <!-- Growing cells -->
+
+        <g>
+
+          <ellipse
+            cx="535"
+            cy="160"
+            rx="48"
+            ry="35"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="4"
+          />
+
+          <ellipse
+            cx="535"
+            cy="160"
+            rx="31"
+            ry="22"
+            fill="none"
+            stroke="#fa8112"
+            stroke-width="3"
+          />
+
+          <circle
+            cx="535"
+            cy="160"
+            r="8"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="2"
+          />
+
+
+          <!-- Daughter cells -->
+
+          <ellipse
+            cx="510"
+            cy="246"
+            rx="34"
+            ry="26"
+            fill="#faf3e1"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <circle
+            cx="510"
+            cy="246"
+            r="7"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="2"
+          />
+
+
+          <ellipse
+            cx="567"
+            cy="246"
+            rx="34"
+            ry="26"
+            fill="#faf3e1"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <circle
+            cx="567"
+            cy="246"
+            r="7"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="2"
+          />
+
+          <!-- Division line -->
+
+          <path
+            d="M535 198 V218"
+            stroke="#222222"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+
+          <path
+            d="M528 211 L535 219 L542 211"
+            fill="none"
+            stroke="#fa8112"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+
+          <text
+            x="540"
+            y="292"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="9"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            GROWS &amp; DIVIDES
+          </text>
+
+        </g>
+
+
+        <!-- =========================
+             INFORMATION STRIP
+        ========================== -->
+
+        <rect
+          x="170"
+          y="335"
+          width="365"
+          height="48"
+          rx="14"
+          fill="#252525"
+        />
+
+        <text
+          x="352"
+          y="355"
+          text-anchor="middle"
+          fill="#fa8112"
+          font-size="9"
+          font-weight="950"
+          font-family="Inter, system-ui, sans-serif"
+        >
+          SYNTHETIC DNA
+        </text>
+
+        <text
+          x="352"
+          y="371"
+          text-anchor="middle"
+          fill="#faf3e1"
+          font-size="9"
+          font-weight="800"
+          font-family="Inter, system-ui, sans-serif"
+        >
+          CONTROLS CELL STRUCTURE &amp; ACTIVITIES
+        </text>
+
+      </svg>
+
+    </section>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <section class="content-card">
+
+      <h2 id="block-44-synthetic-biology">
+        Block 44: Synthetic Biology — J. Craig Venter Experiment
+      </h2>
+
+
+      <div class="experiment-intro">
+
+        <h3>2010 Experiment — J. Craig Venter &amp; Team</h3>
+
+        <p>
+          The experiment demonstrated that a cell could be
+          controlled by a <strong>chemically synthesised copy
+          of bacterial DNA</strong>.
+        </p>
+
+      </div>
+
+
+      <div class="timeline">
+
+        <!-- Step 1 -->
+
+        <article class="step">
+
+          <div class="step-number">1</div>
+
+          <div class="step-content">
+
+            <strong>Study the bacterial genome</strong>
+
+            <p>
+              The team studied the complete DNA sequence of the
+              bacterium <strong>Mycoplasma mycoides</strong>.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <!-- Step 2 -->
+
+        <article class="step">
+
+          <div class="step-number">2</div>
+
+          <div class="step-content">
+
+            <strong>Synthesise the DNA</strong>
+
+            <p>
+              An exact copy of the bacterial DNA was
+              <strong>chemically synthesised</strong> in the laboratory.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <!-- Step 3 -->
+
+        <article class="step">
+
+          <div class="step-number">3</div>
+
+          <div class="step-content">
+
+            <strong>Empty a related bacterial cell</strong>
+
+            <p>
+              DNA was removed from a related bacterium while
+              its <strong>cytoplasm and cell membrane</strong>
+              were kept intact.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <!-- Step 4 -->
+
+        <article class="step">
+
+          <div class="step-number">4</div>
+
+          <div class="step-content">
+
+            <strong>Insert the synthetic DNA</strong>
+
+            <p>
+              The laboratory-made DNA was inserted into the
+              emptied bacterial cell.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <!-- Step 5 -->
+
+        <article class="step">
+
+          <div class="step-number">5</div>
+
+          <div class="step-content">
+
+            <strong>The cell follows the new instructions</strong>
+
+            <p>
+              The cell <strong>grew and divided</strong>,
+              following the instructions encoded in the
+              newly introduced synthetic DNA.
+            </p>
+
+          </div>
+
+        </article>
+
+      </div>
+
+
+      <!-- =========================
+           CONCLUSION
+      ========================== -->
+
+      <div class="conclusion">
+
+        <span class="conclusion-label">
+          Key Conclusion
+        </span>
+
+        <p>
+          <strong>DNA controls the structure and activities
+          of a cell.</strong>
+        </p>
+
+      </div>
+
+
+      <!-- =========================
+           IMPORTANT NOTE
+      ========================== -->
+
+      <div class="note">
+
+        <strong>Important:</strong>
+        The cell was <strong>not created from scratch</strong>.
+        Only its DNA was synthetic; the existing cell provided
+        the cytoplasm and membrane needed for cellular activity.
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FLOATING NAVIGATION
+  ========================== -->
+
+  <nav class="floating-nav" aria-label="Page navigation">
+
+    <a
+      class="nav-button"
+      href="main.html"
+      aria-label="Home"
+    >
+      <span class="nav-icon">⌂</span>
+      <span>Home</span>
+    </a>
+
+    <a
+      class="nav-button"
+      href="#block-44-synthetic-biology"
+      aria-label="Previous block"
+      onclick="history.back(); return false;"
+    >
+      <span class="nav-icon">←</span>
+      <span>Back</span>
+    </a>
+
+    <a
+      class="nav-button"
+      href="45.html"
+      aria-label="Next block"
+    >
+      <span>Next</span>
+      <span class="nav-icon">→</span>
+    </a>
+
+  </nav>
+
+</body>
+</html>

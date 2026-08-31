@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Block 9: Estimating Cell Size — Formula</title>
+
+  
+<style>
+:root{--bg:#f6f1e7;--surface:#fffdf8;--surface-2:#f0e8d8;--ink:#252525;--muted:#6d685f;--accent:#d96f16;--line:#d8d0c2;--dark:#252525}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}
+.page{width:min(100% - 32px,980px);margin:0 auto;padding:36px 0 140px}
+
+.hero{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,.9fr) minmax(400px,1.1fr);align-items:center;min-height:430px;background:var(--surface-2);border:1px solid var(--line);border-radius:24px;padding:42px 42px 34px;margin-bottom:28px}
+.hero-content{position:relative;z-index:2;max-width:395px;padding-bottom:8px}
+.eyebrow{display:inline-block;margin-bottom:16px;color:var(--accent);font-size:.76rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+h1{font-size:clamp(2.45rem,5vw,3.6rem);line-height:1.02;letter-spacing:-.045em;margin-bottom:18px}
+.hero-description{max-width:390px;color:var(--muted);font-size:clamp(.98rem,2vw,1.08rem);line-height:1.7}
+
+.origin-graphic{position:relative!important;right:auto!important;bottom:auto!important;z-index:1;width:100%!important;max-width:560px;height:auto;display:block;justify-self:center;opacity:1!important;pointer-events:none;transform:none!important}
+.origin-graphic *{animation:none!important}
+.origin-graphic text{letter-spacing:.02em}
+.origin-graphic [stroke="#222222"]{stroke:#303030}
+.origin-graphic [stroke="#fa8112"]{stroke:var(--accent)}
+.origin-graphic [fill="#fa8112"]{fill:var(--accent)}
+.origin-graphic [fill="#f5e7c6"]{fill:#f4ecdf}
+.origin-graphic [fill="#faf3e1"]{fill:#fffaf1}
+
+.content-card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:clamp(24px,5vw,42px);box-shadow:0 8px 28px rgba(37,37,37,.05)}
+.content-card h2{font-size:clamp(1.55rem,4vw,2.15rem);line-height:1.18;letter-spacing:-.025em;margin-bottom:22px}
+.content-card p{margin-bottom:18px;font-size:clamp(.98rem,2vw,1.06rem)}
+.content-card ul{list-style:none;display:grid;gap:10px;margin-top:4px}
+.content-card li{position:relative;padding:15px 18px 15px 42px;background:#faf7f0;border:1px solid #e6dfd2;border-radius:12px;font-size:.94rem;line-height:1.58}
+.content-card li:nth-child(2){background:#f4eee3}
+.content-card li:nth-child(3){background:#fff8ef}
+.content-card li::before{content:"";position:absolute;left:17px;top:50%;transform:translateY(-50%);width:9px;height:9px;background:var(--accent);border-radius:50%}
+.formula{margin:22px 0;padding:20px;background:var(--surface-2);border:1px solid var(--line);border-radius:14px;text-align:center;font-size:clamp(1rem,2.5vw,1.15rem);font-weight:800}
+.result{display:inline-block;padding:3px 10px;background:#f0c39b;border-radius:7px;font-weight:900}
+strong{font-weight:850}
+
+.floating-nav{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:1000;display:flex;align-items:center;justify-content:center;gap:4px;padding:6px;background:var(--dark);border-radius:999px;box-shadow:0 8px 24px rgba(37,37,37,.18)}
+.nav-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-width:92px;height:40px;padding:0 14px;border:none;border-radius:999px;background:#f8f2e7;color:var(--dark);font:inherit;font-size:.84rem;font-weight:750;text-decoration:none;cursor:pointer;transition:background .18s ease,transform .18s ease}
+.nav-button:hover{background:#f0c39b;transform:translateY(-2px)}
+.nav-button:active{transform:translateY(0)}
+.nav-icon{font-size:1rem;line-height:1}
+
+@media(max-width:760px){
+.page{width:min(100% - 22px,980px);padding-top:20px;padding-bottom:125px}
+.hero{grid-template-columns:1fr;min-height:auto;padding:30px 26px 8px}
+.hero-content{max-width:100%;padding-bottom:0}
+.hero-description{max-width:620px}
+.origin-graphic{width:min(100%,610px)!important;max-width:none;justify-self:center;margin:0}
+.content-card{padding:24px 20px}
+}
+@media(max-width:520px){
+.hero{padding:27px 20px 6px;border-radius:18px}
+h1{font-size:2.42rem}
+.origin-graphic{width:118%!important;max-width:none;margin-left:-9%;margin-top:2px;margin-bottom:4px}
+.content-card li{padding-left:38px}
+.formula{padding:17px 13px;overflow-wrap:anywhere}
+.floating-nav{bottom:10px;width:calc(100% - 20px);max-width:420px}
+.nav-button{flex:1;min-width:0;padding:0 8px;font-size:.77rem}
+}
+@media(prefers-reduced-motion:reduce){
+html{scroll-behavior:auto}
+*,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+
+</head>
+
+<body>
+
+  <main class="page">
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
+      <div class="hero-content">
+
+        <span class="eyebrow">
+          Biology • Measurement
+        </span>
+
+        <h1>
+          Estimating Cell Size
+        </h1>
+
+        <p class="hero-description">
+          A microscope can turn an invisible cell into a measurable
+          object. By comparing the visible field diameter with the
+          number of cells across it, we can estimate the size of one cell.
+        </p>
+
+      </div>
+
+
+      <!--
+        Inline SVG vector illustration.
+
+        Concept:
+        Microscope field → cells across diameter → measurement
+        → division → estimated cell size.
+      -->
+
+      <svg
+        class="origin-graphic"
+        viewBox="0 0 440 330"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-label="Vector illustration showing measurement of cell size using a microscope field"
+        role="img"
+      >
+
+        <!-- =========================
+             MICROSCOPE FIELD
+        ========================== -->
+
+        <g >
+
+          <!-- Circular field of view -->
+          <circle
+            cx="220"
+            cy="135"
+            r="92"
+            fill="#faf3e1"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <!-- Diameter line -->
+          <path
+            d="M128 135 H312"
+            stroke="#fa8112"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+
+          <!-- Diameter end markers -->
+          <path
+            d="M128 123 V147"
+            stroke="#222222"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+
+          <path
+            d="M312 123 V147"
+            stroke="#222222"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+
+          <!-- Diameter label -->
+          <rect
+            x="170"
+            y="105"
+            width="100"
+            height="30"
+            rx="10"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="2"
+          />
+
+          <text
+            x="220"
+            y="126"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="15"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            5000 µm
+          </text>
+
+
+          <!-- =========================
+               25 CELLS ACROSS DIAMETER
+          ========================== -->
+
+          <g >
+
+            <!-- Row of representative cells -->
+            <g
+              fill="#f5e7c6"
+              stroke="#fa8112"
+              stroke-width="3"
+            >
+              <circle cx="143" cy="163" r="12"/>
+              <circle cx="165" cy="163" r="12"/>
+              <circle cx="187" cy="163" r="12"/>
+              <circle cx="209" cy="163" r="12"/>
+              <circle cx="231" cy="163" r="12"/>
+              <circle cx="253" cy="163" r="12"/>
+              <circle cx="275" cy="163" r="12"/>
+              <circle cx="297" cy="163" r="12"/>
+            </g>
+
+            <!-- Nuclei -->
+            <g fill="#222222">
+              <circle cx="143" cy="163" r="3"/>
+              <circle cx="165" cy="163" r="3"/>
+              <circle cx="187" cy="163" r="3"/>
+              <circle cx="209" cy="163" r="3"/>
+              <circle cx="231" cy="163" r="3"/>
+              <circle cx="253" cy="163" r="3"/>
+              <circle cx="275" cy="163" r="3"/>
+              <circle cx="297" cy="163" r="3"/>
+            </g>
+
+          </g>
+
+          <!-- 25 cells label -->
+          <text
+            x="220"
+            y="205"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="14"
+            font-weight="800"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            cells across diameter
+          </text>
+
+        </g>
+
+
+        <!-- =========================
+             CALCULATION FLOW
+        ========================== -->
+
+        <path
+          
+          d="M145 245 C190 225 250 225 295 245"
+          fill="none"
+          stroke="#222222"
+          stroke-width="3"
+          stroke-linecap="round"
+        />
+
+        <path
+          d="M287 238 L300 245 L288 252"
+          fill="none"
+          stroke="#222222"
+          stroke-width="3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+
+
+        <!-- =========================
+             FORMULA CARD
+        ========================== -->
+
+        <rect
+          x="105"
+          y="255"
+          width="230"
+          height="55"
+          rx="14"
+          fill="#fa8112"
+          stroke="#222222"
+          stroke-width="3"
+        />
+
+        <text
+          x="220"
+          y="278"
+          text-anchor="middle"
+          fill="#222222"
+          font-size="12"
+          font-weight="900"
+          font-family="Inter, system-ui, sans-serif"
+        >
+          5000 ÷ 25
+        </text>
+
+        <text
+          x="220"
+          y="299"
+          text-anchor="middle"
+          fill="#222222"
+          font-size="18"
+          font-weight="900"
+          font-family="Inter, system-ui, sans-serif"
+        >
+          = 200 µm
+        </text>
+
+
+        <!-- =========================
+             UNIT CONVERSION
+        ========================== -->
+
+        <g>
+
+          <circle
+            cx="45"
+            cy="70"
+            r="25"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <text
+            x="45"
+            y="65"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="13"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            mm
+          </text>
+
+          <text
+            x="45"
+            y="80"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="11"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            ×1000
+          </text>
+
+
+          <path
+            d="M70 70 H108"
+            stroke="#222222"
+            stroke-width="3"
+            stroke-dasharray="6 5"
+          />
+
+          <path
+            d="M101 64 L109 70 L101 76"
+            fill="none"
+            stroke="#222222"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+
+
+          <circle
+            cx="135"
+            cy="70"
+            r="25"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <text
+            x="135"
+            y="76"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="14"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            µm
+          </text>
+
+        </g>
+
+      </svg>
+
+    </section>
+
+
+    <!-- =========================
+         CONTENT
+    ========================== -->
+
+    <section class="content-card">
+
+      <h2 id="block-9-estimating-cell-size-formula">
+        Block 9: Estimating Cell Size — Formula
+      </h2>
+
+      <p>
+        <strong>Unit conversion:</strong><br>
+        1 millimetre (mm) = 1000 micrometre (µm)
+      </p>
+
+      <p>
+        <strong>Formula:</strong>
+      </p>
+
+      <div class="formula">
+        Estimated size of cell =
+        Diameter of visible field (µm)
+        ÷
+        Number of cells along the diameter
+      </div>
+
+      <p>
+        <strong>Example:</strong>
+      </p>
+
+      <ul>
+
+        <li>
+          Diameter of field = 5000 µm
+        </li>
+
+        <li>
+          Cells along diameter = 25
+        </li>
+
+        <li>
+          Size of one cell =
+          5000 ÷ 25 =
+          <span class="result">200 µm</span>
+        </li>
+
+      </ul>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FLOATING NAVIGATION
+  ========================== -->
+
+  <nav class="floating-nav" aria-label="Page navigation">
+
+    <a
+      class="nav-button"
+      href="main.html"
+      aria-label="Home"
+    >
+      <span class="nav-icon">⌂</span>
+      <span>Home</span>
+    </a>
+
+    <a
+      class="nav-button"
+      href="#block-9-estimating-cell-size-formula"
+      aria-label="Previous block"
+      onclick="history.back(); return false;"
+    >
+      <span class="nav-icon">←</span>
+      <span>Back</span>
+    </a>
+
+    <a
+      class="nav-button"
+      href="10.html"
+      aria-label="Next block"
+    >
+      <span>Next</span>
+      <span class="nav-icon">→</span>
+    </a>
+
+  </nav>
+
+</body>
+</html>

@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Block 34: Mitosis</title>
+
+  
+<style>
+:root{--bg:#f6f1e7;--surface:#fffdf8;--surface-2:#f0e8d8;--ink:#252525;--muted:#6d685f;--accent:#d96f16;--line:#d8d0c2;--dark:#252525}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}
+.page{width:min(100% - 32px,980px);margin:0 auto;padding:36px 0 140px}
+
+/* HERO */
+.hero{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,.9fr) minmax(400px,1.1fr);align-items:center;min-height:430px;background:var(--surface-2);border:1px solid var(--line);border-radius:24px;padding:42px 42px 34px;margin-bottom:28px}
+.hero-content{position:relative;z-index:2;max-width:395px;padding-bottom:8px}
+.eyebrow{display:inline-block;margin-bottom:16px;color:var(--accent);font-size:.76rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+h1{font-size:clamp(2.45rem,5vw,3.6rem);line-height:1.02;letter-spacing:-.045em;margin-bottom:18px}
+.hero-description{max-width:390px;color:var(--muted);font-size:clamp(.98rem,2vw,1.08rem);line-height:1.7}
+
+/* SVG */
+.origin-graphic{position:relative;z-index:1;width:100%;height:auto;display:block;pointer-events:none;overflow:visible}
+.origin-graphic *{animation:none!important}
+.origin-graphic text{letter-spacing:.02em}
+.origin-graphic [stroke="#222222"]{stroke:#303030}
+.origin-graphic [stroke="#fa8112"]{stroke:var(--accent)}
+.origin-graphic [fill="#fa8112"]{fill:var(--accent)}
+.origin-graphic [fill="#f5e7c6"]{fill:#f4ecdf}
+.origin-graphic [fill="#faf3e1"]{fill:#fffaf1}
+
+/* Remove the duplicate SVG title badge because the HTML hero already carries the title. */
+.origin-graphic > rect:first-of-type,
+.origin-graphic > text:first-of-type{display:none}
+
+/* CONTENT */
+.content-card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:clamp(24px,5vw,42px);box-shadow:0 8px 28px rgba(37,37,37,.05)}
+.content-card h2{font-size:clamp(1.55rem,4vw,2.15rem);line-height:1.18;letter-spacing:-.025em;margin-bottom:22px}
+.content-points{list-style:none;display:grid;gap:10px}
+.content-points>li{position:relative;padding:17px 18px 17px 48px;background:#faf7f0;border:1px solid #e6dfd2;border-radius:12px;font-size:clamp(.94rem,2vw,1rem)}
+.content-points>li:nth-child(2){background:#f4eee3}
+.content-points>li:nth-child(3){background:#fff8ef}
+.content-points>li:nth-child(4){background:#f4eee3}
+.content-points>li::before{content:"•";position:absolute;left:18px;top:12px;color:var(--accent);font-size:1.8rem;font-weight:900;line-height:1}
+.highlight-card{border-left:3px solid var(--accent)!important;background:var(--surface-2)!important}
+.content-points ul{color:#625d55}
+strong{font-weight:850}
+
+/* NAV */
+.floating-nav{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:1000;display:flex;align-items:center;justify-content:center;gap:4px;padding:6px;background:var(--dark);border-radius:999px;box-shadow:0 8px 24px rgba(37,37,37,.18)}
+.nav-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-width:92px;height:40px;padding:0 14px;border:none;border-radius:999px;background:#f8f2e7;color:var(--dark);font:inherit;font-size:.84rem;font-weight:750;text-decoration:none;cursor:pointer;transition:background .18s ease,transform .18s ease}
+.nav-button:hover{background:#f0c39b;transform:translateY(-2px)}
+.nav-button:active{transform:translateY(0)}
+.nav-icon{font-size:1rem;line-height:1}
+
+@media(max-width:760px){
+.page{width:min(100% - 22px,980px);padding-top:20px;padding-bottom:125px}
+.hero{grid-template-columns:1fr;min-height:auto;padding:30px 26px 8px}
+.hero-content{max-width:100%;padding-bottom:0}
+.hero-description{max-width:620px}
+.origin-graphic{width:min(100%,610px);justify-self:center;margin:0}
+.content-card{padding:24px 20px}
+}
+@media(max-width:520px){
+.hero{padding:27px 20px 6px;border-radius:18px}
+h1{font-size:2.42rem}
+.origin-graphic{width:118%;margin-left:-9%;margin-top:2px;margin-bottom:4px}
+.content-points>li{padding-left:44px}
+.floating-nav{bottom:10px;width:calc(100% - 20px);max-width:420px}
+.nav-button{flex:1;min-width:0;padding:0 8px;font-size:.77rem}
+}
+@media(prefers-reduced-motion:reduce){
+html{scroll-behavior:auto}
+*,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+
+</head>
+
+<body>
+
+  <main class="page">
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
+      <div class="hero-content">
+
+        <span class="eyebrow">
+          Biology • Cell Division
+        </span>
+
+        <h1>
+          Mitosis
+        </h1>
+
+        <p class="hero-description">
+          One parent cell divides to produce two
+          genetically identical daughter cells,
+          preserving the genetic information of the body.
+        </p>
+
+      </div>
+
+
+      <!-- =========================
+           VECTOR GRAPHIC
+      ========================== -->
+
+      <svg
+        class="origin-graphic"
+        viewBox="0 0 660 400"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-label="Vector illustration showing one parent cell dividing into two genetically identical daughter cells"
+        role="img"
+      >
+
+        <!-- Header -->
+
+        <rect
+          x="22"
+          y="20"
+          width="285"
+          height="38"
+          rx="13"
+          fill="#fa8112"
+          stroke="#222222"
+          stroke-width="3"
+        />
+
+        <text
+          x="164"
+          y="45"
+          text-anchor="middle"
+          fill="#222222"
+          font-size="15"
+          font-weight="900"
+          font-family="Inter, system-ui, sans-serif"
+        >
+          MITOSIS • IDENTICAL COPIES
+        </text>
+
+
+        <!-- =========================
+             PARENT CELL
+        ========================== -->
+
+        <g class="parent-cell">
+
+          <circle
+            cx="125"
+            cy="190"
+            r="78"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <circle
+            cx="125"
+            cy="190"
+            r="61"
+            fill="#faf3e1"
+            stroke="#fa8112"
+            stroke-width="3"
+          />
+
+          <!-- Nucleus -->
+
+          <circle
+            cx="125"
+            cy="190"
+            r="32"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <!-- DNA / Chromosomes -->
+
+          <g
+            class="chromosome"
+            stroke="#fa8112"
+            stroke-width="3"
+            stroke-linecap="round"
+          >
+            <path d="M111 174 L124 187 L111 201"/>
+            <path d="M139 174 L126 187 L139 201"/>
+            <path d="M111 201 L124 188 L111 175"/>
+            <path d="M139 201 L126 188 L139 175"/>
+          </g>
+
+          <text
+            x="125"
+            y="290"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="13"
+            font-weight="950"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            ONE PARENT CELL
+          </text>
+
+          <text
+            x="125"
+            y="307"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="9"
+            font-weight="800"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            ORIGINAL DNA
+          </text>
+
+        </g>
+
+
+        <!-- =========================
+             DIVISION ARROW
+        ========================== -->
+
+        <path
+          d="M210 190 H280"
+          fill="none"
+          stroke="#222222"
+          stroke-width="3"
+          stroke-linecap="round"
+        />
+
+        <path
+          d="M268 178 L282 190 L268 202"
+          fill="none"
+          stroke="#fa8112"
+          stroke-width="3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+
+        <text
+          x="245"
+          y="169"
+          text-anchor="middle"
+          fill="#222222"
+          font-size="10"
+          font-weight="900"
+          font-family="Inter, system-ui, sans-serif"
+        >
+          DIVIDES
+        </text>
+
+
+        <!-- =========================
+             DAUGHTER CELL 1
+        ========================== -->
+
+        <g class="daughter-left">
+
+          <circle
+            cx="370"
+            cy="145"
+            r="57"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <circle
+            cx="370"
+            cy="145"
+            r="43"
+            fill="#faf3e1"
+            stroke="#fa8112"
+            stroke-width="3"
+          />
+
+          <!-- Nucleus -->
+
+          <circle
+            cx="370"
+            cy="145"
+            r="22"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <!-- DNA -->
+
+          <g
+            stroke="#fa8112"
+            stroke-width="3"
+            stroke-linecap="round"
+          >
+            <path d="M360 133 L370 143 L360 153"/>
+            <path d="M380 133 L370 143 L380 153"/>
+          </g>
+
+          <text
+            x="370"
+            y="218"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="10"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            DAUGHTER CELL
+          </text>
+
+        </g>
+
+
+        <!-- =========================
+             DAUGHTER CELL 2
+        ========================== -->
+
+        <g class="daughter-right">
+
+          <circle
+            cx="510"
+            cy="145"
+            r="57"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <circle
+            cx="510"
+            cy="145"
+            r="43"
+            fill="#faf3e1"
+            stroke="#fa8112"
+            stroke-width="3"
+          />
+
+          <!-- Nucleus -->
+
+          <circle
+            cx="510"
+            cy="145"
+            r="22"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <!-- DNA -->
+
+          <g
+            stroke="#fa8112"
+            stroke-width="3"
+            stroke-linecap="round"
+          >
+            <path d="M500 133 L510 143 L500 153"/>
+            <path d="M520 133 L510 143 L520 153"/>
+          </g>
+
+          <text
+            x="510"
+            y="218"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="10"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            DAUGHTER CELL
+          </text>
+
+        </g>
+
+
+        <!-- =========================
+             IDENTICAL DNA INDICATOR
+        ========================== -->
+
+        <path
+          d="M370 245 V265"
+          stroke="#222222"
+          stroke-width="3"
+          stroke-linecap="round"
+        />
+
+        <path
+          d="M510 245 V265"
+          stroke="#222222"
+          stroke-width="3"
+          stroke-linecap="round"
+        />
+
+        <rect
+          x="332"
+          y="270"
+          width="216"
+          height="48"
+          rx="15"
+          fill="#f5e7c6"
+          stroke="#222222"
+          stroke-width="3"
+        />
+
+        <text
+          x="440"
+          y="291"
+          text-anchor="middle"
+          fill="#222222"
+          font-size="11"
+          font-weight="950"
+          font-family="Inter, system-ui, sans-serif"
+        >
+          SAME DNA
+        </text>
+
+        <text
+          x="440"
+          y="306"
+          text-anchor="middle"
+          fill="#222222"
+          font-size="9"
+          font-weight="800"
+          font-family="Inter, system-ui, sans-serif"
+        >
+          SAME CHROMOSOME NUMBER
+        </text>
+
+
+        <!-- =========================
+             GENETIC INFORMATION
+        ========================== -->
+
+        <g>
+
+          <rect
+            x="260"
+            y="342"
+            width="300"
+            height="38"
+            rx="13"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <text
+            x="410"
+            y="366"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="10"
+            font-weight="950"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            GENETIC INFORMATION MAINTAINED
+          </text>
+
+        </g>
+
+      </svg>
+
+    </section>
+
+
+    <!-- =========================
+         CONTENT
+    ========================== -->
+
+    <section class="content-card">
+
+      <h2 id="block-34-mitosis">
+        Block 34: Mitosis
+      </h2>
+
+      <ul class="content-points">
+
+        <li class="highlight-card">
+          <strong>Mitosis</strong>:
+          most common type of cell division.
+        </li>
+
+        <li>
+          Produces
+          <strong>two genetically identical daughter cells</strong>
+          from one parent cell.
+        </li>
+
+        <li>
+          Each daughter cell has:
+          <ul style="
+            margin-top: 12px;
+            padding-left: 24px;
+          ">
+            <li>
+              Same <strong>DNA</strong>
+            </li>
+
+            <li>
+              Same <strong>number of chromosomes</strong>
+              as parent
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          Ensures genetic information is
+          <strong>maintained across body cells</strong>.
+        </li>
+
+      </ul>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FLOATING NAVIGATION
+  ========================== -->
+
+  <nav class="floating-nav" aria-label="Page navigation">
+
+    <a
+      class="nav-button"
+      href="main.html"
+      aria-label="Home"
+    >
+      <span class="nav-icon">⌂</span>
+      <span>Home</span>
+    </a>
+
+    <a
+      class="nav-button"
+      href="#block-34-mitosis"
+      aria-label="Previous block"
+      onclick="history.back(); return false;"
+    >
+      <span class="nav-icon">←</span>
+      <span>Back</span>
+    </a>
+
+    <a
+      class="nav-button"
+      href="35.html"
+      aria-label="Next block"
+    >
+      <span>Next</span>
+      <span class="nav-icon">→</span>
+    </a>
+
+  </nav>
+
+</body>
+</html>

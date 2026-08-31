@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Block 45: Chapter Summary</title>
+
+  
+<style>
+:root{
+  --bg:#f6f1e7;
+  --surface:#fffdf8;
+  --surface-2:#f0e8d8;
+  --ink:#252525;
+  --muted:#6d685f;
+  --accent:#d96f16;
+  --accent-soft:#f4d7b8;
+  --line:#d8d0c2;
+  --dark:#252525;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.65;
+}
+.page{
+  width:min(100% - 32px,980px);
+  margin:0 auto;
+  padding:36px 0 140px;
+}
+
+/* HERO */
+.hero{
+  position:relative;
+  overflow:hidden;
+  display:grid;
+  grid-template-columns:minmax(0, .88fr) minmax(390px,1.12fr);
+  align-items:center;
+  min-height:420px;
+  background:var(--surface-2);
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:42px 42px 36px;
+  margin-bottom:28px;
+}
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:390px;
+  padding-bottom:10px;
+}
+.eyebrow{
+  display:inline-block;
+  margin-bottom:16px;
+  color:var(--accent);
+  font-size:.76rem;
+  font-weight:800;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+h1{
+  font-size:clamp(2.5rem,5vw,3.65rem);
+  line-height:1.02;
+  letter-spacing:-.045em;
+  margin-bottom:18px;
+}
+h1 span{color:var(--accent)!important}
+.hero-description{
+  max-width:380px;
+  color:var(--muted);
+  font-size:clamp(.98rem,2vw,1.08rem);
+  line-height:1.7;
+}
+
+/* CLEAN SVG */
+.summary-graphic{
+  position:relative;
+  z-index:1;
+  width:100%;
+  height:auto;
+  pointer-events:none;
+  overflow:visible;
+}
+.summary-graphic .orbit,
+.summary-graphic .summary-dot{
+  display:none;
+}
+.summary-graphic .central-cell,
+.summary-graphic .organelles{
+  animation:none;
+}
+.summary-graphic text{
+  letter-spacing:.02em;
+}
+.summary-graphic rect[stroke="#222222"]{
+  stroke:var(--line);
+}
+.summary-graphic .concept-box{
+  fill:transparent;
+  stroke:none;
+}
+.summary-graphic .concept-icon{
+  stroke:var(--accent);
+}
+
+/* CONTENT */
+.content-card{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:clamp(24px,5vw,42px);
+  box-shadow:0 8px 28px rgba(37,37,37,.05);
+}
+.content-card h2{
+  font-size:clamp(1.55rem,4vw,2.15rem);
+  line-height:1.18;
+  letter-spacing:-.025em;
+  margin-bottom:22px;
+}
+.summary-intro{
+  padding:18px 20px;
+  margin-bottom:18px;
+  background:var(--surface-2);
+  border-left:3px solid var(--accent);
+  border-radius:10px;
+}
+.summary-intro h3{margin-bottom:5px;font-size:1.08rem}
+.summary-intro p{font-size:.94rem;line-height:1.62;color:#57524a}
+
+.summary-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-bottom:18px;
+}
+.summary-item{
+  position:relative;
+  padding:17px 18px 17px 52px;
+  background:#faf7f0;
+  border:1px solid #e6dfd2;
+  border-radius:12px;
+  min-height:108px;
+}
+.summary-item:nth-child(2),
+.summary-item:nth-child(5){background:#f4eee3}
+.summary-item:nth-child(3),
+.summary-item:nth-child(6){background:#fff8ef}
+.summary-icon{
+  position:absolute;
+  left:15px;
+  top:17px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:27px;height:27px;
+  background:var(--accent);
+  color:#fffaf2;
+  border-radius:50%;
+  font-size:.72rem;
+  font-weight:900;
+}
+.summary-item h3{
+  margin-bottom:4px;
+  font-size:.96rem;
+  line-height:1.3;
+}
+.summary-item p{
+  color:#625d55;
+  font-size:.84rem;
+  line-height:1.5;
+}
+
+/* DIVISION */
+.division-card{
+  margin-top:4px;
+  padding:20px;
+  background:var(--dark);
+  color:#f8f2e7;
+  border-radius:13px;
+}
+.division-card h3{
+  margin-bottom:13px;
+  color:#f2a15c;
+  font-size:1rem;
+}
+.division-flow{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  gap:10px;
+}
+.division-box{
+  padding:13px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:10px;
+  text-align:center;
+}
+.division-box strong{display:block;margin-bottom:3px;color:#f2a15c;font-size:.98rem}
+.division-box span{font-size:.8rem;color:#eee7dc}
+.division-arrow{color:#f2a15c;font-size:1.4rem;font-weight:800}
+
+/* TAKEAWAY */
+.takeaway{
+  margin-top:14px;
+  padding:17px 19px;
+  background:#faf1e5;
+  border-left:3px solid var(--accent);
+  border-radius:9px;
+  font-size:.9rem;
+  color:#4f4a43;
+}
+
+/* NAV */
+.floating-nav{
+  position:fixed;
+  left:50%;
+  bottom:18px;
+  transform:translateX(-50%);
+  z-index:1000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  padding:6px;
+  background:var(--dark);
+  border-radius:999px;
+  box-shadow:0 8px 24px rgba(37,37,37,.18);
+}
+.nav-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  min-width:92px;
+  height:40px;
+  padding:0 14px;
+  border:none;
+  border-radius:999px;
+  background:#f8f2e7;
+  color:var(--dark);
+  font:inherit;
+  font-size:.84rem;
+  font-weight:750;
+  text-decoration:none;
+  cursor:pointer;
+  transition:background .18s ease,transform .18s ease;
+}
+.nav-button:hover{background:#f0c39b;transform:translateY(-2px)}
+.nav-button:active{transform:translateY(0)}
+.nav-icon{font-size:1rem;line-height:1}
+
+@media (max-width:760px){
+  .page{width:min(100% - 22px,980px);padding-top:20px;padding-bottom:125px}
+  .hero{
+    grid-template-columns:1fr;
+    min-height:auto;
+    padding:30px 26px 18px;
+  }
+  .hero-content{max-width:100%;padding-bottom:0}
+  .hero-description{max-width:600px}
+  .summary-graphic{
+    width:min(100%,560px);
+    justify-self:center;
+    margin-top:-4px;
+    margin-bottom:0;
+  }
+  .content-card{padding:24px 20px}
+}
+@media (max-width:520px){
+  .hero{padding:27px 20px 10px;border-radius:18px}
+  h1{font-size:2.45rem}
+  .summary-graphic{width:118%;margin-left:-9%;margin-top:4px;margin-bottom:4px}
+  .summary-grid{grid-template-columns:1fr}
+  .division-flow{grid-template-columns:1fr}
+  .division-arrow{transform:rotate(90deg);justify-self:center}
+  .floating-nav{bottom:10px;width:calc(100% - 20px);max-width:420px}
+  .nav-button{flex:1;min-width:0;padding:0 8px;font-size:.77rem}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+
+</head>
+
+<body>
+
+  <main class="page">
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
+      <div class="hero-content">
+
+        <span class="eyebrow">
+          Biology • Chapter Summary
+        </span>
+
+        <h1>
+          The Cell
+          <span style="color: #fa8112;">At a Glance</span>
+        </h1>
+
+        <p class="hero-description">
+          From simple prokaryotes to complex eukaryotic cells,
+          from organelles to cell division — the essential
+          ideas of the chapter in one visual overview.
+        </p>
+
+      </div>
+
+
+      <!-- =========================
+           VECTOR GRAPHIC
+      ========================== -->
+
+      <svg
+        class="summary-graphic"
+        viewBox="0 0 700 430"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-label="Vector illustration of a cell containing its major organelles and surrounded by key biological concepts"
+        role="img"
+      >
+<!-- =========================
+             ORBIT
+        ========================== -->
+
+        <ellipse
+          cx="390"
+          cy="215"
+          rx="255"
+          ry="150"
+          fill="none"
+          stroke="#222222"
+          stroke-width="2.5"
+          stroke-dasharray="8 8"
+          class="orbit"
+        />
+
+
+        <!-- =========================
+             CENTRAL CELL
+        ========================== -->
+
+        <g class="central-cell">
+
+          <!-- Cell membrane -->
+
+          <ellipse
+            cx="390"
+            cy="215"
+            rx="145"
+            ry="115"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <!-- Cell wall hint -->
+
+          <ellipse
+            cx="390"
+            cy="215"
+            rx="134"
+            ry="104"
+            fill="none"
+            stroke="#fa8112"
+            stroke-width="2.5"
+            stroke-dasharray="7 5"
+          />
+
+
+          <!-- Cytoplasm -->
+
+          <ellipse
+            cx="390"
+            cy="215"
+            rx="119"
+            ry="90"
+            fill="#faf3e1"
+            stroke="#222222"
+            stroke-width="2"
+          />
+
+
+          <!-- =====================
+               NUCLEUS
+          ====================== -->
+
+          <g class="organelles">
+
+            <circle
+              cx="390"
+              cy="210"
+              r="48"
+              fill="#fa8112"
+              stroke="#222222"
+              stroke-width="4"
+            />
+
+            <circle
+              cx="390"
+              cy="210"
+              r="15"
+              fill="#222222"
+            />
+
+            <circle
+              cx="375"
+              cy="190"
+              r="5"
+              fill="#222222"
+            />
+
+            <circle
+              cx="408"
+              cy="228"
+              r="5"
+              fill="#222222"
+            />
+
+            <text
+              x="390"
+              y="268"
+              text-anchor="middle"
+              fill="#222222"
+              font-size="10"
+              font-weight="950"
+              font-family="Inter, system-ui, sans-serif"
+            >
+              NUCLEUS • DNA
+            </text>
+
+
+            <!-- Mitochondrion -->
+
+            <ellipse
+              cx="314"
+              cy="190"
+              rx="28"
+              ry="15"
+              fill="#f5e7c6"
+              stroke="#222222"
+              stroke-width="3"
+              transform="rotate(-25 314 190)"
+            />
+
+            <path
+              d="M297 191
+                 Q306 181 314 191
+                 T331 190"
+              fill="none"
+              stroke="#fa8112"
+              stroke-width="3"
+              transform="rotate(-25 314 190)"
+            />
+
+
+            <!-- Golgi -->
+
+            <path
+              d="M448 168
+                 Q468 160 483 168
+                 M448 178
+                 Q468 170 483 178
+                 M448 188
+                 Q468 180 483 188"
+              fill="none"
+              stroke="#222222"
+              stroke-width="4"
+              stroke-linecap="round"
+            />
+
+
+            <!-- ER -->
+
+            <path
+              d="M305 240
+                 C325 225 340 252 358 237
+                 C375 223 387 247 402 238"
+              fill="none"
+              stroke="#fa8112"
+              stroke-width="5"
+              stroke-linecap="round"
+            />
+
+            <circle cx="320" cy="235" r="3" fill="#222222"/>
+            <circle cx="338" cy="244" r="3" fill="#222222"/>
+            <circle cx="355" cy="237" r="3" fill="#222222"/>
+            <circle cx="373" cy="240" r="3" fill="#222222"/>
+
+
+            <!-- Ribosomes -->
+
+            <circle cx="455" cy="235" r="5" fill="#222222"/>
+            <circle cx="470" cy="245" r="5" fill="#222222"/>
+            <circle cx="483" cy="231" r="5" fill="#222222"/>
+
+
+            <!-- Lysosome -->
+
+            <circle
+              cx="430"
+              cy="285"
+              r="13"
+              fill="#fa8112"
+              stroke="#222222"
+              stroke-width="2"
+            />
+
+            <circle cx="425" cy="281" r="2.5" fill="#222222"/>
+            <circle cx="435" cy="288" r="2.5" fill="#222222"/>
+
+          </g>
+
+        </g>
+
+
+        <!-- =========================
+             SURROUNDING CONCEPTS
+        ========================== -->
+
+        <!-- Prokaryotic -->
+
+        <g>
+
+          <rect class="concept-box"
+            x="82"
+            y="115"
+            width="125"
+            height="48"
+            rx="14"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <circle
+            cx="105"
+            cy="139"
+            r="12"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="2"
+          />
+
+          <path
+            d="M101 139 Q105 132 109 139 Q105 146 101 139"
+            fill="none"
+            stroke="#222222"
+            stroke-width="2"
+          />
+
+          <text
+            x="124"
+            y="136"
+            fill="#222222"
+            font-size="9"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            PROKARYOTIC
+          </text>
+
+          <text
+            x="124"
+            y="150"
+            fill="#222222"
+            font-size="8"
+            font-weight="700"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            NUCLEOID
+          </text>
+
+        </g>
+
+
+        <!-- Eukaryotic -->
+
+        <g>
+
+          <rect class="concept-box"
+            x="520"
+            y="105"
+            width="125"
+            height="48"
+            rx="14"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <circle
+            cx="543"
+            cy="129"
+            r="13"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="2"
+          />
+
+          <circle
+            cx="543"
+            cy="129"
+            r="5"
+            fill="#222222"
+          />
+
+          <text
+            x="562"
+            y="126"
+            fill="#222222"
+            font-size="9"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            EUKARYOTIC
+          </text>
+
+          <text
+            x="562"
+            y="140"
+            fill="#222222"
+            font-size="8"
+            font-weight="700"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            TRUE NUCLEUS
+          </text>
+
+        </g>
+
+
+        <!-- Cell membrane -->
+
+        <g>
+
+          <rect class="concept-box"
+            x="72"
+            y="285"
+            width="140"
+            height="48"
+            rx="14"
+            fill="#faf3e1"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <circle
+            cx="96"
+            cy="309"
+            r="13"
+            fill="none"
+            stroke="#fa8112"
+            stroke-width="4"
+          />
+
+          <text
+            x="117"
+            y="306"
+            fill="#222222"
+            font-size="9"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            CELL MEMBRANE
+          </text>
+
+          <text
+            x="117"
+            y="320"
+            fill="#222222"
+            font-size="8"
+            font-weight="700"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            SELECTIVE BARRIER
+          </text>
+
+        </g>
+
+
+        <!-- Plant plastids -->
+
+        <g>
+
+          <rect class="concept-box"
+            x="515"
+            y="280"
+            width="140"
+            height="52"
+            rx="14"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <ellipse
+            cx="539"
+            cy="306"
+            rx="15"
+            ry="10"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="2"
+          />
+
+          <line x1="531" y1="302" x2="547" y2="302"
+                stroke="#222222" stroke-width="2"/>
+
+          <line x1="531" y1="307" x2="547" y2="307"
+                stroke="#222222" stroke-width="2"/>
+
+          <text
+            x="561"
+            y="303"
+            fill="#222222"
+            font-size="9"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            PLASTIDS
+          </text>
+
+          <text
+            x="561"
+            y="318"
+            fill="#222222"
+            font-size="8"
+            font-weight="700"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            PLANT CELLS
+          </text>
+
+        </g>
+
+
+        <!-- =========================
+             DIVISION MINI GRAPHIC
+        ========================== -->
+
+        <g>
+
+          <text
+            x="390"
+            y="385"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="10"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            
+          </text>
+
+          <circle
+            cx="340"
+            cy="404"
+            r="14"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="2"
+          />
+
+          <path
+            d="M365 404 H415"
+            stroke="#fa8112"
+            stroke-width="4"
+            stroke-linecap="round"
+          />
+
+          <path
+            d="M407 397 L416 404 L407 411"
+            fill="none"
+            stroke="#fa8112"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+
+          <circle
+            cx="435"
+            cy="397"
+            r="10"
+            fill="#faf3e1"
+            stroke="#222222"
+            stroke-width="2"
+          />
+
+          <circle
+            cx="435"
+            cy="412"
+            r="10"
+            fill="#faf3e1"
+            stroke="#222222"
+            stroke-width="2"
+          />
+
+          <text
+            x="478"
+            y="407"
+            fill="#222222"
+            font-size="9"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            MITOSIS
+          </text>
+
+        </g>
+      </svg>
+
+    </section>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <section class="content-card">
+
+      <h2 id="block-45-chapter-summary">
+        Block 45: Chapter Summary — At a Glance
+      </h2>
+
+
+      <div class="summary-intro">
+
+        <h3>The Cell — Basic Unit of Life</h3>
+
+        <p>
+          The <strong>cell</strong> is the basic structural and
+          functional unit of all living organisms. Its structure,
+          organelles, genetic material, and ability to divide
+          together explain how living systems function.
+        </p>
+
+      </div>
+
+
+      <div class="summary-grid">
+
+        <!-- 1 -->
+
+        <article class="summary-item">
+
+          <span class="summary-icon">C</span>
+
+          <h3>Cell: Basic Unit</h3>
+
+          <p>
+            The cell is the basic structural and functional
+            unit of all living organisms.
+          </p>
+
+        </article>
+
+
+        <!-- 2 -->
+
+        <article class="summary-item">
+
+          <span class="summary-icon">P</span>
+
+          <h3>Prokaryotic Cells</h3>
+
+          <p>
+            No well-defined nucleus; genetic material lies
+            in a <strong>nucleoid</strong>. No membrane-bound
+            organelles.
+          </p>
+
+        </article>
+
+
+        <!-- 3 -->
+
+        <article class="summary-item">
+
+          <span class="summary-icon">E</span>
+
+          <h3>Eukaryotic Cells</h3>
+
+          <p>
+            Larger and more complex, with a well-defined
+            <strong>nucleus</strong> and membrane-bound organelles.
+          </p>
+
+        </article>
+
+
+        <!-- 4 -->
+
+        <article class="summary-item">
+
+          <span class="summary-icon">M</span>
+
+          <h3>Membrane &amp; Cell Wall</h3>
+
+          <p>
+            All cells have a <strong>cell membrane</strong>.
+            Plants, fungi, and bacteria also have a
+            <strong>cell wall</strong>.
+          </p>
+
+        </article>
+
+
+        <!-- 5 -->
+
+        <article class="summary-item">
+
+          <span class="summary-icon">DNA</span>
+
+          <h3>Nucleus &amp; Genetic Information</h3>
+
+          <p>
+            The nucleus contains chromosomes made of
+            <strong>DNA + proteins</strong>, carrying genetic
+            information.
+          </p>
+
+        </article>
+
+
+        <!-- 6 -->
+
+        <article class="summary-item">
+
+          <span class="summary-icon">O</span>
+
+          <h3>Key Organelles</h3>
+
+          <p>
+            Nucleus, ER, mitochondria, Golgi apparatus,
+            ribosomes, and lysosomes perform specialised
+            cellular functions.
+          </p>
+
+        </article>
+
+
+        <!-- 7 -->
+
+        <article class="summary-item">
+
+          <span class="summary-icon">🌿</span>
+
+          <h3>Plant-Specific Plastids</h3>
+
+          <p>
+            Plastids include <strong>chloroplasts,
+            leucoplasts, and chromoplasts</strong>.
+          </p>
+
+        </article>
+
+
+        <!-- 8 -->
+
+        <article class="summary-item">
+
+          <span class="summary-icon">÷</span>
+
+          <h3>Cell Division</h3>
+
+          <p>
+            <strong>Mitosis</strong> forms 2 identical daughter
+            cells, while <strong>meiosis</strong> forms 4 cells
+            with half the chromosome number.
+          </p>
+
+        </article>
+
+      </div>
+
+
+      <!-- =========================
+           MITOSIS / MEIOSIS
+      ========================== -->
+
+      <div class="division-card">
+
+        <h3>
+          Mitosis vs Meiosis — Remember the Numbers
+        </h3>
+
+        <div class="division-flow">
+
+          <div class="division-box">
+
+            <strong>Mitosis</strong>
+
+            <span>
+              1 division → 2 genetically identical cells
+            </span>
+
+          </div>
+
+          <div class="division-arrow">
+            →
+          </div>
+
+          <div class="division-box">
+
+            <strong>Meiosis</strong>
+
+            <span>
+              2 divisions → 4 cells with half chromosomes
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- =========================
+           CANCER TAKEAWAY
+      ========================== -->
+
+      <div class="takeaway">
+
+        <strong>Growth &amp; Cancer:</strong>
+        Normal cells grow and die in a controlled manner.
+        <strong>Cancer cells</strong> lose this control and
+        divide uncontrollably, which can lead to the formation
+        of <strong>tumours</strong>.
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FLOATING NAVIGATION
+  ========================== -->
+
+  <nav class="floating-nav" aria-label="Page navigation">
+
+    <a
+      class="nav-button"
+      href="main.html"
+      aria-label="Home"
+    >
+      <span class="nav-icon">⌂</span>
+      <span>Home</span>
+    </a>
+
+    <a
+      class="nav-button"
+      href="#block-45-chapter-summary"
+      aria-label="Previous block"
+      onclick="history.back(); return false;"
+    >
+      <span class="nav-icon">←</span>
+      <span>Back</span>
+    </a>
+
+    <a
+      class="nav-button"
+      href="quiz.html"
+      aria-label="Next block"
+    >
+      <span>Next</span>
+      <span class="nav-icon">→</span>
+    </a>
+
+  </nav>
+
+</body>
+</html>

@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Block 8: Parts of a Light Microscope</title>
+
+  
+<style>
+:root{--bg:#f6f1e7;--surface:#fffdf8;--surface-2:#f0e8d8;--ink:#252525;--muted:#6d685f;--accent:#d96f16;--line:#d8d0c2;--dark:#252525}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}
+.page{width:min(100% - 32px,980px);margin:0 auto;padding:36px 0 140px}
+
+.hero{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,.9fr) minmax(400px,1.1fr);align-items:center;min-height:430px;background:var(--surface-2);border:1px solid var(--line);border-radius:24px;padding:42px 42px 34px;margin-bottom:28px}
+.hero-content{position:relative;z-index:2;max-width:395px;padding-bottom:8px}
+.eyebrow{display:inline-block;margin-bottom:16px;color:var(--accent);font-size:.76rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+h1{font-size:clamp(2.45rem,5vw,3.6rem);line-height:1.02;letter-spacing:-.045em;margin-bottom:18px}
+.hero-description{max-width:390px;color:var(--muted);font-size:clamp(.98rem,2vw,1.08rem);line-height:1.7}
+.origin-graphic{position:relative!important;right:auto!important;bottom:auto!important;z-index:1;width:100%!important;max-width:600px;height:auto;display:block;justify-self:center;opacity:1!important;pointer-events:none;transform:none!important}
+.origin-graphic *{animation:none!important}
+.origin-graphic text{letter-spacing:.01em}
+.origin-graphic [stroke="#222222"]{stroke:#303030}
+.origin-graphic [stroke="#fa8112"]{stroke:var(--accent)}
+.origin-graphic [fill="#fa8112"]{fill:var(--accent)}
+.origin-graphic [fill="#f5e7c6"]{fill:#f4ecdf}
+.origin-graphic [fill="#faf3e1"]{fill:#fffaf1}
+
+.content-card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:clamp(24px,5vw,42px);box-shadow:0 8px 28px rgba(37,37,37,.05)}
+.content-card h2{font-size:clamp(1.55rem,4vw,2.15rem);line-height:1.18;letter-spacing:-.025em;margin-bottom:22px}
+.content-card p{margin-bottom:18px;font-size:clamp(.98rem,2vw,1.06rem)}
+.content-card ul{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.content-card li{position:relative;padding:14px 16px 14px 40px;background:#faf7f0;border:1px solid #e6dfd2;border-radius:12px;font-size:.92rem;line-height:1.5}
+.content-card li:nth-child(2n){background:#f4eee3}
+.content-card li:nth-child(3n){background:#fff8ef}
+.content-card li::before{content:"";position:absolute;left:16px;top:50%;transform:translateY(-50%);width:9px;height:9px;background:var(--accent);border-radius:50%}
+strong{font-weight:850}
+
+.floating-nav{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:1000;display:flex;align-items:center;justify-content:center;gap:4px;padding:6px;background:var(--dark);border-radius:999px;box-shadow:0 8px 24px rgba(37,37,37,.18)}
+.nav-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-width:92px;height:40px;padding:0 14px;border:none;border-radius:999px;background:#f8f2e7;color:var(--dark);font:inherit;font-size:.84rem;font-weight:750;text-decoration:none;cursor:pointer;transition:background .18s ease,transform .18s ease}
+.nav-button:hover{background:#f0c39b;transform:translateY(-2px)}
+.nav-button:active{transform:translateY(0)}
+.nav-icon{font-size:1rem;line-height:1}
+
+@media(max-width:760px){
+.page{width:min(100% - 22px,980px);padding-top:20px;padding-bottom:125px}
+.hero{grid-template-columns:1fr;min-height:auto;padding:30px 26px 8px}
+.hero-content{max-width:100%;padding-bottom:0}
+.hero-description{max-width:620px}
+.origin-graphic{width:min(100%,610px)!important;max-width:none;justify-self:center;margin:0}
+.content-card{padding:24px 20px}
+}
+@media(max-width:520px){
+.hero{padding:27px 20px 6px;border-radius:18px}
+h1{font-size:2.42rem}
+.origin-graphic{width:118%!important;max-width:none;margin-left:-9%;margin-top:2px;margin-bottom:4px}
+.content-card ul{grid-template-columns:1fr}
+.content-card li{padding-left:38px}
+.floating-nav{bottom:10px;width:calc(100% - 20px);max-width:420px}
+.nav-button{flex:1;min-width:0;padding:0 8px;font-size:.77rem}
+}
+@media(prefers-reduced-motion:reduce){
+html{scroll-behavior:auto}
+*,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+
+</head>
+
+<body>
+
+  <main class="page">
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
+      <div class="hero-content">
+
+        <span class="eyebrow">
+          Biology • Microscopy
+        </span>
+
+        <h1>
+          Parts of a Light Microscope
+        </h1>
+
+        <p class="hero-description">
+          A light microscope combines optical and mechanical parts
+          to illuminate, magnify, focus and clearly observe tiny
+          specimens.
+        </p>
+
+      </div>
+
+
+      <!--
+        Inline SVG vector illustration.
+
+        The illustration shows a light microscope with
+        its major structural components.
+      -->
+
+      <svg
+        class="origin-graphic"
+        viewBox="0 0 440 330"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-label="Vector illustration of a light microscope with its major parts"
+        role="img"
+      >
+
+        <!-- =========================
+             MICROSCOPE
+        ========================== -->
+
+        <g >
+
+          <!-- Eyepiece -->
+
+          <rect
+            x="294"
+            y="30"
+            width="34"
+            height="65"
+            rx="9"
+            fill="#222222"
+          />
+
+          <rect
+            x="300"
+            y="36"
+            width="22"
+            height="17"
+            rx="4"
+            fill="#faf3e1"
+          />
+
+
+          <!-- Body tube -->
+
+          <path
+            d="M288 84
+               L330 84
+               L347 151
+               L303 151 Z"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+
+          <!-- Objective lens -->
+
+          <path
+            d="M304 142
+               L343 142
+               L348 175
+               L300 175 Z"
+            fill="#faf3e1"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <circle
+            cx="324"
+            cy="176"
+            r="12"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+
+          <!-- Revolving nosepiece -->
+
+          <circle
+            cx="324"
+            cy="150"
+            r="13"
+            fill="#222222"
+          />
+
+          <circle
+            cx="324"
+            cy="150"
+            r="6"
+            fill="#fa8112"
+          />
+
+
+          <!-- Stage -->
+
+          <rect
+            x="238"
+            y="174"
+            width="140"
+            height="18"
+            rx="6"
+            fill="#222222"
+          />
+
+          <rect
+            x="270"
+            y="166"
+            width="72"
+            height="10"
+            rx="4"
+            fill="#faf3e1"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+
+          <!-- Specimen slide -->
+
+          <rect
+            x="276"
+            y="168"
+            width="60"
+            height="6"
+            rx="2"
+            fill="#f5e7c6"
+          />
+
+
+          <!-- Arm -->
+
+          <path
+            d="M242 175
+               C242 121 220 92 198 92
+               C175 92 163 113 163 140
+               L163 217"
+            fill="none"
+            stroke="#222222"
+            stroke-width="9"
+            stroke-linecap="round"
+          />
+
+
+          <!-- Coarse adjustment knob -->
+
+          <circle
+            cx="211"
+            cy="124"
+            r="19"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <circle
+            cx="211"
+            cy="124"
+            r="7"
+            fill="#faf3e1"
+          />
+
+
+          <!-- Fine adjustment knob -->
+
+          <circle
+            cx="227"
+            cy="150"
+            r="10"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+
+          <!-- Handle -->
+
+          <path
+            d="M188 101
+               C168 105 158 125 158 151
+               V197"
+            fill="none"
+            stroke="#f5e7c6"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+
+
+          <!-- Mirror assembly -->
+
+          <rect
+            x="190"
+            y="192"
+            width="12"
+            height="31"
+            rx="4"
+            fill="#222222"
+          />
+
+          <g >
+
+            <ellipse
+              cx="196"
+              cy="225"
+              rx="27"
+              ry="10"
+              fill="#faf3e1"
+              stroke="#222222"
+              stroke-width="3"
+            />
+
+            <ellipse
+              cx="196"
+              cy="225"
+              rx="15"
+              ry="5"
+              fill="#fa8112"
+            />
+
+          </g>
+
+
+          <!-- Base -->
+
+          <path
+            d="M130 222
+               C130 209 141 201 154 201
+               H270
+               C283 201 293 210 293 223
+               V239
+               H130 Z"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+        </g>
+
+
+        <!-- =========================
+             LIGHT RAYS
+        ========================== -->
+
+        <g
+          
+          fill="none"
+          stroke="#fa8112"
+          stroke-width="3"
+          stroke-linecap="round"
+        >
+
+          <path d="M196 225 L196 257" />
+          <path d="M188 225 L176 257" />
+          <path d="M204 225 L216 257" />
+
+        </g>
+
+
+        <!-- =========================
+             LABELS
+        ========================== -->
+
+        <!-- Eyepiece label -->
+
+        <g>
+          <path
+            d="M330 48 H405"
+            fill="none"
+            stroke="#222222"
+            stroke-width="2.5"
+          />
+
+          <circle
+            cx="330"
+            cy="48"
+            r="4"
+            fill="#fa8112"
+          />
+
+          <text
+            x="408"
+            y="53"
+            fill="#222222"
+            font-size="12"
+            font-weight="800"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            Eyepiece
+          </text>
+        </g>
+
+
+        <!-- Body tube label -->
+
+        <g>
+          <path
+            d="M331 108 H405"
+            fill="none"
+            stroke="#222222"
+            stroke-width="2.5"
+          />
+
+          <circle
+            cx="331"
+            cy="108"
+            r="4"
+            fill="#fa8112"
+          />
+
+          <text
+            x="408"
+            y="113"
+            fill="#222222"
+            font-size="12"
+            font-weight="800"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            Body tube
+          </text>
+        </g>
+
+
+        <!-- Objective lens label -->
+
+        <g>
+          <path
+            d="M345 162 H405"
+            fill="none"
+            stroke="#222222"
+            stroke-width="2.5"
+          />
+
+          <circle
+            cx="345"
+            cy="162"
+            r="4"
+            fill="#fa8112"
+          />
+
+          <text
+            x="408"
+            y="167"
+            fill="#222222"
+            font-size="12"
+            font-weight="800"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            Objective
+          </text>
+        </g>
+
+
+        <!-- Stage label -->
+
+        <g>
+          <path
+            d="M378 183 H405"
+            fill="none"
+            stroke="#222222"
+            stroke-width="2.5"
+          />
+
+          <circle
+            cx="378"
+            cy="183"
+            r="4"
+            fill="#fa8112"
+          />
+
+          <text
+            x="408"
+            y="188"
+            fill="#222222"
+            font-size="12"
+            font-weight="800"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            Stage
+          </text>
+        </g>
+
+
+        <!-- Adjustment knobs label -->
+
+        <g>
+          <path
+            d="M227 150 H100"
+            fill="none"
+            stroke="#222222"
+            stroke-width="2.5"
+          />
+
+          <circle
+            cx="227"
+            cy="150"
+            r="4"
+            fill="#fa8112"
+          />
+
+          <text
+            x="97"
+            y="145"
+            text-anchor="end"
+            fill="#222222"
+            font-size="11"
+            font-weight="800"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            Fine adjustment
+          </text>
+
+          <text
+            x="97"
+            y="159"
+            text-anchor="end"
+            fill="#222222"
+            font-size="11"
+            font-weight="800"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            knob
+          </text>
+        </g>
+
+
+        <!-- Coarse knob label -->
+
+        <g>
+          <path
+            d="M193 124 H95"
+            fill="none"
+            stroke="#222222"
+            stroke-width="2.5"
+          />
+
+          <circle
+            cx="193"
+            cy="124"
+            r="4"
+            fill="#fa8112"
+          />
+
+          <text
+            x="92"
+            y="129"
+            text-anchor="end"
+            fill="#222222"
+            font-size="11"
+            font-weight="800"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            Coarse knob
+          </text>
+        </g>
+
+
+        <!-- Mirror label -->
+
+        <g>
+          <path
+            d="M196 225 H85"
+            fill="none"
+            stroke="#222222"
+            stroke-width="2.5"
+          />
+
+          <circle
+            cx="196"
+            cy="225"
+            r="4"
+            fill="#fa8112"
+          />
+
+          <text
+            x="82"
+            y="230"
+            text-anchor="end"
+            fill="#222222"
+            font-size="11"
+            font-weight="800"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            Mirror
+          </text>
+        </g>
+
+
+        <!-- Base label -->
+
+        <g>
+          <path
+            d="M130 232 H65"
+            fill="none"
+            stroke="#222222"
+            stroke-width="2.5"
+          />
+
+          <circle
+            cx="130"
+            cy="232"
+            r="4"
+            fill="#fa8112"
+          />
+
+          <text
+            x="62"
+            y="237"
+            text-anchor="end"
+            fill="#222222"
+            font-size="11"
+            font-weight="800"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            Base
+          </text>
+        </g>
+
+
+        <!-- Handle label -->
+
+        <g>
+          <path
+            d="M163 180 H72"
+            fill="none"
+            stroke="#222222"
+            stroke-width="2.5"
+          />
+
+          <circle
+            cx="163"
+            cy="180"
+            r="4"
+            fill="#fa8112"
+          />
+
+          <text
+            x="69"
+            y="185"
+            text-anchor="end"
+            fill="#222222"
+            font-size="11"
+            font-weight="800"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            Handle
+          </text>
+        </g>
+
+      </svg>
+
+    </section>
+
+
+    <!-- =========================
+         CONTENT
+    ========================== -->
+
+    <section class="content-card">
+
+      <h2 id="block-8-parts-of-a-light-microscope">
+        Block 8: Parts of a Light Microscope
+      </h2>
+
+      <p>
+        <strong>Structure of a Light Microscope:</strong>
+      </p>
+
+      <ul>
+
+        <li>Eyepiece</li>
+
+        <li>Body tube</li>
+
+        <li>Objective lens</li>
+
+        <li>Stage</li>
+
+        <li>Mirror</li>
+
+        <li>Coarse adjustment knob</li>
+
+        <li>Fine adjustment knob</li>
+
+        <li>Handle</li>
+
+        <li>Base</li>
+
+      </ul>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FLOATING NAVIGATION
+  ========================== -->
+
+  <nav class="floating-nav" aria-label="Page navigation">
+
+    <a
+      class="nav-button"
+      href="main.html"
+      aria-label="Home"
+    >
+      <span class="nav-icon">⌂</span>
+      <span>Home</span>
+    </a>
+
+    <a
+      class="nav-button"
+      href="#block-8-parts-of-a-light-microscope"
+      aria-label="Previous block"
+      onclick="history.back(); return false;"
+    >
+      <span class="nav-icon">←</span>
+      <span>Back</span>
+    </a>
+
+    <a
+      class="nav-button"
+      href="9.html"
+      aria-label="Next block"
+    >
+      <span>Next</span>
+      <span class="nav-icon">→</span>
+    </a>
+
+  </nav>
+
+</body>
+</html>

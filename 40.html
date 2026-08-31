@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Block 40: Programmed Cell Death (PCD)</title>
+
+  
+<style>
+:root{
+  --bg:#f6f1e7;--surface:#fffdf8;--surface-2:#f0e8d8;
+  --ink:#252525;--muted:#6d685f;--accent:#d96f16;
+  --line:#d8d0c2;--dark:#252525;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:var(--bg);color:var(--ink);
+font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}
+.page{width:min(100% - 32px,980px);margin:0 auto;padding:36px 0 140px}
+
+/* HERO */
+.hero{position:relative;overflow:hidden;display:grid;
+grid-template-columns:minmax(0,.9fr) minmax(400px,1.1fr);align-items:center;
+min-height:430px;background:var(--surface-2);border:1px solid var(--line);
+border-radius:24px;padding:42px 42px 34px;margin-bottom:28px}
+.hero-content{position:relative;z-index:2;max-width:395px;padding-bottom:8px}
+.eyebrow{display:inline-block;margin-bottom:16px;color:var(--accent);font-size:.76rem;
+font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+h1{font-size:clamp(2.45rem,5vw,3.6rem);line-height:1.02;letter-spacing:-.045em;margin-bottom:18px}
+h1 span{color:var(--accent)!important}
+.hero-description{max-width:390px;color:var(--muted);font-size:clamp(.98rem,2vw,1.08rem);line-height:1.7}
+
+/* SVG */
+.virus-graphic{position:relative;z-index:1;width:100%;height:auto;display:block;
+pointer-events:none;overflow:visible}
+.virus-graphic *{animation:none!important}
+.virus-graphic text{letter-spacing:.02em}
+.virus-graphic [stroke="#222222"]{stroke:#303030}
+.virus-graphic [stroke="#fa8112"]{stroke:var(--accent)}
+.virus-graphic [fill="#fa8112"]{fill:var(--accent)}
+.virus-graphic [fill="#f5e7c6"]{fill:#f4ecdf}
+.virus-graphic [fill="#faf3e1"]{fill:#fffaf1}
+
+/* Hide duplicate SVG heading */
+.virus-graphic .svg-title{display:none}
+
+/* CONTENT */
+.content-card{background:var(--surface);border:1px solid var(--line);border-radius:20px;
+padding:clamp(24px,5vw,42px);box-shadow:0 8px 28px rgba(37,37,37,.05)}
+.content-card h2{font-size:clamp(1.55rem,4vw,2.15rem);line-height:1.18;
+letter-spacing:-.025em;margin-bottom:22px}
+.definition{padding:18px 20px;margin-bottom:18px;background:var(--surface-2);
+border-left:3px solid var(--accent);border-radius:10px}
+.definition h3{margin-bottom:5px;font-size:1.08rem}
+.definition p{font-size:.94rem;line-height:1.62;color:#57524a}
+
+.concept-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:18px}
+.concept{padding:17px 18px;background:#faf7f0;border:1px solid #e6dfd2;border-radius:12px;min-height:125px}
+.concept:nth-child(2){background:#f4eee3}
+.concept:nth-child(3){background:#fff8ef}
+.concept:nth-child(4){background:#f4eee3}
+.concept h3{margin-bottom:5px;font-size:.98rem;line-height:1.3}
+.concept p{font-size:.86rem;line-height:1.55;color:#625d55}
+
+.takeaway{padding:20px;background:var(--dark);color:var(--surface);border-radius:13px}
+.takeaway-label{display:inline-block;margin-bottom:7px;color:#f2a15c;font-size:.76rem;
+font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.takeaway p{font-size:1rem;line-height:1.55}
+strong{font-weight:850}
+
+/* NAV */
+.floating-nav{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:1000;
+display:flex;align-items:center;justify-content:center;gap:4px;padding:6px;background:var(--dark);
+border-radius:999px;box-shadow:0 8px 24px rgba(37,37,37,.18)}
+.nav-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-width:92px;height:40px;
+padding:0 14px;border:none;border-radius:999px;background:#f8f2e7;color:var(--dark);font:inherit;
+font-size:.84rem;font-weight:750;text-decoration:none;cursor:pointer;transition:background .18s ease,transform .18s ease}
+.nav-button:hover{background:#f0c39b;transform:translateY(-2px)}
+.nav-button:active{transform:translateY(0)}
+.nav-icon{font-size:1rem;line-height:1}
+
+@media(max-width:760px){
+.page{width:min(100% - 22px,980px);padding-top:20px;padding-bottom:125px}
+.hero{grid-template-columns:1fr;min-height:auto;padding:30px 26px 8px}
+.hero-content{max-width:100%;padding-bottom:0}
+.hero-description{max-width:620px}
+.virus-graphic{width:min(100%,610px);justify-self:center;margin:0}
+.content-card{padding:24px 20px}
+}
+@media(max-width:520px){
+.hero{padding:27px 20px 6px;border-radius:18px}
+h1{font-size:2.42rem}
+.virus-graphic{width:118%;margin-left:-9%;margin-top:2px;margin-bottom:4px}
+.concept-grid{grid-template-columns:1fr}
+.floating-nav{bottom:10px;width:calc(100% - 20px);max-width:420px}
+.nav-button{flex:1;min-width:0;padding:0 8px;font-size:.77rem}
+}
+@media(prefers-reduced-motion:reduce){
+html{scroll-behavior:auto}
+*,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+
+</head>
+
+<body>
+
+  <main class="page">
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
+      <div class="hero-content">
+
+        <span class="eyebrow">
+          Biology • Cell Regulation
+        </span>
+
+        <h1>
+          Death
+          <span style="color: #fa8112;">by Design</span>
+        </h1>
+
+        <p class="hero-description">
+          Programmed cell death is not accidental destruction.
+          It is a genetically regulated process that removes
+          selected cells when the body needs them to disappear.
+        </p>
+
+      </div>
+
+
+      <!-- =========================
+           VECTOR GRAPHIC
+      ========================== -->
+
+      <svg
+        class="pcd-graphic"
+        viewBox="0 0 700 420"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-label="Vector illustration of programmed cell death showing a healthy cell, controlled cell removal, and separation of embryo digits"
+        role="img"
+      >
+<!-- =========================
+             CONTROLLED CELL REMOVAL
+        ========================== -->
+
+        <g class="cell-life">
+
+          <rect
+            x="28"
+            y="82"
+            width="190"
+            height="32"
+            rx="11"
+            fill="#222222"
+          />
+
+          <text
+            x="123"
+            y="103"
+            text-anchor="middle"
+            fill="#faf3e1"
+            font-size="13"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            CONTROLLED PROCESS
+          </text>
+
+
+          <!-- Healthy cell -->
+
+          <circle
+            cx="72"
+            cy="175"
+            r="43"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="4"
+          />
+
+          <circle
+            cx="72"
+            cy="175"
+            r="17"
+            fill="#faf3e1"
+            stroke="#fa8112"
+            stroke-width="3"
+          />
+
+          <text
+            x="72"
+            y="240"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="10"
+            font-weight="800"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            HEALTHY CELL
+          </text>
+
+
+          <!-- Arrow -->
+
+          <path
+            d="M125 175 H157"
+            fill="none"
+            stroke="#222222"
+            stroke-width="3.5"
+            stroke-linecap="round"
+            class="pcd-arrow"
+          />
+
+          <path
+            d="M148 166 L160 175 L148 184"
+            fill="none"
+            stroke="#fa8112"
+            stroke-width="3.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+
+
+          <!-- Condensing cell -->
+
+          <circle
+            cx="190"
+            cy="175"
+            r="34"
+            fill="#faf3e1"
+            stroke="#222222"
+            stroke-width="4"
+          />
+
+          <circle
+            cx="190"
+            cy="175"
+            r="12"
+            fill="#fa8112"
+          />
+
+          <!-- Fragments -->
+
+          <circle
+            cx="181"
+            cy="218"
+            r="8"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="2"
+          />
+
+          <circle
+            cx="201"
+            cy="225"
+            r="6"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="2"
+          />
+
+          <circle
+            cx="211"
+            cy="211"
+            r="7"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="2"
+          />
+
+          <text
+            x="190"
+            y="260"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="10"
+            font-weight="800"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            SELECTIVE REMOVAL
+          </text>
+
+        </g>
+
+
+        <!-- =========================
+             FUNCTIONS
+        ========================== -->
+
+        <g>
+
+          <rect
+            x="260"
+            y="82"
+            width="185"
+            height="32"
+            rx="11"
+            fill="#222222"
+          />
+
+          <text
+            x="352"
+            y="103"
+            text-anchor="middle"
+            fill="#faf3e1"
+            font-size="13"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            WHY IT MATTERS
+          </text>
+
+
+          <!-- Development -->
+
+          <circle
+            cx="292"
+            cy="153"
+            r="25"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <path
+            d="M282 155 C287 144 297 144 302 155"
+            fill="none"
+            stroke="#222222"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+
+          <text
+            x="332"
+            y="150"
+            fill="#222222"
+            font-size="11"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            DEVELOPMENT
+          </text>
+
+          <text
+            x="332"
+            y="167"
+            fill="#222222"
+            font-size="9"
+            font-weight="700"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            Shapes tissues correctly
+          </text>
+
+
+          <!-- Quality control -->
+
+          <circle
+            cx="292"
+            cy="215"
+            r="25"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <path
+            d="M281 216 L289 224 L304 207"
+            fill="none"
+            stroke="#fa8112"
+            stroke-width="4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+
+          <text
+            x="332"
+            y="212"
+            fill="#222222"
+            font-size="11"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            QUALITY CONTROL
+          </text>
+
+          <text
+            x="332"
+            y="229"
+            fill="#222222"
+            font-size="9"
+            font-weight="700"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            Removes unwanted cells
+          </text>
+
+
+          <!-- Immune function -->
+
+          <circle
+            cx="292"
+            cy="277"
+            r="25"
+            fill="#faf3e1"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <path
+            d="M292 262 L305 270 V280
+               C305 288 298 293 292 296
+               C286 293 279 288 279 280 V270 Z"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="2.5"
+          />
+
+          <text
+            x="332"
+            y="274"
+            fill="#222222"
+            font-size="11"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            IMMUNE FUNCTION
+          </text>
+
+          <text
+            x="332"
+            y="291"
+            fill="#222222"
+            font-size="9"
+            font-weight="700"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            Helps control cell populations
+          </text>
+
+        </g>
+
+
+        <!-- =========================
+             EMBRYO / DIGIT DEVELOPMENT
+        ========================== -->
+
+        <g class="embryo-pulse">
+
+          <rect
+            x="485"
+            y="82"
+            width="180"
+            height="32"
+            rx="11"
+            fill="#222222"
+          />
+
+          <text
+            x="575"
+            y="103"
+            text-anchor="middle"
+            fill="#faf3e1"
+            font-size="13"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            EMBRYO DEVELOPMENT
+          </text>
+
+
+          <!-- Hand / fingers -->
+
+          <path
+            d="M520 265
+               C513 253 513 239 519 229
+               L523 176
+               C524 169 532 168 535 175
+               L538 221
+               L542 158
+               C543 151 551 151 554 158
+               L557 221
+               L561 150
+               C562 143 570 143 573 150
+               L576 222
+               L581 159
+               C582 152 590 153 592 160
+               L594 231
+               C602 222 612 222 616 228
+               C620 235 615 245 608 253
+               L593 270
+               C582 282 566 289 549 288
+               C536 287 526 279 520 265 Z"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="4"
+            stroke-linejoin="round"
+          />
+
+
+          <!-- Spaces between digits -->
+
+          <path
+            d="M539 221 C540 242 540 251 535 262"
+            fill="none"
+            stroke="#fa8112"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+
+          <path
+            d="M557 221 C558 244 558 254 554 268"
+            fill="none"
+            stroke="#fa8112"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+
+          <path
+            d="M576 222 C577 245 575 258 571 271"
+            fill="none"
+            stroke="#fa8112"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+
+
+          <!-- PCD cells -->
+
+          <circle
+            cx="547"
+            cy="245"
+            r="7"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="2"
+          />
+
+          <circle
+            cx="565"
+            cy="252"
+            r="6"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="2"
+          />
+
+          <circle
+            cx="583"
+            cy="246"
+            r="6"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="2"
+          />
+
+
+          <text
+            x="575"
+            y="315"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="10"
+            font-weight="950"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            PCD REMOVES CELLS
+          </text>
+
+          <text
+            x="575"
+            y="332"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="9"
+            font-weight="700"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            BETWEEN DEVELOPING DIGITS
+          </text>
+
+        </g>
+
+
+        <!-- =========================
+             FINAL RESULT
+        ========================== -->
+
+        <rect
+          x="170"
+          y="360"
+          width="360"
+          height="38"
+          rx="13"
+          fill="#fa8112"
+          stroke="#222222"
+          stroke-width="3"
+        />
+
+        <text
+          x="350"
+          y="384"
+          text-anchor="middle"
+          fill="#222222"
+          font-size="10"
+          font-weight="950"
+          font-family="Inter, system-ui, sans-serif"
+        >
+          CONTROLLED CELL DEATH → PROPER DEVELOPMENT
+        </text>
+
+      </svg>
+
+    </section>
+
+
+    <!-- =========================
+         CONTENT
+    ========================== -->
+
+    <section class="content-card">
+
+      <h2 id="block-40-programmed-cell-death">
+        Block 40: Programmed Cell Death (PCD)
+      </h2>
+
+
+      <div class="pcd-definition">
+
+        <p>
+          <strong>PCD</strong>: genetically regulated,
+          organised process of selective cell destruction.
+        </p>
+
+      </div>
+
+
+      <div class="benefits">
+
+        <article class="benefit">
+
+          <div class="benefit-icon">⌁</div>
+
+          <h3>Normal Development</h3>
+
+          <p>
+            Removes selected cells to shape
+            developing tissues correctly.
+          </p>
+
+        </article>
+
+
+        <article class="benefit">
+
+          <div class="benefit-icon">✓</div>
+
+          <h3>Cellular Quality Control</h3>
+
+          <p>
+            Eliminates cells that are no longer
+            needed or should be removed.
+          </p>
+
+        </article>
+
+
+        <article class="benefit">
+
+          <div class="benefit-icon">+</div>
+
+          <h3>Immune Function</h3>
+
+          <p>
+            Helps regulate and maintain
+            healthy cell populations.
+          </p>
+
+        </article>
+
+      </div>
+
+
+      <div class="example">
+
+        <div class="example-icon">✦</div>
+
+        <h3>Example: Developing Hands</h3>
+
+        <p>
+          During embryo development, PCD eliminates
+          cells between the digits. This separation
+          prevents the formation of
+          <strong>webbed hands</strong>.
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FLOATING NAVIGATION
+  ========================== -->
+
+  <nav class="floating-nav" aria-label="Page navigation">
+
+    <a
+      class="nav-button"
+      href="main.html"
+      aria-label="Home"
+    >
+      <span class="nav-icon">⌂</span>
+      <span>Home</span>
+    </a>
+
+    <a
+      class="nav-button"
+      href="#block-40-programmed-cell-death"
+      aria-label="Previous block"
+      onclick="history.back(); return false;"
+    >
+      <span class="nav-icon">←</span>
+      <span>Back</span>
+    </a>
+
+    <a
+      class="nav-button"
+      href="41.html"
+      aria-label="Next block"
+    >
+      <span>Next</span>
+      <span class="nav-icon">→</span>
+    </a>
+
+  </nav>
+
+</body>
+</html>

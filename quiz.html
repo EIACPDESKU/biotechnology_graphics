@@ -1,0 +1,3126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Cell Biology — 30 MCQ Quiz</title>
+
+  <style>
+    :root {
+      --cream: #faf3e1;
+      --sand: #f5e7c6;
+      --orange: #fa8112;
+      --dark: #222222;
+      --white: #fffaf0;
+      --green: #3d7a4a;
+      --red: #b83b32;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--cream);
+      color: var(--dark);
+      font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      line-height: 1.6;
+      padding-bottom: 120px;
+    }
+
+    /* =================================
+       PAGE
+    ================================= */
+
+    .page {
+      width: min(100% - 30px, 950px);
+      margin: auto;
+      padding: 35px 0 50px;
+    }
+
+    /* =================================
+       HERO
+    ================================= */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+
+      background: var(--sand);
+      border: 2px solid var(--dark);
+      border-radius: 28px;
+
+      padding: clamp(28px, 6vw, 55px);
+      margin-bottom: 30px;
+
+      box-shadow: 8px 8px 0 var(--dark);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      max-width: 520px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+
+      background: var(--orange);
+      color: var(--dark);
+
+      padding: 5px 13px;
+      border-radius: 999px;
+
+      font-size: 0.75rem;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+
+      margin-bottom: 13px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 6vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: -0.045em;
+      margin-bottom: 15px;
+    }
+
+    .hero h1 span {
+      color: var(--orange);
+    }
+
+    .hero p {
+      max-width: 500px;
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+      opacity: 0.82;
+    }
+
+    .quiz-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .info-chip {
+      padding: 6px 11px;
+      background: var(--cream);
+      border: 1.5px solid var(--dark);
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 750;
+    }
+
+    /* =================================
+       VECTOR GRAPHIC
+    ================================= */
+
+    .hero-graphic {
+      position: absolute;
+      right: -20px;
+      bottom: -20px;
+
+      width: clamp(300px, 48vw, 470px);
+
+      pointer-events: none;
+      opacity: 0.9;
+    }
+
+    .cell-float {
+      animation: floatCell 4s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    .cell-pulse {
+      animation: pulseCell 3s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    .orbit {
+      stroke-dasharray: 7 8;
+      animation: orbitMove 6s linear infinite;
+    }
+
+    @keyframes floatCell {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-7px);
+      }
+    }
+
+    @keyframes pulseCell {
+      0%, 100% {
+        transform: scale(0.98);
+      }
+
+      50% {
+        transform: scale(1.02);
+      }
+    }
+
+    @keyframes orbitMove {
+      to {
+        stroke-dashoffset: -30;
+      }
+    }
+
+    /* =================================
+       QUIZ CARD
+    ================================= */
+
+    .quiz-card {
+      background: var(--white);
+      border: 2px solid var(--dark);
+      border-radius: 24px;
+
+      padding: clamp(20px, 5vw, 38px);
+
+      box-shadow: 5px 5px 0 var(--orange);
+    }
+
+    .quiz-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+
+      margin-bottom: 28px;
+      padding-bottom: 18px;
+
+      border-bottom: 2px solid var(--dark);
+    }
+
+    .quiz-heading h2 {
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      line-height: 1.2;
+    }
+
+    .score-rule {
+      background: var(--sand);
+      border: 1.5px solid var(--dark);
+      border-radius: 12px;
+
+      padding: 8px 12px;
+
+      font-size: 0.78rem;
+      font-weight: 800;
+
+      white-space: nowrap;
+    }
+
+    /* =================================
+       QUESTIONS
+    ================================= */
+
+    .question {
+      margin-bottom: 24px;
+      padding: 22px;
+
+      background: var(--cream);
+
+      border: 1.5px solid var(--dark);
+      border-radius: 18px;
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .question:hover {
+      transform: translateY(-2px);
+      box-shadow: 3px 3px 0 var(--orange);
+    }
+
+    .question-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      min-width: 36px;
+      height: 28px;
+
+      padding: 0 9px;
+
+      background: var(--orange);
+      border: 1.5px solid var(--dark);
+      border-radius: 999px;
+
+      font-size: 0.76rem;
+      font-weight: 900;
+
+      margin-bottom: 10px;
+    }
+
+    .question-text {
+      font-size: clamp(0.98rem, 2vw, 1.08rem);
+      font-weight: 800;
+      line-height: 1.45;
+
+      margin-bottom: 15px;
+    }
+
+    /* =================================
+       OPTIONS
+    ================================= */
+
+    .options {
+      display: grid;
+      gap: 9px;
+    }
+
+    .option {
+      position: relative;
+    }
+
+    .option input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .option label {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+
+      min-height: 48px;
+
+      padding: 10px 13px;
+
+      background: var(--white);
+
+      border: 1.5px solid var(--dark);
+      border-radius: 12px;
+
+      cursor: pointer;
+
+      font-size: 0.9rem;
+
+      transition:
+        background 0.18s ease,
+        transform 0.18s ease,
+        border-color 0.18s ease;
+    }
+
+    .option label:hover {
+      background: var(--sand);
+      transform: translateX(3px);
+    }
+
+    .option-marker {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      flex: 0 0 27px;
+
+      width: 27px;
+      height: 27px;
+
+      border: 1.5px solid var(--dark);
+      border-radius: 50%;
+
+      font-size: 0.75rem;
+      font-weight: 900;
+    }
+
+    .option input:checked + label {
+      background: var(--orange);
+      border-color: var(--dark);
+      font-weight: 750;
+    }
+
+    .option input:checked + label .option-marker {
+      background: var(--dark);
+      color: var(--cream);
+    }
+
+    /* =================================
+       RESULT
+    ================================= */
+
+    #result {
+      display: none;
+
+      margin-top: 30px;
+
+      background: var(--dark);
+      color: var(--cream);
+
+      border-radius: 22px;
+
+      padding: clamp(22px, 5vw, 35px);
+    }
+
+    .result-title {
+      color: var(--orange);
+      font-size: clamp(1.5rem, 5vw, 2.4rem);
+      margin-bottom: 5px;
+    }
+
+    .result-subtitle {
+      opacity: 0.8;
+      margin-bottom: 22px;
+    }
+
+    .score-display {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+
+      margin-bottom: 25px;
+    }
+
+    .score-box {
+      padding: 17px 10px;
+
+      background: rgba(250, 243, 225, 0.08);
+      border: 1px solid rgba(250, 243, 225, 0.2);
+
+      border-radius: 14px;
+
+      text-align: center;
+    }
+
+    .score-number {
+      display: block;
+
+      color: var(--orange);
+
+      font-size: clamp(1.5rem, 5vw, 2.2rem);
+      font-weight: 900;
+
+      line-height: 1.1;
+    }
+
+    .score-label {
+      font-size: 0.75rem;
+      opacity: 0.75;
+    }
+
+    .score-main {
+      padding: 20px;
+      margin-bottom: 20px;
+
+      background: var(--orange);
+      color: var(--dark);
+
+      border-radius: 16px;
+
+      text-align: center;
+    }
+
+    .score-main span {
+      display: block;
+
+      font-size: clamp(2.2rem, 8vw, 4rem);
+      font-weight: 950;
+      line-height: 1;
+    }
+
+    .score-main small {
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    /* =================================
+       ANSWER REVIEW
+    ================================= */
+
+    .review-title {
+      color: var(--orange);
+      margin-bottom: 13px;
+      font-size: 1.1rem;
+    }
+
+    .review-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .review-item {
+      padding: 12px 14px;
+
+      border-radius: 11px;
+
+      font-size: 0.84rem;
+
+      border: 1px solid rgba(250, 243, 225, 0.16);
+    }
+
+    .review-item.correct {
+      background: rgba(61, 122, 74, 0.3);
+    }
+
+    .review-item.incorrect {
+      background: rgba(184, 59, 50, 0.3);
+    }
+
+    .review-item.unanswered {
+      background: rgba(250, 243, 225, 0.07);
+    }
+
+    .review-item strong {
+      color: var(--orange);
+    }
+
+    /* =================================
+       RESULT QUESTION HIGHLIGHT
+    ================================= */
+
+    .question.correct-question {
+      border-color: var(--green);
+      box-shadow: 4px 4px 0 var(--green);
+    }
+
+    .question.incorrect-question {
+      border-color: var(--red);
+      box-shadow: 4px 4px 0 var(--red);
+    }
+
+    .question.unanswered-question {
+      border-color: #777;
+    }
+
+    .answer-note {
+      display: none;
+
+      margin-top: 12px;
+      padding: 10px 13px;
+
+      border-radius: 10px;
+
+      font-size: 0.82rem;
+      font-weight: 750;
+    }
+
+    .answer-note.correct {
+      display: block;
+      background: rgba(61, 122, 74, 0.15);
+      border: 1px solid var(--green);
+    }
+
+    .answer-note.incorrect {
+      display: block;
+      background: rgba(184, 59, 50, 0.12);
+      border: 1px solid var(--red);
+    }
+
+    .answer-note.unanswered {
+      display: block;
+      background: var(--sand);
+      border: 1px solid var(--dark);
+    }
+
+    /* =================================
+       FLOATING BUTTONS
+    ================================= */
+
+    .floating-nav {
+      position: fixed;
+
+      left: 50%;
+      bottom: 18px;
+
+      transform: translateX(-50%);
+
+      z-index: 1000;
+
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      width: max-content;
+
+      padding: 8px;
+
+      background: var(--dark);
+
+      border-radius: 999px;
+
+      box-shadow:
+        0 8px 25px rgba(34, 34, 34, 0.28);
+    }
+
+    .nav-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+
+      min-width: 100px;
+      height: 44px;
+
+      padding: 0 16px;
+
+      border: none;
+      border-radius: 999px;
+
+      background: var(--cream);
+      color: var(--dark);
+
+      font: inherit;
+      font-size: 0.88rem;
+      font-weight: 800;
+
+      cursor: pointer;
+      text-decoration: none;
+
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .nav-button:hover {
+      background: var(--orange);
+      transform: translateY(-3px);
+    }
+
+    .nav-button:active {
+      transform: translateY(0);
+    }
+
+    .nav-button.submit {
+      background: var(--orange);
+    }
+
+    .nav-button.submit:hover {
+      background: var(--cream);
+    }
+
+    .nav-icon {
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    /* =================================
+       RESPONSIVE
+    ================================= */
+
+    @media (max-width: 750px) {
+
+      .page {
+        width: min(100% - 22px, 950px);
+        padding-top: 22px;
+        padding-bottom: 35px;
+      }
+
+      .hero {
+        padding-bottom: 125px;
+        box-shadow: 5px 5px 0 var(--dark);
+      }
+
+      .hero-graphic {
+        right: -95px;
+        bottom: -90px;
+        width: 380px;
+        opacity: 0.38;
+      }
+
+      .quiz-heading {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .score-rule {
+        white-space: normal;
+      }
+
+      .question {
+        padding: 17px;
+      }
+
+      .floating-nav {
+        width: calc(100% - 20px);
+        max-width: 440px;
+        bottom: 10px;
+      }
+
+      .nav-button {
+        flex: 1;
+        min-width: 0;
+        padding: 0 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+
+      body {
+        padding-bottom: 95px;
+      }
+
+      .hero {
+        border-radius: 20px;
+      }
+
+      .hero-graphic {
+        right: 50%;
+        transform: translateX(50%);
+        bottom: -115px;
+        width: 315px;
+        opacity: 0.28;
+      }
+
+      .quiz-card {
+        border-radius: 18px;
+        padding: 17px;
+      }
+
+      .score-display {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+
+      .score-box {
+        padding: 13px 5px;
+      }
+
+      .score-number {
+        font-size: 1.45rem;
+      }
+
+      .score-label {
+        font-size: 0.65rem;
+      }
+
+      .option label {
+        min-height: 46px;
+        padding: 9px 10px;
+        font-size: 0.84rem;
+      }
+
+      .option-marker {
+        flex-basis: 25px;
+        width: 25px;
+        height: 25px;
+      }
+
+      .nav-button {
+        height: 42px;
+        font-size: 0.72rem;
+        gap: 4px;
+      }
+
+      .nav-icon {
+        font-size: 0.85rem;
+      }
+    }
+
+    @media (max-width: 350px) {
+
+      .nav-button {
+        padding: 0 7px;
+        font-size: 0.66rem;
+      }
+    }
+
+    /* =================================
+       REDUCED MOTION
+    ================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="page">
+
+    <!-- =================================
+         HERO
+    ================================= -->
+
+    <section class="hero">
+
+      <div class="hero-content">
+
+        <span class="eyebrow">
+          Biology • Final Quiz
+        </span>
+
+        <h1>
+          The Cell
+          <span>Quiz</span>
+        </h1>
+
+        <p>
+          Test your understanding of cells, microscopy,
+          membranes, organelles, cell division, cell theory,
+          cancer and biotechnology.
+        </p>
+
+        <div class="quiz-info">
+
+          <span class="info-chip">
+            30 Questions
+          </span>
+
+          <span class="info-chip">
+            +1 Correct
+          </span>
+
+          <span class="info-chip">
+            −0.25 Incorrect
+          </span>
+
+          <span class="info-chip">
+            0 Unanswered
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- =================================
+           VECTOR GRAPHIC
+      ================================= -->
+
+      <svg
+        class="hero-graphic"
+        viewBox="0 0 500 350"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-label="Stylised cell illustration"
+      >
+
+        <ellipse
+          class="orbit"
+          cx="330"
+          cy="180"
+          rx="145"
+          ry="105"
+          fill="none"
+          stroke="#222222"
+          stroke-width="2"
+        />
+
+        <g class="cell-float">
+
+          <ellipse
+            cx="330"
+            cy="180"
+            rx="105"
+            ry="82"
+            fill="#faf3e1"
+            stroke="#222222"
+            stroke-width="5"
+          />
+
+          <ellipse
+            cx="330"
+            cy="180"
+            rx="94"
+            ry="71"
+            fill="#f5e7c6"
+            stroke="#fa8112"
+            stroke-width="3"
+            stroke-dasharray="7 5"
+          />
+
+          <g class="cell-pulse">
+
+            <!-- Nucleus -->
+
+            <circle
+              cx="330"
+              cy="175"
+              r="35"
+              fill="#fa8112"
+              stroke="#222222"
+              stroke-width="3"
+            />
+
+            <circle
+              cx="330"
+              cy="175"
+              r="11"
+              fill="#222222"
+            />
+
+            <!-- Mitochondria -->
+
+            <ellipse
+              cx="270"
+              cy="160"
+              rx="22"
+              ry="12"
+              fill="#faf3e1"
+              stroke="#222222"
+              stroke-width="3"
+              transform="rotate(-25 270 160)"
+            />
+
+            <path
+              d="M255 160 Q264 151 272 160 T287 159"
+              fill="none"
+              stroke="#fa8112"
+              stroke-width="3"
+            />
+
+            <ellipse
+              cx="390"
+              cy="210"
+              rx="23"
+              ry="12"
+              fill="#faf3e1"
+              stroke="#222222"
+              stroke-width="3"
+              transform="rotate(25 390 210)"
+            />
+
+            <path
+              d="M375 210 Q384 201 392 210 T407 209"
+              fill="none"
+              stroke="#fa8112"
+              stroke-width="3"
+            />
+
+            <!-- ER -->
+
+            <path
+              d="M275 210
+                 Q290 195 305 210
+                 T335 210"
+              fill="none"
+              stroke="#222222"
+              stroke-width="4"
+              stroke-linecap="round"
+            />
+
+            <circle cx="280" cy="207" r="3" fill="#fa8112"/>
+            <circle cx="295" cy="203" r="3" fill="#fa8112"/>
+            <circle cx="310" cy="211" r="3" fill="#fa8112"/>
+
+            <!-- Golgi -->
+
+            <path
+              d="M365 145 Q382 139 397 145
+                 M365 153 Q382 147 397 153
+                 M365 161 Q382 155 397 161"
+              fill="none"
+              stroke="#222222"
+              stroke-width="4"
+              stroke-linecap="round"
+            />
+
+            <!-- Ribosomes -->
+
+            <circle cx="370" cy="230" r="4" fill="#222222"/>
+            <circle cx="385" cy="237" r="4" fill="#222222"/>
+            <circle cx="400" cy="229" r="4" fill="#222222"/>
+
+          </g>
+
+        </g>
+
+        <!-- Floating labels -->
+
+        <rect
+          x="55"
+          y="55"
+          width="120"
+          height="38"
+          rx="12"
+          fill="#fa8112"
+          stroke="#222222"
+          stroke-width="3"
+        />
+
+        <text
+          x="115"
+          y="79"
+          text-anchor="middle"
+          fill="#222222"
+          font-size="11"
+          font-weight="900"
+          font-family="Inter, system-ui, sans-serif"
+        >
+          ORGANELLES
+        </text>
+
+        <rect
+          x="370"
+          y="65"
+          width="95"
+          height="38"
+          rx="12"
+          fill="#f5e7c6"
+          stroke="#222222"
+          stroke-width="3"
+        />
+
+        <text
+          x="417"
+          y="89"
+          text-anchor="middle"
+          fill="#222222"
+          font-size="11"
+          font-weight="900"
+          font-family="Inter, system-ui, sans-serif"
+        >
+          DNA
+        </text>
+
+        <rect
+          x="55"
+          y="260"
+          width="115"
+          height="38"
+          rx="12"
+          fill="#f5e7c6"
+          stroke="#222222"
+          stroke-width="3"
+        />
+
+        <text
+          x="112"
+          y="284"
+          text-anchor="middle"
+          fill="#222222"
+          font-size="10"
+          font-weight="900"
+          font-family="Inter, system-ui, sans-serif"
+        >
+          MEMBRANE
+        </text>
+
+        <rect
+          x="370"
+          y="265"
+          width="95"
+          height="38"
+          rx="12"
+          fill="#fa8112"
+          stroke="#222222"
+          stroke-width="3"
+        />
+
+        <text
+          x="417"
+          y="289"
+          text-anchor="middle"
+          fill="#222222"
+          font-size="10"
+          font-weight="900"
+          font-family="Inter, system-ui, sans-serif"
+        >
+          DIVISION
+        </text>
+
+      </svg>
+
+    </section>
+
+
+    <!-- =================================
+         QUIZ
+    ================================= -->
+
+    <section class="quiz-card">
+
+      <div class="quiz-heading">
+
+        <h2>
+          30 Multiple Choice Questions
+        </h2>
+
+        <div class="score-rule">
+          Correct: +1 &nbsp;|&nbsp;
+          Incorrect: −0.25
+        </div>
+
+      </div>
+
+
+      <form id="quizForm">
+
+        <!-- QUESTION 1 -->
+
+        <div class="question" id="q1">
+
+          <div class="question-number">Q1</div>
+
+          <div class="question-text">
+            According to the chapter, where did life possibly originate?
+          </div>
+
+          <div class="options">
+
+            <div class="option">
+              <input type="radio" id="q1a" name="q1" value="A">
+              <label for="q1a">
+                <span class="option-marker">A</span>
+                Dry deserts
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q1b" name="q1" value="B">
+              <label for="q1b">
+                <span class="option-marker">B</span>
+                Small water pools
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q1c" name="q1" value="C">
+              <label for="q1c">
+                Frozen glaciers
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q1d" name="q1" value="D">
+              <label for="q1d">
+                Volcanic rocks only
+              </label>
+            </div>
+
+          </div>
+
+          <div class="answer-note" id="note1"></div>
+
+        </div>
+
+
+        <!-- QUESTION 2 -->
+
+        <div class="question" id="q2">
+
+          <div class="question-number">Q2</div>
+
+          <div class="question-text">
+            What is the main role of the first protective membrane described in the chapter?
+          </div>
+
+          <div class="options">
+
+            <div class="option">
+              <input type="radio" id="q2a" name="q2" value="A">
+              <label for="q2a">
+                <span class="option-marker">A</span>
+                To produce ATP
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q2b" name="q2" value="B">
+              <label for="q2b">
+                <span class="option-marker">B</span>
+                To protect early organic molecules
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q2c" name="q2" value="C">
+              <label for="q2c">
+                <span class="option-marker">C</span>
+                To synthesise proteins
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q2d" name="q2" value="D">
+              <label for="q2d">
+                <span class="option-marker">D</span>
+                To digest damaged organelles
+              </label>
+            </div>
+
+          </div>
+
+          <div class="answer-note" id="note2"></div>
+
+        </div>
+
+
+        <!-- QUESTION 3 -->
+
+        <div class="question" id="q3">
+
+          <div class="question-number">Q3</div>
+
+          <div class="question-text">
+            Which organism is an example of a unicellular organism?
+          </div>
+
+          <div class="options">
+
+            <div class="option">
+              <input type="radio" id="q3a" name="q3" value="A">
+              <label for="q3a">
+                <span class="option-marker">A</span>
+                Human
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q3b" name="q3" value="B">
+              <label for="q3b">
+                <span class="option-marker">B</span>
+                Fish
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q3c" name="q3" value="C">
+              <label for="q3c">
+                <span class="option-marker">C</span>
+                Yeast
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q3d" name="q3" value="D">
+              <label for="q3d">
+                <span class="option-marker">D</span>
+                Flowering plant
+              </label>
+            </div>
+
+          </div>
+
+          <div class="answer-note" id="note3"></div>
+
+        </div>
+
+
+        <!-- QUESTION 4 -->
+
+        <div class="question" id="q4">
+
+          <div class="question-number">Q4</div>
+
+          <div class="question-text">
+            Similar cells performing similar functions together form a:
+          </div>
+
+          <div class="options">
+
+            <div class="option">
+              <input type="radio" id="q4a" name="q4" value="A">
+              <label for="q4a">
+                <span class="option-marker">A</span>
+                Tissue
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q4b" name="q4" value="B">
+              <label for="q4b">
+                <span class="option-marker">B</span>
+                Organ
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q4c" name="q4" value="C">
+              <label for="q4c">
+                <span class="option-marker">C</span>
+                Organ system
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q4d" name="q4" value="D">
+              <label for="q4d">
+                <span class="option-marker">D</span>
+                Organism
+              </label>
+            </div>
+
+          </div>
+
+          <div class="answer-note" id="note4"></div>
+
+        </div>
+
+
+        <!-- QUESTION 5 -->
+
+        <div class="question" id="q5">
+
+          <div class="question-number">Q5</div>
+
+          <div class="question-text">
+            What is the human eye's limit of resolution given in the chapter?
+          </div>
+
+          <div class="options">
+
+            <div class="option">
+              <input type="radio" id="q5a" name="q5" value="A">
+              <label for="q5a">
+                <span class="option-marker">A</span>
+                1 mm
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q5b" name="q5" value="B">
+              <label for="q5b">
+                <span class="option-marker">B</span>
+                0.1 mm
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q5c" name="q5" value="C">
+              <label for="q5c">
+                <span class="option-marker">C</span>
+                0.01 mm
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q5d" name="q5" value="D">
+              <label for="q5d">
+                <span class="option-marker">D</span>
+                10 mm
+              </label>
+            </div>
+
+          </div>
+
+          <div class="answer-note" id="note5"></div>
+
+        </div>
+
+
+        <!-- QUESTION 6 -->
+
+        <div class="question" id="q6">
+
+          <div class="question-number">Q6</div>
+
+          <div class="question-text">
+            Total magnification of a microscope is calculated by:
+          </div>
+
+          <div class="options">
+
+            <div class="option">
+              <input type="radio" id="q6a" name="q6" value="A">
+              <label for="q6a">
+                <span class="option-marker">A</span>
+                Eyepiece + Objective
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q6b" name="q6" value="B">
+              <label for="q6b">
+                <span class="option-marker">B</span>
+                Eyepiece × Objective
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q6c" name="q6" value="C">
+              <label for="q6c">
+                <span class="option-marker">C</span>
+                Eyepiece ÷ Objective
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q6d" name="q6" value="D">
+              <label for="q6d">
+                <span class="option-marker">D</span>
+                Objective − Eyepiece
+              </label>
+            </div>
+
+          </div>
+
+          <div class="answer-note" id="note6"></div>
+
+        </div>
+
+
+        <!-- QUESTION 7 -->
+
+        <div class="question" id="q7">
+
+          <div class="question-number">Q7</div>
+
+          <div class="question-text">
+            Robert Hooke observed box-like compartments in a thin slice of:
+          </div>
+
+          <div class="options">
+
+            <div class="option">
+              <input type="radio" id="q7a" name="q7" value="A">
+              <label for="q7a">
+                <span class="option-marker">A</span>
+                Potato
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q7b" name="q7" value="B">
+              <label for="q7b">
+                <span class="option-marker">B</span>
+                Cork
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q7c" name="q7" value="C">
+              <label for="q7c">
+                <span class="option-marker">C</span>
+                Leaf
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q7d" name="q7" value="D">
+              <label for="q7d">
+                <span class="option-marker">D</span>
+                Blood
+              </label>
+            </div>
+
+          </div>
+
+          <div class="answer-note" id="note7"></div>
+
+        </div>
+
+
+        <!-- QUESTION 8 -->
+
+        <div class="question" id="q8">
+
+          <div class="question-number">Q8</div>
+
+          <div class="question-text">
+            Which component of a light microscope controls fine focusing?
+          </div>
+
+          <div class="options">
+
+            <div class="option">
+              <input type="radio" id="q8a" name="q8" value="A">
+              <label for="q8a">
+                <span class="option-marker">A</span>
+                Stage
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q8b" name="q8" value="B">
+              <label for="q8b">
+                <span class="option-marker">B</span>
+                Mirror
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q8c" name="q8" value="C">
+              <label for="q8c">
+                <span class="option-marker">C</span>
+                Fine adjustment knob
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q8d" name="q8" value="D">
+              <label for="q8d">
+                <span class="option-marker">D</span>
+                Handle
+              </label>
+            </div>
+
+          </div>
+
+          <div class="answer-note" id="note8"></div>
+
+        </div>
+
+
+        <!-- QUESTION 9 -->
+
+        <div class="question" id="q9">
+
+          <div class="question-number">Q9</div>
+
+          <div class="question-text">
+            If the visible field diameter is 5000 µm and 25 cells fit across it, what is the estimated size of one cell?
+          </div>
+
+          <div class="options">
+
+            <div class="option">
+              <input type="radio" id="q9a" name="q9" value="A">
+              <label for="q9a">
+                <span class="option-marker">A</span>
+                20 µm
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q9b" name="q9" value="B">
+              <label for="q9b">
+                <span class="option-marker">B</span>
+                100 µm
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q9c" name="q9" value="C">
+              <label for="q9c">
+                <span class="option-marker">C</span>
+                200 µm
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q9d" name="q9" value="D">
+              <label for="q9d">
+                <span class="option-marker">D</span>
+                500 µm
+              </label>
+            </div>
+
+          </div>
+
+          <div class="answer-note" id="note9"></div>
+
+        </div>
+
+
+        <!-- QUESTION 10 -->
+
+        <div class="question" id="q10">
+
+          <div class="question-number">Q10</div>
+
+          <div class="question-text">
+            Which three features mainly improved in modern microscopy?
+          </div>
+
+          <div class="options">
+
+            <div class="option">
+              <input type="radio" id="q10a" name="q10" value="A">
+              <label for="q10a">
+                <span class="option-marker">A</span>
+                Weight, size, colour
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q10b" name="q10" value="B">
+              <label for="q10b">
+                <span class="option-marker">B</span>
+                Resolution, contrast, magnification
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q10c" name="q10" value="C">
+              <label for="q10c">
+                <span class="option-marker">C</span>
+                Brightness, weight, speed
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q10d" name="q10" value="D">
+              <label for="q10d">
+                <span class="option-marker">D</span>
+                Temperature, pressure, volume
+              </label>
+            </div>
+
+          </div>
+
+          <div class="answer-note" id="note10"></div>
+
+        </div>
+
+
+        <!-- QUESTION 11 -->
+
+        <div class="question" id="q11">
+
+          <div class="question-number">Q11</div>
+
+          <div class="question-text">
+            An electron microscope uses a beam of:
+          </div>
+
+          <div class="options">
+
+            <div class="option">
+              <input type="radio" id="q11a" name="q11" value="A">
+              <label for="q11a">
+                <span class="option-marker">A</span>
+                Photons only
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q11b" name="q11" value="B">
+              <label for="q11b">
+                <span class="option-marker">B</span>
+                Electrons
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q11c" name="q11" value="C">
+              <label for="q11c">
+                <span class="option-marker">C</span>
+                Protons
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q11d" name="q11" value="D">
+              <label for="q11d">
+                <span class="option-marker">D</span>
+                Sound waves
+              </label>
+            </div>
+
+          </div>
+
+          <div class="answer-note" id="note11"></div>
+
+        </div>
+
+
+        <!-- QUESTION 12 -->
+
+        <div class="question" id="q12">
+
+          <div class="question-number">Q12</div>
+
+          <div class="question-text">
+            Which statement correctly describes a selectively permeable cell membrane?
+          </div>
+
+          <div class="options">
+
+            <div class="option">
+              <input type="radio" id="q12a" name="q12" value="A">
+              <label for="q12a">
+                <span class="option-marker">A</span>
+                It allows every substance through
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q12b" name="q12" value="B">
+              <label for="q12b">
+                <span class="option-marker">B</span>
+                It blocks every substance
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q12c" name="q12" value="C">
+              <label for="q12c">
+                <span class="option-marker">C</span>
+                It allows some substances through but blocks others
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q12d" name="q12" value="D">
+              <label for="q12d">
+                <span class="option-marker">D</span>
+                It is found only in plants
+              </label>
+            </div>
+
+          </div>
+
+          <div class="answer-note" id="note12"></div>
+
+        </div>
+
+
+        <!-- QUESTION 13 -->
+
+        <div class="question" id="q13">
+
+          <div class="question-number">Q13</div>
+
+          <div class="question-text">
+            In the potato osmosis experiment, a potato placed in concentrated salt/sugar solution generally:
+          </div>
+
+          <div class="options">
+
+            <div class="option">
+              <input type="radio" id="q13a" name="q13" value="A">
+              <label for="q13a">
+                <span class="option-marker">A</span>
+                Swells
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q13b" name="q13" value="B">
+              <label for="q13b">
+                <span class="option-marker">B</span>
+                Shrinks
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q13c" name="q13" value="C">
+              <label for="q13c">
+                <span class="option-marker">C</span>
+                Produces oxygen
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q13d" name="q13" value="D">
+              <label for="q13d">
+                <span class="option-marker">D</span>
+                Divides rapidly
+              </label>
+            </div>
+
+          </div>
+
+          <div class="answer-note" id="note13"></div>
+
+        </div>
+
+
+        <!-- QUESTION 14 -->
+
+        <div class="question" id="q14">
+
+          <div class="question-number">Q14</div>
+
+          <div class="question-text">
+            Osmosis is best defined as the movement of:
+          </div>
+
+          <div class="options">
+
+            <div class="option">
+              <input type="radio" id="q14a" name="q14" value="A">
+              <label for="q14a">
+                <span class="option-marker">A</span>
+                Proteins through any membrane
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q14b" name="q14" value="B">
+              <label for="q14b">
+                <span class="option-marker">B</span>
+                Water across a selectively permeable membrane
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q14c" name="q14" value="C">
+              <label for="q14c">
+                <span class="option-marker">C</span>
+                Solute from low to high concentration
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q14d" name="q14" value="D">
+              <label for="q14d">
+                <span class="option-marker">D</span>
+                DNA into the nucleus
+              </label>
+            </div>
+
+          </div>
+
+          <div class="answer-note" id="note14"></div>
+
+        </div>
+
+
+        <!-- QUESTION 15 -->
+
+        <div class="question" id="q15">
+
+          <div class="question-number">Q15</div>
+
+          <div class="question-text">
+            What happens to a cell in a hypertonic solution?
+          </div>
+
+          <div class="options">
+
+            <div class="option">
+              <input type="radio" id="q15a" name="q15" value="A">
+              <label for="q15a">
+                <span class="option-marker">A</span>
+                It swells
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q15b" name="q15" value="B">
+              <label for="q15b">
+                <span class="option-marker">B</span>
+                It remains unchanged
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q15c" name="q15" value="C">
+              <label for="q15c">
+                <span class="option-marker">C</span>
+                It shrinks
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q15d" name="q15" value="D">
+              <label for="q15d">
+                <span class="option-marker">D</span>
+                It divides
+              </label>
+            </div>
+
+          </div>
+
+          <div class="answer-note" id="note15"></div>
+
+        </div>
+
+
+        <!-- QUESTION 16 -->
+
+        <div class="question" id="q16">
+
+          <div class="question-number">Q16</div>
+
+          <div class="question-text">
+            According to the Fluid-Mosaic Model, why is the membrane described as "fluid"?
+          </div>
+
+          <div class="options">
+
+            <div class="option">
+              <input type="radio" id="q16a" name="q16" value="A">
+              <label for="q16a">
+                <span class="option-marker">A</span>
+                Lipid molecules can move within the membrane
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q16b" name="q16" value="B">
+              <label for="q16b">
+                <span class="option-marker">B</span>
+                It contains only water
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q16c" name="q16" value="C">
+              <label for="q16c">
+                <span class="option-marker">C</span>
+                It has no proteins
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q16d" name="q16" value="D">
+              <label for="q16d">
+                <span class="option-marker">D</span>
+                It dissolves in water
+              </label>
+            </div>
+
+          </div>
+
+          <div class="answer-note" id="note16"></div>
+
+        </div>
+
+
+        <!-- QUESTION 17 -->
+
+        <div class="question" id="q17">
+
+          <div class="question-number">Q17</div>
+
+          <div class="question-text">
+            Which statement about plant cell walls is correct?
+          </div>
+
+          <div class="options">
+
+            <div class="option">
+              <input type="radio" id="q17a" name="q17" value="A">
+              <label for="q17a">
+                <span class="option-marker">A</span>
+                They are absent in plant cells
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q17b" name="q17" value="B">
+              <label for="q17b">
+                <span class="option-marker">B</span>
+                They are made primarily of cellulose
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q17c" name="q17" value="C">
+              <label for="q17b">
+                <span class="option-marker">C</span>
+                They are selectively permeable
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q17d" name="q17" value="D">
+              <label for="q17d">
+                <span class="option-marker">D</span>
+                They are found only in animals
+              </label>
+            </div>
+
+          </div>
+
+          <div class="answer-note" id="note17"></div>
+
+        </div>
+
+
+        <!-- QUESTION 18 -->
+
+        <div class="question" id="q18">
+
+          <div class="question-number">Q18</div>
+
+          <div class="question-text">
+            Which of the following is NOT one of the three basic parts of a typical cell?
+          </div>
+
+          <div class="options">
+
+            <div class="option">
+              <input type="radio" id="q18a" name="q18" value="A">
+              <label for="q18a">
+                <span class="option-marker">A</span>
+                Plasma membrane
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q18b" name="q18" value="B">
+              <label for="q18b">
+                <span class="option-marker">B</span>
+                Cytoplasm
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q18c" name="q18" value="C">
+              <label for="q18c">
+                <span class="option-marker">C</span>
+                Nucleus
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q18d" name="q18" value="D">
+              <label for="q18d">
+                <span class="option-marker">D</span>
+                Cell wall
+              </label>
+            </div>
+
+          </div>
+
+          <div class="answer-note" id="note18"></div>
+
+        </div>
+
+
+        <!-- QUESTION 19 -->
+
+        <div class="question" id="q19">
+
+          <div class="question-number">Q19</div>
+
+          <div class="question-text">
+            Which feature distinguishes a eukaryotic cell from a prokaryotic cell?
+          </div>
+
+          <div class="options">
+
+            <div class="option">
+              <input type="radio" id="q19a" name="q19" value="A">
+              <label for="q19a">
+                <span class="option-marker">A</span>
+                Presence of cytoplasm
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q19b" name="q19" value="B">
+              <label for="q19b">
+                <span class="option-marker">B</span>
+                Presence of a membrane-bound nucleus
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q19c" name="q19" value="C">
+              <label for="q19c">
+                <span class="option-marker">C</span>
+                Presence of DNA
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q19d" name="q19" value="D">
+              <label for="q19d">
+                <span class="option-marker">D</span>
+                Presence of ribosomes
+              </label>
+            </div>
+
+          </div>
+
+          <div class="answer-note" id="note19"></div>
+
+        </div>
+
+
+        <!-- QUESTION 20 -->
+
+        <div class="question" id="q20">
+
+          <div class="question-number">Q20</div>
+
+          <div class="question-text">
+            What is the function of the nucleolus?
+          </div>
+
+          <div class="options">
+
+            <div class="option">
+              <input type="radio" id="q20a" name="q20" value="A">
+              <label for="q20a">
+                <span class="option-marker">A</span>
+                ATP production
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q20b" name="q20" value="B">
+              <label for="q20b">
+                <span class="option-marker">B</span>
+                Ribosomal subunit synthesis
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q20c" name="q20" value="C">
+              <label for="q20c">
+                <span class="option-marker">C</span>
+                Lipid storage
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q20d" name="q20" value="D">
+              <label for="q20d">
+                <span class="option-marker">D</span>
+                Photosynthesis
+              </label>
+            </div>
+
+          </div>
+
+          <div class="answer-note" id="note20"></div>
+
+        </div>
+
+
+        <!-- QUESTION 21 -->
+
+        <div class="question" id="q21">
+
+          <div class="question-number">Q21</div>
+
+          <div class="question-text">
+            Mature human red blood cells are unusual because they:
+          </div>
+
+          <div class="options">
+
+            <div class="option">
+              <input type="radio" id="q21a" name="q21" value="A">
+              <label for="q21a">
+                <span class="option-marker">A</span>
+                Have two nuclei
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q21b" name="q21" value="B">
+              <label for="q21b">
+                <span class="option-marker">B</span>
+                Have no nucleus
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q21c" name="q21" value="C">
+              <label for="q21c">
+                <span class="option-marker">C</span>
+                Have no haemoglobin
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q21d" name="q21" value="D">
+              <label for="q21d">
+                <span class="option-marker">D</span>
+                Have no cell membrane
+              </label>
+            </div>
+
+          </div>
+
+          <div class="answer-note" id="note21"></div>
+
+        </div>
+
+
+        <!-- QUESTION 22 -->
+
+        <div class="question" id="q22">
+
+          <div class="question-number">Q22</div>
+
+          <div class="question-text">
+            Ribosomes are the site of:
+          </div>
+
+          <div class="options">
+
+            <div class="option">
+              <input type="radio" id="q22a" name="q22" value="A">
+              <label for="q22a">
+                <span class="option-marker">A</span>
+                Protein synthesis
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q22b" name="q22" value="B">
+              <label for="q22b">
+                <span class="option-marker">B</span>
+                Photosynthesis
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q22c" name="q22" value="C">
+              <label for="q22c">
+                <span class="option-marker">C</span>
+                DNA destruction
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q22d" name="q22" value="D">
+              <label for="q22d">
+                <span class="option-marker">D</span>
+                Cell division
+              </label>
+            </div>
+
+          </div>
+
+          <div class="answer-note" id="note22"></div>
+
+        </div>
+
+
+        <!-- QUESTION 23 -->
+
+        <div class="question" id="q23">
+
+          <div class="question-number">Q23</div>
+
+          <div class="question-text">
+            Which type of endoplasmic reticulum has ribosomes attached to it?
+          </div>
+
+          <div class="options">
+
+            <div class="option">
+              <input type="radio" id="q23a" name="q23" value="A">
+              <label for="q23a">
+                <span class="option-marker">A</span>
+                Smooth ER
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q23b" name="q23" value="B">
+              <label for="q23b">
+                <span class="option-marker">B</span>
+                Rough ER
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q23c" name="q23" value="C">
+              <label for="q23c">
+                <span class="option-marker">C</span>
+                Nuclear ER
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q23d" name="q23" value="D">
+              <label for="q23d">
+                <span class="option-marker">D</span>
+                Golgi ER
+              </label>
+            </div>
+
+          </div>
+
+          <div class="answer-note" id="note23"></div>
+
+        </div>
+
+
+        <!-- QUESTION 24 -->
+
+        <div class="question" id="q24">
+
+          <div class="question-number">Q24</div>
+
+          <div class="question-text">
+            The Golgi apparatus mainly functions to:
+          </div>
+
+          <div class="options">
+
+            <div class="option">
+              <input type="radio" id="q24a" name="q24" value="A">
+              <label for="q24a">
+                <span class="option-marker">A</span>
+                Modify, sort and package proteins/lipids
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q24b" name="q24" value="B">
+              <label for="q24b">
+                <span class="option-marker">B</span>
+                Store DNA
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q24c" name="q24" value="C">
+              <label for="q24c">
+                <span class="option-marker">C</span>
+                Produce chromosomes
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q24d" name="q24" value="D">
+              <label for="q24d">
+                <span class="option-marker">D</span>
+                Perform glycolysis
+              </label>
+            </div>
+
+          </div>
+
+          <div class="answer-note" id="note24"></div>
+
+        </div>
+
+
+        <!-- QUESTION 25 -->
+
+        <div class="question" id="q25">
+
+          <div class="question-number">Q25</div>
+
+          <div class="question-text">
+            Why are mitochondria called the "powerhouse of the cell"?
+          </div>
+
+          <div class="options">
+
+            <div class="option">
+              <input type="radio" id="q25a" name="q25" value="A">
+              <label for="q25a">
+                <span class="option-marker">A</span>
+                They store chromosomes
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q25b" name="q25" value="B">
+              <label for="q25b">
+                <span class="option-marker">B</span>
+                They release energy through cellular respiration
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q25c" name="q25" value="C">
+              <label for="q25c">
+                <span class="option-marker">C</span>
+                They package proteins
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q25d" name="q25" value="D">
+              <label for="q25d">
+                <span class="option-marker">D</span>
+                They digest waste
+              </label>
+            </div>
+
+          </div>
+
+          <div class="answer-note" id="note25"></div>
+
+        </div>
+
+
+        <!-- QUESTION 26 -->
+
+        <div class="question" id="q26">
+
+          <div class="question-number">Q26</div>
+
+          <div class="question-text">
+            Which structure in chloroplasts contains chlorophyll and is associated with photosynthesis?
+          </div>
+
+          <div class="options">
+
+            <div class="option">
+              <input type="radio" id="q26a" name="q26" value="A">
+              <label for="q26a">
+                <span class="option-marker">A</span>
+                Disc-shaped membrane structures
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q26b" name="q26" value="B">
+              <label for="q26b">
+                <span class="option-marker">B</span>
+                Nucleolus
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q26c" name="q26" value="C">
+              <label for="q26c">
+                <span class="option-marker">C</span>
+                Lysosomes
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q26d" name="q26" value="D">
+              <label for="q26d">
+                <span class="option-marker">D</span>
+                Ribosomes
+              </label>
+            </div>
+
+          </div>
+
+          <div class="answer-note" id="note26"></div>
+
+        </div>
+
+
+        <!-- QUESTION 27 -->
+
+        <div class="question" id="q27">
+
+          <div class="question-number">Q27</div>
+
+          <div class="question-text">
+            Which statement correctly compares mitosis and meiosis?
+          </div>
+
+          <div class="options">
+
+            <div class="option">
+              <input type="radio" id="q27a" name="q27" value="A">
+              <label for="q27a">
+                <span class="option-marker">A</span>
+                Mitosis produces 4 cells; meiosis produces 2
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q27b" name="q27" value="B">
+              <label for="q27b">
+                <span class="option-marker">B</span>
+                Both always produce genetically identical cells
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q27c" name="q27" value="C">
+              <label for="q27c">
+                <span class="option-marker">C</span>
+                Mitosis produces 2 identical cells; meiosis produces 4 varied cells
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q27d" name="q27" value="D">
+              <label for="q27d">
+                <span class="option-marker">D</span>
+                Meiosis occurs only in body cells
+              </label>
+            </div>
+
+          </div>
+
+          <div class="answer-note" id="note27"></div>
+
+        </div>
+
+
+        <!-- QUESTION 28 -->
+
+        <div class="question" id="q28">
+
+          <div class="question-number">Q28</div>
+
+          <div class="question-text">
+            Which scientist proposed in 1902 that a living plant cell can potentially develop into a complete plant?
+          </div>
+
+          <div class="options">
+
+            <div class="option">
+              <input type="radio" id="q28a" name="q28" value="A">
+              <label for="q28a">
+                <span class="option-marker">A</span>
+                Robert Hooke
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q28b" name="q28" value="B">
+              <label for="q28b">
+                <span class="option-marker">B</span>
+                Rudolf Virchow
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q28c" name="q28" value="C">
+              <label for="q28c">
+                <span class="option-marker">C</span>
+                Gottlieb Haberlandt
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q28d" name="q28" value="D">
+              <label for="q28d">
+                <span class="option-marker">D</span>
+                Camillo Golgi
+              </label>
+            </div>
+
+          </div>
+
+          <div class="answer-note" id="note28"></div>
+
+        </div>
+
+
+        <!-- QUESTION 29 -->
+
+        <div class="question" id="q29">
+
+          <div class="question-number">Q29</div>
+
+          <div class="question-text">
+            What did the 2010 J. Craig Venter experiment demonstrate?
+          </div>
+
+          <div class="options">
+
+            <div class="option">
+              <input type="radio" id="q29a" name="q29" value="A">
+              <label for="q29a">
+                <span class="option-marker">A</span>
+                A complete cell can be created from nothing
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q29b" name="q29" value="B">
+              <label for="q29b">
+                <span class="option-marker">B</span>
+                Synthetic DNA can control a cell's activities
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q29c" name="q29" value="C">
+              <label for="q29c">
+                <span class="option-marker">C</span>
+                DNA is unnecessary for cell division
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q29d" name="q29" value="D">
+              <label for="q29d">
+                <span class="option-marker">D</span>
+                Proteins can replace DNA completely
+              </label>
+            </div>
+
+          </div>
+
+          <div class="answer-note" id="note29"></div>
+
+        </div>
+
+
+        <!-- QUESTION 30 -->
+
+        <div class="question" id="q30">
+
+          <div class="question-number">Q30</div>
+
+          <div class="question-text">
+            Which statement best describes cancer cells?
+          </div>
+
+          <div class="options">
+
+            <div class="option">
+              <input type="radio" id="q30a" name="q30" value="A">
+              <label for="q30a">
+                <span class="option-marker">A</span>
+                They always stop dividing when they contact neighbouring cells
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q30b" name="q30" value="B">
+              <label for="q30b">
+                <span class="option-marker">B</span>
+                They divide uncontrollably and may form tumours
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q30c" name="q30" value="C">
+              <label for="q30c">
+                <span class="option-marker">C</span>
+                They are always harmless
+              </label>
+            </div>
+
+            <div class="option">
+              <input type="radio" id="q30d" name="q30" value="D">
+              <label for="q30d">
+                <span class="option-marker">D</span>
+                They cannot divide
+              </label>
+            </div>
+
+          </div>
+
+          <div class="answer-note" id="note30"></div>
+
+        </div>
+
+      </form>
+
+
+      <!-- =================================
+           RESULT
+      ================================= -->
+
+      <section id="result">
+
+        <h2 class="result-title">
+          Quiz Complete!
+        </h2>
+
+        <p class="result-subtitle">
+          Here is your performance summary.
+        </p>
+
+        <div class="score-main">
+
+          <span id="finalScore">
+            0
+          </span>
+
+          <small>
+            YOUR SCORE
+          </small>
+
+        </div>
+
+
+        <div class="score-display">
+
+          <div class="score-box">
+
+            <span
+              class="score-number"
+              id="correctCount"
+            >
+              0
+            </span>
+
+            <span class="score-label">
+              Correct
+            </span>
+
+          </div>
+
+
+          <div class="score-box">
+
+            <span
+              class="score-number"
+              id="wrongCount"
+            >
+              0
+            </span>
+
+            <span class="score-label">
+              Incorrect
+            </span>
+
+          </div>
+
+
+          <div class="score-box">
+
+            <span
+              class="score-number"
+              id="unansweredCount"
+            >
+              0
+            </span>
+
+            <span class="score-label">
+              Unanswered
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <h3 class="review-title">
+          Answer Review
+        </h3>
+
+        <div
+          class="review-list"
+          id="reviewList"
+        ></div>
+
+      </section>
+
+    </section>
+
+  </main>
+
+
+  <!-- =================================
+       FLOATING NAVIGATION
+  ================================= -->
+
+  <nav class="floating-nav">
+
+    <a
+      href="main.html"
+      class="nav-button"
+    >
+      <span class="nav-icon">⌂</span>
+      <span>Main Menu</span>
+    </a>
+
+
+    <button
+      type="button"
+      class="nav-button"
+      onclick="goBack()"
+    >
+      <span class="nav-icon">←</span>
+      <span>Back</span>
+    </button>
+
+
+    <button
+      type="button"
+      class="nav-button submit"
+      onclick="submitQuiz()"
+    >
+      <span>Submit</span>
+      <span class="nav-icon">✓</span>
+    </button>
+
+  </nav>
+
+
+  <!-- =================================
+       JAVASCRIPT
+  ================================= -->
+
+  <script>
+
+    /* =================================
+       ANSWER KEY
+    ================================= */
+
+    const answerKey = {
+
+      q1: "B",
+      q2: "B",
+      q3: "C",
+      q4: "A",
+      q5: "B",
+      q6: "B",
+      q7: "B",
+      q8: "C",
+      q9: "C",
+      q10: "B",
+
+      q11: "B",
+      q12: "C",
+      q13: "B",
+      q14: "B",
+      q15: "C",
+      q16: "A",
+      q17: "B",
+      q18: "D",
+      q19: "B",
+      q20: "B",
+
+      q21: "B",
+      q22: "A",
+      q23: "B",
+      q24: "A",
+      q25: "B",
+      q26: "A",
+      q27: "C",
+      q28: "C",
+      q29: "B",
+      q30: "B"
+
+    };
+
+
+    /* =================================
+       CORRECT ANSWER TEXT
+    ================================= */
+
+    const answerText = {
+
+      q1: "B — Small water pools",
+      q2: "B — To protect early organic molecules",
+      q3: "C — Yeast",
+      q4: "A — Tissue",
+      q5: "B — 0.1 mm",
+      q6: "B — Eyepiece × Objective",
+      q7: "B — Cork",
+      q8: "C — Fine adjustment knob",
+      q9: "C — 200 µm",
+      q10: "B — Resolution, contrast, magnification",
+
+      q11: "B — Electrons",
+      q12: "C — It allows some substances through but blocks others",
+      q13: "B — Shrinks",
+      q14: "B — Water across a selectively permeable membrane",
+      q15: "C — It shrinks",
+      q16: "A — Lipid molecules can move within the membrane",
+      q17: "B — They are made primarily of cellulose",
+      q18: "D — Cell wall",
+      q19: "B — Presence of a membrane-bound nucleus",
+      q20: "B — Ribosomal subunit synthesis",
+
+      q21: "B — Have no nucleus",
+      q22: "A — Protein synthesis",
+      q23: "B — Rough ER",
+      q24: "A — Modify, sort and package proteins/lipids",
+      q25: "B — They release energy through cellular respiration",
+      q26: "A — Disc-shaped membrane structures",
+      q27: "C — Mitosis produces 2 identical cells; meiosis produces 4 varied cells",
+      q28: "C — Gottlieb Haberlandt",
+      q29: "B — Synthetic DNA can control a cell's activities",
+      q30: "B — They divide uncontrollably and may form tumours"
+
+    };
+
+
+    let quizSubmitted = false;
+
+
+    /* =================================
+       SUBMIT QUIZ
+    ================================= */
+
+    function submitQuiz() {
+
+      if (quizSubmitted) {
+
+        document
+          .getElementById("result")
+          .scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+
+        return;
+
+      }
+
+
+      const confirmed =
+        confirm(
+          "Are you sure you want to submit the quiz?\n\n" +
+          "You will not be able to change your answers after submission."
+        );
+
+
+      if (!confirmed) {
+        return;
+      }
+
+
+      let correct = 0;
+      let incorrect = 0;
+      let unanswered = 0;
+
+      const reviewList =
+        document.getElementById("reviewList");
+
+      reviewList.innerHTML = "";
+
+
+      /* =================================
+         CHECK EACH QUESTION
+      ================================= */
+
+      for (let i = 1; i <= 30; i++) {
+
+        const questionId = "q" + i;
+
+        const selected =
+          document.querySelector(
+            `input[name="${questionId}"]:checked`
+          );
+
+
+        const questionElement =
+          document.getElementById(questionId);
+
+        const note =
+          document.getElementById("note" + i);
+
+
+        questionElement.classList.remove(
+          "correct-question",
+          "incorrect-question",
+          "unanswered-question"
+        );
+
+        note.className = "answer-note";
+
+
+        /* ================================
+           UNANSWERED
+        ================================= */
+
+        if (!selected) {
+
+          unanswered++;
+
+          questionElement.classList.add(
+            "unanswered-question"
+          );
+
+          note.classList.add("unanswered");
+
+          note.textContent =
+            "Not answered. Correct answer: " +
+            answerText[questionId];
+
+
+          addReviewItem(
+            i,
+            "Unanswered",
+            answerText[questionId],
+            "unanswered"
+          );
+
+          continue;
+
+        }
+
+
+        /* ================================
+           CORRECT
+        ================================= */
+
+        if (
+          selected.value ===
+          answerKey[questionId]
+        ) {
+
+          correct++;
+
+          questionElement.classList.add(
+            "correct-question"
+          );
+
+          note.classList.add("correct");
+
+          note.textContent =
+            "✓ Correct! +" +
+            "1 point";
+
+
+          addReviewItem(
+            i,
+            "Correct",
+            answerText[questionId],
+            "correct"
+          );
+
+        }
+
+
+        /* ================================
+           INCORRECT
+        ================================= */
+
+        else {
+
+          incorrect++;
+
+          questionElement.classList.add(
+            "incorrect-question"
+          );
+
+          note.classList.add("incorrect");
+
+          note.textContent =
+            "✗ Incorrect. −0.25 point. " +
+            "Correct answer: " +
+            answerText[questionId];
+
+
+          addReviewItem(
+            i,
+            "Incorrect",
+            answerText[questionId],
+            "incorrect"
+          );
+
+        }
+
+      }
+
+
+      /* =================================
+         CALCULATE SCORE
+      ================================= */
+
+      const score =
+        correct -
+        (incorrect * 0.25);
+
+
+      const formattedScore =
+        Number.isInteger(score)
+          ? score.toString()
+          : score.toFixed(2);
+
+
+      document.getElementById(
+        "finalScore"
+      ).textContent = formattedScore;
+
+
+      document.getElementById(
+        "correctCount"
+      ).textContent = correct;
+
+
+      document.getElementById(
+        "wrongCount"
+      ).textContent = incorrect;
+
+
+      document.getElementById(
+        "unansweredCount"
+      ).textContent = unanswered;
+
+
+      /* =================================
+         SHOW RESULT
+      ================================= */
+
+      const result =
+        document.getElementById("result");
+
+      result.style.display = "block";
+
+
+      quizSubmitted = true;
+
+
+      /* Disable changing answers */
+
+      document
+        .querySelectorAll(
+          "#quizForm input"
+        )
+        .forEach(input => {
+          input.disabled = true;
+        });
+
+
+      /* Change submit button */
+
+      const submitButton =
+        document.querySelector(
+          ".nav-button.submit"
+        );
+
+      submitButton.innerHTML =
+        '<span>Result</span><span class="nav-icon">✓</span>';
+
+
+      /* Scroll to result */
+
+      setTimeout(() => {
+
+        result.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+      }, 200);
+
+    }
+
+
+    /* =================================
+       REVIEW ITEM
+    ================================= */
+
+    function addReviewItem(
+      number,
+      status,
+      correctAnswer,
+      className
+    ) {
+
+      const item =
+        document.createElement("div");
+
+      item.className =
+        "review-item " +
+        className;
+
+
+      item.innerHTML =
+        `<strong>Q${number} — ${status}</strong>
+         <br>
+         Correct option: ${correctAnswer}`;
+
+
+      document
+        .getElementById("reviewList")
+        .appendChild(item);
+
+    }
+
+
+    /* =================================
+       BACK BUTTON
+    ================================= */
+
+    function goBack() {
+
+      if (
+        document.referrer &&
+        document.referrer !== window.location.href
+      ) {
+
+        history.back();
+
+      } else {
+
+        window.location.href = "45.html";
+
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>

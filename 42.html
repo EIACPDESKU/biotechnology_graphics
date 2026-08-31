@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Block 42: Totipotency and Plant Tissue Culture</title>
+
+  
+<style>
+:root{
+  --bg:#f6f1e7;
+  --surface:#fffdf8;
+  --surface-2:#f0e8d8;
+  --ink:#252525;
+  --muted:#6d685f;
+  --accent:#d96f16;
+  --line:#d8d0c2;
+  --dark:#252525;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.65;
+}
+.page{
+  width:min(100% - 32px,980px);
+  margin:0 auto;
+  padding:36px 0 140px;
+}
+
+/* HERO */
+.hero{
+  position:relative;
+  overflow:hidden;
+  display:grid;
+  grid-template-columns:minmax(0,.9fr) minmax(400px,1.1fr);
+  align-items:center;
+  min-height:430px;
+  background:var(--surface-2);
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:42px 42px 34px;
+  margin-bottom:28px;
+}
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:395px;
+  padding-bottom:8px;
+}
+.eyebrow{
+  display:inline-block;
+  margin-bottom:16px;
+  color:var(--accent);
+  font-size:.76rem;
+  font-weight:800;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+h1{
+  font-size:clamp(2.45rem,5vw,3.6rem);
+  line-height:1.02;
+  letter-spacing:-.045em;
+  margin-bottom:18px;
+}
+h1 span{color:var(--accent)!important}
+.hero-description{
+  max-width:390px;
+  color:var(--muted);
+  font-size:clamp(.98rem,2vw,1.08rem);
+  line-height:1.7;
+}
+
+/* CLEAN SCIENTIFIC SVG */
+.totipotency-graphic{
+  position:relative;
+  z-index:1;
+  width:100%;
+  height:auto;
+  display:block;
+  pointer-events:none;
+  overflow:visible;
+}
+.source-cell,
+.growing-plant,
+.leaf-pulse,
+.culture-arrow{
+  animation:none!important;
+}
+.totipotency-graphic text{letter-spacing:.02em}
+
+/* The HTML heading is the only hero heading. */
+.totipotency-graphic > rect:first-of-type,
+.totipotency-graphic > text:first-of-type{display:none}
+
+/* soften illustration */
+.totipotency-graphic [stroke="#222222"]{stroke:#303030}
+.totipotency-graphic [stroke="#fa8112"]{stroke:var(--accent)}
+.totipotency-graphic [fill="#fa8112"]{fill:var(--accent)}
+.totipotency-graphic [fill="#f5e7c6"]{fill:#f4ecdf}
+.totipotency-graphic [fill="#faf3e1"]{fill:#fffaf1}
+
+/* Mature-cell and plant labels: retain them but use lighter outlines. */
+.totipotency-graphic .source-cell > rect,
+.totipotency-graphic .growing-plant > rect{
+  stroke:none;
+}
+.totipotency-graphic .source-cell > circle:first-of-type{
+  stroke-width:3;
+}
+.totipotency-graphic .growing-plant > path{
+  stroke-width:2.5;
+}
+
+/* The historical banner duplicates the content card, so keep it quiet. */
+.totipotency-graphic > rect:last-of-type{
+  fill:#252525!important;
+  stroke:#252525!important;
+  stroke-width:2!important;
+}
+.totipotency-graphic > text:last-of-type{
+  fill:#faf3e1!important;
+}
+
+/* CONTENT */
+.content-card{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:clamp(24px,5vw,42px);
+  box-shadow:0 8px 28px rgba(37,37,37,.05);
+}
+.content-card h2{
+  font-size:clamp(1.55rem,4vw,2.15rem);
+  line-height:1.18;
+  letter-spacing:-.025em;
+  margin-bottom:22px;
+}
+
+.scientist-card{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:18px;
+  align-items:center;
+  padding:18px 20px;
+  margin-bottom:18px;
+  background:var(--surface-2);
+  border-left:3px solid var(--accent);
+  border-radius:10px;
+}
+.scientist-icon{
+  width:50px;
+  height:50px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:var(--accent);
+  color:#fffaf2;
+  border:none;
+  font-size:1.15rem;
+  font-weight:900;
+}
+.scientist-card h3{margin-bottom:3px;font-size:1.05rem}
+.scientist-card p{font-size:.92rem;line-height:1.58;color:#57524a}
+
+.concept-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+.concept-box{
+  position:relative;
+  padding:17px 18px 17px 52px;
+  min-height:150px;
+  background:#faf7f0;
+  border:1px solid #e6dfd2;
+  border-radius:12px;
+}
+.concept-box:nth-child(2){background:#f4eee3}
+.concept-icon{
+  position:absolute;
+  left:15px;
+  top:17px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:27px;
+  height:27px;
+  border-radius:50%;
+  background:var(--accent);
+  color:#fffaf2;
+  font-size:.72rem;
+  font-weight:900;
+}
+.concept-box h3{margin-bottom:4px;font-size:.96rem;line-height:1.3}
+.concept-box p{font-size:.86rem;line-height:1.55;color:#625d55}
+
+.foundation{
+  margin-top:14px;
+  padding:18px 20px;
+  background:var(--dark);
+  color:var(--surface);
+  border-radius:13px;
+  text-align:left;
+}
+.foundation-label{
+  display:inline-block;
+  margin-bottom:7px;
+  color:#f2a15c;
+  font-size:.76rem;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.foundation p{font-size:1rem;font-weight:750;line-height:1.5}
+
+strong{font-weight:850}
+
+/* NAV */
+.floating-nav{
+  position:fixed;
+  left:50%;
+  bottom:18px;
+  transform:translateX(-50%);
+  z-index:1000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  padding:6px;
+  background:var(--dark);
+  border-radius:999px;
+  box-shadow:0 8px 24px rgba(37,37,37,.18);
+}
+.nav-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  min-width:92px;
+  height:40px;
+  padding:0 14px;
+  border:none;
+  border-radius:999px;
+  background:#f8f2e7;
+  color:var(--dark);
+  font:inherit;
+  font-size:.84rem;
+  font-weight:750;
+  text-decoration:none;
+  cursor:pointer;
+  transition:background .18s ease,transform .18s ease;
+}
+.nav-button:hover{background:#f0c39b;transform:translateY(-2px)}
+.nav-button:active{transform:translateY(0)}
+.nav-icon{font-size:1rem;line-height:1}
+
+@media (max-width:760px){
+  .page{width:min(100% - 22px,980px);padding-top:20px;padding-bottom:125px}
+  .hero{
+    grid-template-columns:1fr;
+    min-height:auto;
+    padding:30px 26px 8px;
+  }
+  .hero-content{max-width:100%;padding-bottom:0}
+  .hero-description{max-width:620px}
+  .totipotency-graphic{
+    width:min(100%,610px);
+    justify-self:center;
+    margin-top:0;
+    margin-bottom:0;
+  }
+  .content-card{padding:24px 20px}
+}
+@media (max-width:520px){
+  .hero{padding:27px 20px 6px;border-radius:18px}
+  h1{font-size:2.42rem}
+  .totipotency-graphic{
+    width:118%;
+    margin-left:-9%;
+    margin-top:2px;
+    margin-bottom:4px;
+  }
+  .concept-grid{grid-template-columns:1fr}
+  .scientist-card{grid-template-columns:auto 1fr;gap:13px}
+  .scientist-icon{width:44px;height:44px}
+  .floating-nav{bottom:10px;width:calc(100% - 20px);max-width:420px}
+  .nav-button{flex:1;min-width:0;padding:0 8px;font-size:.77rem}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+
+</head>
+
+<body>
+
+  <main class="page">
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
+      <div class="hero-content">
+
+        <span class="eyebrow">
+          Biology • Plant Biotechnology
+        </span>
+
+        <h1>
+          One Cell,
+          <span style="color: #fa8112;">A Whole Plant</span>
+        </h1>
+
+        <p class="hero-description">
+          A mature plant cell can retain the remarkable
+          potential to rebuild an entire plant when given
+          the right nutrients and environmental conditions.
+        </p>
+
+      </div>
+
+
+      <!-- =========================
+           VECTOR GRAPHIC
+      ========================== -->
+
+      <svg
+        class="totipotency-graphic"
+        viewBox="0 0 700 420"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-label="Vector illustration showing a single mature plant cell developing into a complete plant through tissue culture"
+        role="img"
+      >
+<!-- =========================
+             MATURE CELL
+        ========================== -->
+
+        <g class="source-cell">
+
+          <rect
+            x="28"
+            y="82"
+            width="185"
+            height="32"
+            rx="11"
+            fill="#222222"
+          />
+
+          <text
+            x="120"
+            y="103"
+            text-anchor="middle"
+            fill="#faf3e1"
+            font-size="13"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            MATURE PLANT CELL
+          </text>
+
+
+          <!-- Cell wall -->
+
+          <circle
+            cx="85"
+            cy="180"
+            r="58"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <!-- Cell membrane -->
+
+          <circle
+            cx="85"
+            cy="180"
+            r="47"
+            fill="#faf3e1"
+            stroke="#fa8112"
+            stroke-width="3"
+          />
+
+          <!-- Nucleus -->
+
+          <circle
+            cx="85"
+            cy="180"
+            r="19"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <!-- Vacuole -->
+
+          <ellipse
+            cx="122"
+            cy="174"
+            rx="12"
+            ry="22"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="2"
+          />
+
+          <!-- Cytoplasm dots -->
+
+          <circle cx="58" cy="153" r="4" fill="#222222"/>
+          <circle cx="53" cy="198" r="4" fill="#222222"/>
+          <circle cx="105" cy="215" r="4" fill="#222222"/>
+          <circle cx="113" cy="146" r="4" fill="#222222"/>
+
+          <text
+            x="85"
+            y="266"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="10"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            LIVING CELL
+          </text>
+
+          <text
+            x="85"
+            y="283"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="9"
+            font-weight="700"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            HAS THE POTENTIAL
+          </text>
+
+        </g>
+
+
+        <!-- =========================
+             CULTURE CONDITIONS
+        ========================== -->
+
+        <g>
+
+          <!-- Arrow -->
+
+          <path
+            d="M153 180 H220"
+            fill="none"
+            stroke="#222222"
+            stroke-width="3.5"
+            stroke-linecap="round"
+            class="culture-arrow"
+          />
+
+          <path
+            d="M210 171 L222 180 L210 189"
+            fill="none"
+            stroke="#fa8112"
+            stroke-width="3.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+
+
+          <rect
+            x="205"
+            y="245"
+            width="235"
+            height="92"
+            rx="18"
+            fill="#faf3e1"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <text
+            x="322"
+            y="267"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="11"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            SUITABLE CONDITIONS
+          </text>
+
+          <!-- Nutrients -->
+
+          <circle
+            cx="245"
+            cy="300"
+            r="17"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="2"
+          />
+
+          <text
+            x="245"
+            y="305"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="12"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            +
+          </text>
+
+          <text
+            x="245"
+            y="328"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="8"
+            font-weight="800"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            NUTRIENTS
+          </text>
+
+
+          <!-- Conditions -->
+
+          <circle
+            cx="322"
+            cy="300"
+            r="17"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="2"
+          />
+
+          <path
+            d="M314 300 L322 292 L330 300 L322 308 Z"
+            fill="#fa8112"
+          />
+
+          <text
+            x="322"
+            y="328"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="8"
+            font-weight="800"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            CONDITIONS
+          </text>
+
+
+          <!-- Culture -->
+
+          <circle
+            cx="398"
+            cy="300"
+            r="17"
+            fill="#222222"
+          />
+
+          <path
+            d="M389 301 C394 292 402 292 407 301"
+            fill="none"
+            stroke="#faf3e1"
+            stroke-width="2.5"
+            stroke-linecap="round"
+          />
+
+          <text
+            x="398"
+            y="328"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="8"
+            font-weight="800"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            CULTURE
+          </text>
+
+        </g>
+
+
+        <!-- =========================
+             COMPLETE PLANT
+        ========================== -->
+
+        <g class="growing-plant">
+
+          <rect
+            x="485"
+            y="82"
+            width="180"
+            height="32"
+            rx="11"
+            fill="#222222"
+          />
+
+          <text
+            x="575"
+            y="103"
+            text-anchor="middle"
+            fill="#faf3e1"
+            font-size="13"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            COMPLETE PLANT
+          </text>
+
+
+          <!-- Soil -->
+
+          <path
+            d="M500 335 Q575 320 650 335 L650 365 L500 365 Z"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <!-- Roots -->
+
+          <path
+            d="M575 330
+               C570 310 565 295 550 280
+               M575 330
+               C580 310 588 298 603 282
+               M575 330
+               C575 310 575 300 575 285"
+            fill="none"
+            stroke="#222222"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+
+          <!-- Main stem -->
+
+          <path
+            d="M575 330 C574 275 575 215 575 150"
+            fill="none"
+            stroke="#222222"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+
+          <!-- Leaves -->
+
+          <g class="leaf-pulse">
+
+            <path
+              d="M574 245
+                 C540 242 522 223 526 205
+                 C550 205 568 217 574 245 Z"
+              fill="#fa8112"
+              stroke="#222222"
+              stroke-width="3"
+            />
+
+            <path
+              d="M576 220
+                 C610 218 628 198 624 180
+                 C600 181 582 194 576 220 Z"
+              fill="#f5e7c6"
+              stroke="#222222"
+              stroke-width="3"
+            />
+
+            <path
+              d="M574 190
+                 C544 184 532 165 539 149
+                 C559 153 571 166 574 190 Z"
+              fill="#f5e7c6"
+              stroke="#222222"
+              stroke-width="3"
+            />
+
+            <path
+              d="M577 170
+                 C605 164 617 146 611 132
+                 C592 136 580 149 577 170 Z"
+              fill="#fa8112"
+              stroke="#222222"
+              stroke-width="3"
+            />
+
+          </g>
+
+
+          <!-- Top bud -->
+
+          <circle
+            cx="575"
+            cy="130"
+            r="17"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <path
+            d="M565 130 Q575 116 585 130"
+            fill="none"
+            stroke="#222222"
+            stroke-width="2.5"
+            stroke-linecap="round"
+          />
+
+
+          <text
+            x="575"
+            y="395"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="10"
+            font-weight="950"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            ONE CELL → WHOLE PLANT
+          </text>
+
+        </g>
+
+
+        <!-- =========================
+             SCIENTIST / YEAR
+        ========================== -->
+
+        <rect
+          x="185"
+          y="360"
+          width="330"
+          height="38"
+          rx="13"
+          fill="#fa8112"
+          stroke="#222222"
+          stroke-width="3"
+        />
+
+        <text
+          x="350"
+          y="384"
+          text-anchor="middle"
+          fill="#222222"
+          font-size="10"
+          font-weight="950"
+          font-family="Inter, system-ui, sans-serif"
+        >
+          HABERLANDT • 1902 • PLANT TISSUE CULTURE
+        </text>
+
+      </svg>
+
+    </section>
+
+
+    <!-- =========================
+         CONTENT
+    ========================== -->
+
+    <section class="content-card">
+
+      <h2 id="block-42-totipotency-and-plant-tissue-culture">
+        Block 42: Totipotency and Plant Tissue Culture
+      </h2>
+
+
+      <div class="scientist-card">
+
+        <div class="scientist-icon">H</div>
+
+        <div>
+          <h3>Gottlieb Haberlandt — 1902</h3>
+
+          <p>
+            The Austrian botanist proposed that a living
+            plant cell could have the potential to develop
+            into a complete plant under suitable conditions.
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="concept-grid">
+
+        <article class="concept-box">
+
+          <span class="concept-icon">1</span>
+
+          <h3>Totipotency</h3>
+
+          <p>
+            Any living plant cell, even a mature cell,
+            can develop into a <strong>complete plant</strong>
+            when provided with suitable nutrients and
+            environmental conditions.
+          </p>
+
+        </article>
+
+
+        <article class="concept-box">
+
+          <span class="concept-icon">↗</span>
+
+          <h3>A Foundation for Biotechnology</h3>
+
+          <p>
+            Haberlandt's idea laid the foundation for
+            <strong>Plant Tissue Culture Technology</strong>,
+            allowing plants to be regenerated from cells
+            or tissues under controlled conditions.
+          </p>
+
+        </article>
+
+      </div>
+
+
+      <div class="foundation">
+
+        <span class="foundation-label">
+          Key Idea
+        </span>
+
+        <p>
+          Living plant cell → suitable conditions →
+          <strong>complete plant</strong>
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FLOATING NAVIGATION
+  ========================== -->
+
+  <nav class="floating-nav" aria-label="Page navigation">
+
+    <a
+      class="nav-button"
+      href="main.html"
+      aria-label="Home"
+    >
+      <span class="nav-icon">⌂</span>
+      <span>Home</span>
+    </a>
+
+    <a
+      class="nav-button"
+      href="#block-42-totipotency-and-plant-tissue-culture"
+      aria-label="Previous block"
+      onclick="history.back(); return false;"
+    >
+      <span class="nav-icon">←</span>
+      <span>Back</span>
+    </a>
+
+    <a
+      class="nav-button"
+      href="43.html"
+      aria-label="Next block"
+    >
+      <span>Next</span>
+      <span class="nav-icon">→</span>
+    </a>
+
+  </nav>
+
+</body>
+</html>

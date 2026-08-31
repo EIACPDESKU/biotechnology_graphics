@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Block 12: Electron Microscope</title>
+
+  
+<style>
+:root{--bg:#f6f1e7;--surface:#fffdf8;--surface-2:#f0e8d8;--ink:#252525;--muted:#6d685f;--accent:#d96f16;--line:#d8d0c2;--dark:#252525}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}
+.page{width:min(100% - 32px,980px);margin:0 auto;padding:36px 0 140px}
+
+.hero{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,.9fr) minmax(400px,1.1fr);align-items:center;min-height:430px;background:var(--surface-2);border:1px solid var(--line);border-radius:24px;padding:42px 42px 34px;margin-bottom:28px}
+.hero-content{position:relative;z-index:2;max-width:395px;padding-bottom:8px}
+.eyebrow{display:inline-block;margin-bottom:16px;color:var(--accent);font-size:.76rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+h1{font-size:clamp(2.45rem,5vw,3.6rem);line-height:1.02;letter-spacing:-.045em;margin-bottom:18px}
+.hero-description{max-width:390px;color:var(--muted);font-size:clamp(.98rem,2vw,1.08rem);line-height:1.7}
+
+.origin-graphic{position:relative;z-index:1;width:100%;height:auto;display:block;justify-self:center;pointer-events:none;overflow:visible}
+.origin-graphic *{animation:none!important}
+.origin-graphic text{letter-spacing:.02em}
+.origin-graphic [stroke="#222222"]{stroke:#303030}
+.origin-graphic [stroke="#fa8112"]{stroke:var(--accent)}
+.origin-graphic [fill="#fa8112"]{fill:var(--accent)}
+.origin-graphic [fill="#f5e7c6"]{fill:#f4ecdf}
+.origin-graphic [fill="#faf3e1"]{fill:#fffaf1}
+
+.content-card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:clamp(24px,5vw,42px);box-shadow:0 8px 28px rgba(37,37,37,.05)}
+.content-card h2{font-size:clamp(1.55rem,4vw,2.15rem);line-height:1.18;letter-spacing:-.025em;margin-bottom:22px}
+.content-card p{margin-bottom:18px;font-size:clamp(.98rem,2vw,1.06rem)}
+.content-card ul{list-style:none;display:grid;gap:10px}
+.content-card li{position:relative;padding:15px 18px 15px 42px;background:#faf7f0;border:1px solid #e6dfd2;border-radius:12px;font-size:.94rem;line-height:1.58}
+.content-card li:nth-child(2){background:#f4eee3}
+.content-card li:nth-child(3){background:#fff8ef}
+.content-card li:nth-child(4){background:#f4eee3}
+.content-card li::before{content:"";position:absolute;left:17px;top:50%;transform:translateY(-50%);width:9px;height:9px;background:var(--accent);border-radius:50%}
+strong{font-weight:850}
+.highlight{display:inline-block;padding:2px 8px;background:#f0c39b;border-radius:7px;font-weight:850}
+
+.floating-nav{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:1000;display:flex;align-items:center;justify-content:center;gap:4px;padding:6px;background:var(--dark);border-radius:999px;box-shadow:0 8px 24px rgba(37,37,37,.18)}
+.nav-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-width:92px;height:40px;padding:0 14px;border:none;border-radius:999px;background:#f8f2e7;color:var(--dark);font:inherit;font-size:.84rem;font-weight:750;text-decoration:none;cursor:pointer;transition:background .18s ease,transform .18s ease}
+.nav-button:hover{background:#f0c39b;transform:translateY(-2px)}
+.nav-button:active{transform:translateY(0)}
+.nav-icon{font-size:1rem;line-height:1}
+
+@media(max-width:760px){
+.page{width:min(100% - 22px,980px);padding-top:20px;padding-bottom:125px}
+.hero{grid-template-columns:1fr;min-height:auto;padding:30px 26px 8px}
+.hero-content{max-width:100%;padding-bottom:0}
+.hero-description{max-width:620px}
+.origin-graphic{width:min(100%,610px);justify-self:center;margin:0}
+.content-card{padding:24px 20px}
+}
+@media(max-width:520px){
+.hero{padding:27px 20px 6px;border-radius:18px}
+h1{font-size:2.42rem}
+.origin-graphic{width:118%;margin-left:-9%;margin-top:2px;margin-bottom:4px}
+.content-card li{padding-left:38px}
+.floating-nav{bottom:10px;width:calc(100% - 20px);max-width:420px}
+.nav-button{flex:1;min-width:0;padding:0 8px;font-size:.77rem}
+}
+@media(prefers-reduced-motion:reduce){
+html{scroll-behavior:auto}
+*,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+
+</head>
+
+<body>
+
+  <main class="page">
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
+      <div class="hero-content">
+
+        <span class="eyebrow">
+          Biology • Advanced Microscopy
+        </span>
+
+        <h1>
+          Electron Microscope
+        </h1>
+
+        <p class="hero-description">
+          When light is no longer enough, electrons reveal a much
+          smaller world — allowing scientists to explore cellular
+          structures at the nanometre scale.
+        </p>
+
+      </div>
+
+
+      <!--
+        Inline SVG vector illustration.
+
+        Concept:
+        Electron microscope → electron beam → tiny specimen
+        → nanometre scale → much higher resolution.
+      -->
+
+      <svg
+        class="origin-graphic"
+        viewBox="0 0 440 330"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-label="Vector illustration of an electron microscope producing a focused electron beam and revealing nanometre-scale cell structures"
+        role="img"
+      >
+
+        <!-- =========================
+             ELECTRON MICROSCOPE COLUMN
+        ========================== -->
+
+        <g >
+
+          <!-- Main column -->
+
+          <rect
+            x="265"
+            y="35"
+            width="70"
+            height="210"
+            rx="16"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <!-- Top electron source -->
+
+          <rect
+            x="278"
+            y="48"
+            width="44"
+            height="35"
+            rx="9"
+            fill="#222222"
+          />
+
+          <circle
+            cx="300"
+            cy="66"
+            r="10"
+            fill="#fa8112"
+          />
+
+          <circle
+            cx="300"
+            cy="66"
+            r="4"
+            fill="#faf3e1"
+          />
+
+          <!-- Focusing lens 1 -->
+
+          <rect
+            x="277"
+            y="94"
+            width="46"
+            height="13"
+            rx="5"
+            fill="#222222"
+          />
+
+          <!-- Focusing lens 2 -->
+
+          <rect
+            x="277"
+            y="126"
+            width="46"
+            height="13"
+            rx="5"
+            fill="#222222"
+          />
+
+          <!-- Specimen chamber -->
+
+          <rect
+            x="274"
+            y="157"
+            width="52"
+            height="42"
+            rx="8"
+            fill="#faf3e1"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <!-- Specimen -->
+
+          <circle
+            cx="300"
+            cy="178"
+            r="11"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <circle
+            cx="296"
+            cy="175"
+            r="3"
+            fill="#222222"
+          />
+
+          <circle
+            cx="304"
+            cy="181"
+            r="3"
+            fill="#222222"
+          />
+
+          <!-- Detector -->
+
+          <rect
+            x="277"
+            y="211"
+            width="46"
+            height="20"
+            rx="6"
+            fill="#222222"
+          />
+
+          <!-- Base -->
+
+          <path
+            d="M240 245
+               C240 234 249 226 261 226
+               H339
+               C351 226 360 234 360 245
+               V258
+               H240 Z"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+        </g>
+
+
+        <!-- =========================
+             ELECTRON BEAM
+        ========================== -->
+
+        <g 
+           fill="none"
+           stroke="#fa8112"
+           stroke-width="3"
+           stroke-linecap="round">
+
+          <path d="M300 82 V157" />
+
+          <path d="M294 82 V157" />
+
+          <path d="M306 82 V157" />
+
+        </g>
+
+
+        <!-- Electron particles -->
+
+        <g >
+
+          <circle cx="300" cy="112" r="5" fill="#fa8112"/>
+          <circle cx="294" cy="135" r="4" fill="#fa8112"/>
+          <circle cx="306" cy="147" r="4" fill="#fa8112"/>
+
+        </g>
+
+
+        <!-- =========================
+             ELECTRON SYMBOL
+        ========================== -->
+
+        <g >
+
+          <circle
+            cx="78"
+            cy="62"
+            r="38"
+            fill="#faf3e1"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <text
+            x="78"
+            y="70"
+            text-anchor="middle"
+            fill="#fa8112"
+            font-size="28"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            e⁻
+          </text>
+
+          <text
+            x="78"
+            y="113"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="12"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            ELECTRONS
+          </text>
+
+        </g>
+
+
+        <!-- =========================
+             LIGHT VS ELECTRON
+        ========================== -->
+
+        <g>
+
+          <rect
+            x="25"
+            y="145"
+            width="110"
+            height="64"
+            rx="14"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <!-- Light wave -->
+
+          <path
+            d="M40 172
+               C48 157 56 187 64 172
+               C72 157 80 187 88 172"
+            fill="none"
+            stroke="#222222"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+
+          <text
+            x="108"
+            y="170"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="11"
+            font-weight="800"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            LIGHT
+          </text>
+
+          <text
+            x="80"
+            y="191"
+            text-anchor="middle"
+            fill="#fa8112"
+            font-size="11"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            lower resolution
+          </text>
+
+        </g>
+
+
+        <!-- =========================
+             NANOMETRE SCALE
+        ========================== -->
+
+        <g >
+
+          <rect
+            x="30"
+            y="228"
+            width="175"
+            height="70"
+            rx="15"
+            fill="#faf3e1"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <!-- Scale bar -->
+
+          <path
+            d="M50 252 H180"
+            stroke="#222222"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+
+          <path
+            d="M50 244 V260"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <path
+            d="M180 244 V260"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <text
+            x="115"
+            y="280"
+            text-anchor="middle"
+            fill="#fa8112"
+            font-size="17"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            nanometre (nm)
+          </text>
+
+        </g>
+
+
+        <!-- =========================
+             HIGH RESOLUTION MESSAGE
+        ========================== -->
+
+        <g >
+
+          <rect
+            x="355"
+            y="78"
+            width="70"
+            height="116"
+            rx="15"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <!-- Enlarged cellular details -->
+
+          <circle
+            cx="390"
+            cy="110"
+            r="21"
+            fill="#faf3e1"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <circle
+            cx="383"
+            cy="104"
+            r="4"
+            fill="#222222"
+          />
+
+          <circle
+            cx="397"
+            cy="116"
+            r="5"
+            fill="#222222"
+          />
+
+          <circle
+            cx="390"
+            cy="110"
+            r="7"
+            fill="none"
+            stroke="#fa8112"
+            stroke-width="3"
+          />
+
+          <path
+            d="M370 150 H410"
+            stroke="#222222"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+
+          <path
+            d="M370 160 H410"
+            stroke="#222222"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+
+          <text
+            x="390"
+            y="181"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="11"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            HIGH
+          </text>
+
+          <text
+            x="390"
+            y="193"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="11"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            RESOLUTION
+          </text>
+
+        </g>
+
+
+        <!-- =========================
+             SCALE STATEMENT
+        ========================== -->
+
+        <rect
+          x="215"
+          y="274"
+          width="210"
+          height="35"
+          rx="12"
+          fill="#222222"
+        />
+
+        <text
+          x="320"
+          y="297"
+          text-anchor="middle"
+          fill="#faf3e1"
+          font-size="13"
+          font-weight="900"
+          font-family="Inter, system-ui, sans-serif"
+        >
+          1 nm = 10⁻⁹ m
+        </text>
+
+      </svg>
+
+    </section>
+
+
+    <!-- =========================
+         CONTENT
+    ========================== -->
+
+    <section class="content-card">
+
+      <h2 id="block-12-electron-microscope">
+        Block 12: Electron Microscope
+      </h2>
+
+      <ul>
+
+        <li>
+          Uses a beam of <strong>electrons</strong> instead of light.
+        </li>
+
+        <li>
+          Reveals cell structure at the
+          <strong>nanometre (nm) scale</strong>.
+        </li>
+
+        <li>
+          <strong>1 nanometre = one-billionth of a metre</strong>.
+        </li>
+
+        <li>
+          Provides much higher resolution than light microscopes.
+        </li>
+
+      </ul>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FLOATING NAVIGATION
+  ========================== -->
+
+  <nav class="floating-nav" aria-label="Page navigation">
+
+    <a
+      class="nav-button"
+      href="main.html"
+      aria-label="Home"
+    >
+      <span class="nav-icon">⌂</span>
+      <span>Home</span>
+    </a>
+
+    <a
+      class="nav-button"
+      href="#block-12-electron-microscope"
+      aria-label="Previous block"
+      onclick="history.back(); return false;"
+    >
+      <span class="nav-icon">←</span>
+      <span>Back</span>
+    </a>
+
+    <a
+      class="nav-button"
+      href="13.html"
+      aria-label="Next block"
+    >
+      <span>Next</span>
+      <span class="nav-icon">→</span>
+    </a>
+
+  </nav>
+
+</body>
+</html>

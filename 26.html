@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Block 26: Golgi Apparatus — Packaging Centre</title>
+
+  
+<style>
+:root{--bg:#f6f1e7;--surface:#fffdf8;--surface-2:#f0e8d8;--ink:#252525;--muted:#6d685f;--accent:#d96f16;--line:#d8d0c2;--dark:#252525}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}
+.page{width:min(100% - 32px,980px);margin:0 auto;padding:36px 0 140px}
+.hero{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,.9fr) minmax(400px,1.1fr);align-items:center;min-height:430px;background:var(--surface-2);border:1px solid var(--line);border-radius:24px;padding:42px 42px 34px;margin-bottom:28px}
+.hero-content{position:relative;z-index:2;max-width:395px;padding-bottom:8px}
+.eyebrow{display:inline-block;margin-bottom:16px;color:var(--accent);font-size:.76rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+h1{font-size:clamp(2.45rem,5vw,3.6rem);line-height:1.02;letter-spacing:-.045em;margin-bottom:18px}
+h1 span{color:var(--accent)!important}
+.hero-description{max-width:390px;color:var(--muted);font-size:clamp(.98rem,2vw,1.08rem);line-height:1.7}
+.science-graphic{position:relative;z-index:1;width:100%;height:auto;display:block;pointer-events:none;overflow:visible}
+.science-graphic *{animation:none!important}
+.science-graphic text{letter-spacing:.02em}
+.science-graphic [stroke="#222222"]{stroke:#303030}
+.science-graphic [stroke="#fa8112"]{stroke:var(--accent)}
+.science-graphic [fill="#fa8112"]{fill:var(--accent)}
+.science-graphic [fill="#f5e7c6"]{fill:#f4ecdf}
+.science-graphic [fill="#faf3e1"]{fill:#fffaf1}
+.content-card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:clamp(24px,5vw,42px);box-shadow:0 8px 28px rgba(37,37,37,.05)}
+.content-card h2{font-size:clamp(1.55rem,4vw,2.15rem);line-height:1.18;letter-spacing:-.025em;margin-bottom:22px}
+.intro{padding:18px 20px;margin-bottom:18px;background:var(--surface-2);border-left:3px solid var(--accent);border-radius:10px}
+.intro h3{margin-bottom:5px;font-size:1.08rem}
+.intro p{font-size:.94rem;line-height:1.62;color:#57524a}
+.card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:18px}
+.info-card{padding:17px 18px;background:#faf7f0;border:1px solid #e6dfd2;border-radius:12px;min-height:125px}
+.info-card:nth-child(2){background:#f4eee3}.info-card:nth-child(3){background:#fff8ef}.info-card:nth-child(4){background:#f4eee3}
+.info-card h3{margin-bottom:5px;font-size:.98rem;line-height:1.3}
+.info-card p{font-size:.86rem;line-height:1.55;color:#625d55}
+.takeaway{padding:20px;background:var(--dark);color:var(--surface);border-radius:13px}
+.takeaway-label{display:inline-block;margin-bottom:7px;color:#f2a15c;font-size:.76rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.takeaway p{font-size:1rem;line-height:1.55}
+strong{font-weight:850}
+.floating-nav{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:1000;display:flex;align-items:center;justify-content:center;gap:4px;padding:6px;background:var(--dark);border-radius:999px;box-shadow:0 8px 24px rgba(37,37,37,.18)}
+.nav-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-width:92px;height:40px;padding:0 14px;border:none;border-radius:999px;background:#f8f2e7;color:var(--dark);font:inherit;font-size:.84rem;font-weight:750;text-decoration:none;cursor:pointer;transition:background .18s ease,transform .18s ease}
+.nav-button:hover{background:#f0c39b;transform:translateY(-2px)}
+.nav-button:active{transform:translateY(0)}
+.nav-icon{font-size:1rem;line-height:1}
+@media(max-width:760px){
+.page{width:min(100% - 22px,980px);padding-top:20px;padding-bottom:125px}
+.hero{grid-template-columns:1fr;min-height:auto;padding:30px 26px 8px}
+.hero-content{max-width:100%;padding-bottom:0}
+.hero-description{max-width:620px}
+.science-graphic{width:min(100%,610px);justify-self:center;margin:0}
+.content-card{padding:24px 20px}
+}
+@media(max-width:520px){
+.hero{padding:27px 20px 6px;border-radius:18px}
+h1{font-size:2.42rem}
+.science-graphic{width:118%;margin-left:-9%;margin-top:2px;margin-bottom:4px}
+.card-grid{grid-template-columns:1fr}
+.floating-nav{bottom:10px;width:calc(100% - 20px);max-width:420px}
+.nav-button{flex:1;min-width:0;padding:0 8px;font-size:.77rem}
+}
+@media(prefers-reduced-motion:reduce){
+html{scroll-behavior:auto}
+*,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+
+</head>
+
+<body>
+
+  <main class="page">
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
+      <div class="hero-content">
+
+        <span class="eyebrow">
+          Biology • Cell Packaging
+        </span>
+
+        <h1>
+          Golgi Apparatus
+        </h1>
+
+        <p class="hero-description">
+          The cell's packaging and distribution centre —
+          modifying, sorting, and sending cellular products
+          to their destinations.
+        </p>
+
+      </div>
+
+
+      <!-- =========================
+           VECTOR GRAPHIC
+      ========================== -->
+
+      <svg
+        class="origin-graphic"
+        viewBox="0 0 660 400"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-label="Vector illustration of the Golgi apparatus as a cellular post office"
+        role="img"
+      >
+
+        <!-- =========================
+             HEADER LABEL
+        ========================== -->
+
+        <rect
+          x="22"
+          y="20"
+          width="260"
+          height="38"
+          rx="13"
+          fill="#fa8112"
+          stroke="#222222"
+          stroke-width="4"
+        />
+
+        <text
+          x="152"
+          y="45"
+          text-anchor="middle"
+          fill="#222222"
+          font-size="15"
+          font-weight="900"
+          font-family="Inter, system-ui, sans-serif"
+        >
+          CELLULAR POST OFFICE
+        </text>
+
+
+        <!-- =========================
+             ER INPUT
+        ========================== -->
+
+        <text
+          x="94"
+          y="93"
+          text-anchor="middle"
+          fill="#222222"
+          font-size="13"
+          font-weight="900"
+          font-family="Inter, system-ui, sans-serif"
+        >
+          FROM ER
+        </text>
+
+        <path
+          d="M70 122
+             C90 103 112 125 132 110
+             C150 97 164 111 178 104"
+          fill="none"
+          stroke="#222222"
+          stroke-width="3"
+          stroke-linecap="round"
+        />
+
+        <path
+          d="M70 142
+             C90 123 112 145 132 130
+             C150 117 164 131 178 124"
+          fill="none"
+          stroke="#222222"
+          stroke-width="3"
+          stroke-linecap="round"
+        />
+
+        <!-- Incoming vesicle -->
+
+        <g class="vesicle-float">
+
+          <circle
+            cx="185"
+            cy="150"
+            r="23"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="4"
+          />
+
+          <circle
+            cx="178"
+            cy="145"
+            r="5"
+            fill="#fa8112"
+          />
+
+          <circle
+            cx="190"
+            cy="154"
+            r="5"
+            fill="#fa8112"
+          />
+
+          <circle
+            cx="182"
+            cy="160"
+            r="4"
+            fill="#222222"
+          />
+
+        </g>
+
+        <path
+          d="M208 154 H260"
+          stroke="#fa8112"
+          stroke-width="3"
+          stroke-linecap="round"
+        />
+
+        <path
+          d="M250 143 L263 154 L250 165"
+          fill="none"
+          stroke="#222222"
+          stroke-width="4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+
+
+        <!-- =========================
+             GOLGI STACK
+        ========================== -->
+
+        <g class="golgi-float">
+
+          <text
+            x="375"
+            y="90"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="15"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            GOLGI APPARATUS
+          </text>
+
+
+          <!-- Flattened sac-like cisternae -->
+
+          <path
+            d="M268 125
+               C294 108 340 111 382 121
+               C415 129 441 127 467 116
+               C448 136 418 143 382 139
+               C338 134 300 137 268 125 Z"
+            fill="#faf3e1"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <path
+            d="M258 150
+               C289 132 337 136 378 146
+               C414 155 442 152 476 139
+               C453 162 419 169 378 162
+               C331 154 291 161 258 150 Z"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <path
+            d="M253 177
+               C285 158 331 163 374 174
+               C411 184 445 179 482 165
+               C458 190 417 198 374 190
+               C328 181 287 189 253 177 Z"
+            fill="#faf3e1"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <path
+            d="M253 205
+               C285 185 332 191 374 202
+               C413 212 448 207 484 192
+               C459 217 417 225 374 218
+               C329 208 287 217 253 205 Z"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <path
+            d="M258 233
+               C291 213 334 219 376 230
+               C415 241 448 235 477 221
+               C455 246 416 253 375 245
+               C331 235 291 244 258 233 Z"
+            fill="#faf3e1"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <path
+            d="M269 260
+               C301 240 340 246 379 257
+               C414 267 443 263 465 251
+               C447 273 414 282 378 272
+               C338 261 300 270 269 260 Z"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+
+          <!-- Processing dots -->
+
+          <g
+            class="protein-flow"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="2"
+          >
+
+            <circle cx="314" cy="125" r="6"/>
+            <circle cx="353" cy="145" r="6"/>
+            <circle cx="408" cy="157" r="6"/>
+            <circle cx="330" cy="180" r="6"/>
+            <circle cx="394" cy="204" r="6"/>
+            <circle cx="348" cy="228" r="6"/>
+            <circle cx="415" cy="240" r="6"/>
+            <circle cx="374" cy="265" r="6"/>
+
+          </g>
+
+        </g>
+
+
+        <!-- =========================
+             MODIFICATION / SORTING
+        ========================== -->
+
+        <g>
+
+          <rect
+            x="290"
+            y="292"
+            width="172"
+            height="40"
+            rx="12"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <text
+            x="376"
+            y="317"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="11"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            MODIFY • SORT • PACKAGE
+          </text>
+
+        </g>
+
+
+        <!-- =========================
+             OUTGOING VESICLES
+        ========================== -->
+
+        <g class="vesicle-float">
+
+          <!-- Vesicle 1 -->
+
+          <circle
+            cx="515"
+            cy="145"
+            r="25"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="4"
+          />
+
+          <circle
+            cx="508"
+            cy="139"
+            r="5"
+            fill="#faf3e1"
+          />
+
+          <circle
+            cx="521"
+            cy="150"
+            r="5"
+            fill="#faf3e1"
+          />
+
+
+          <!-- Vesicle 2 -->
+
+          <circle
+            cx="548"
+            cy="205"
+            r="28"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="4"
+          />
+
+          <circle
+            cx="540"
+            cy="198"
+            r="5"
+            fill="#fa8112"
+          />
+
+          <circle
+            cx="555"
+            cy="211"
+            r="5"
+            fill="#fa8112"
+          />
+
+
+          <!-- Vesicle 3 -->
+
+          <circle
+            cx="525"
+            cy="278"
+            r="25"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="4"
+          />
+
+          <circle
+            cx="518"
+            cy="272"
+            r="5"
+            fill="#faf3e1"
+          />
+
+          <circle
+            cx="531"
+            cy="283"
+            r="5"
+            fill="#faf3e1"
+          />
+
+        </g>
+
+
+        <!-- =========================
+             DESTINATION LABELS
+        ========================== -->
+
+        <g
+          fill="#222222"
+          font-family="Inter, system-ui, sans-serif"
+          font-size="11"
+          font-weight="850"
+        >
+
+          <text x="583" y="143">
+            SECRETION
+          </text>
+
+          <text x="583" y="208">
+            TRANSPORT
+          </text>
+
+          <text x="560" y="303">
+            LYSOSOME
+          </text>
+
+        </g>
+
+
+        <!-- Outgoing arrows -->
+
+        <path
+          d="M537 145 H570"
+          stroke="#222222"
+          stroke-width="3"
+          stroke-linecap="round"
+        />
+
+        <path
+          d="M573 205 H603"
+          stroke="#222222"
+          stroke-width="3"
+          stroke-linecap="round"
+        />
+
+        <path
+          d="M546 280 C565 292 574 300 580 309"
+          fill="none"
+          stroke="#222222"
+          stroke-width="3"
+          stroke-linecap="round"
+        />
+
+
+        <!-- =========================
+             DISCOVERY BADGE
+        ========================== -->
+
+        <rect
+          x="44"
+          y="345"
+          width="205"
+          height="38"
+          rx="12"
+          fill="#f5e7c6"
+          stroke="#222222"
+          stroke-width="3"
+        />
+
+        <text
+          x="146"
+          y="369"
+          text-anchor="middle"
+          fill="#222222"
+          font-size="11"
+          font-weight="900"
+          font-family="Inter, system-ui, sans-serif"
+        >
+          CAMILLO GOLGI • 1898
+        </text>
+
+      </svg>
+
+    </section>
+
+
+    <!-- =========================
+         CONTENT
+    ========================== -->
+
+    <section class="content-card">
+
+      <h2 id="block-26-golgi-apparatus">
+        Block 26: Golgi Apparatus — Packaging Centre
+      </h2>
+
+      <ul class="content-points">
+
+        <li>
+          Structure:
+          stacks of <strong>flattened, sac-like structures</strong>.
+        </li>
+
+        <li>
+          Functionally linked to
+          <strong>ER</strong>, cell membrane,
+          and other organelles.
+        </li>
+
+        <li>
+          Function: acts like the cell's
+          <strong>post office</strong>:
+
+          <ul>
+
+            <li>
+              <strong>Modifies</strong>,
+              <strong>sorts</strong>, and
+              <strong>packages</strong>
+              proteins and/or lipids.
+            </li>
+
+            <li>
+              Forms <strong>vesicles</strong> for transport,
+              secretion, or lysosome formation.
+            </li>
+
+          </ul>
+        </li>
+
+        <li>
+          Discovered by
+          <strong>Camillo Golgi</strong> (1898)
+          in nerve cells of a barn owl.
+        </li>
+
+      </ul>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FLOATING NAVIGATION
+  ========================== -->
+
+  <nav class="floating-nav" aria-label="Page navigation">
+
+    <a
+      class="nav-button"
+      href="main.html"
+      aria-label="Home"
+    >
+      <span class="nav-icon">⌂</span>
+      <span>Home</span>
+    </a>
+
+    <a
+      class="nav-button"
+      href="#block-26-golgi-apparatus"
+      aria-label="Previous block"
+      onclick="history.back(); return false;"
+    >
+      <span class="nav-icon">←</span>
+      <span>Back</span>
+    </a>
+
+    <a
+      class="nav-button"
+      href="27.html"
+      aria-label="Next block"
+    >
+      <span>Next</span>
+      <span class="nav-icon">→</span>
+    </a>
+
+  </nav>
+
+</body>
+</html>

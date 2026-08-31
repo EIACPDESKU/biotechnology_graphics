@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Block 37: Errors in Mitosis and Meiosis</title>
+
+  
+<style>
+:root{--bg:#f6f1e7;--surface:#fffdf8;--surface-2:#f0e8d8;--ink:#252525;--muted:#6d685f;--accent:#d96f16;--line:#d8d0c2;--dark:#252525}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}
+.page{width:min(100% - 32px,980px);margin:0 auto;padding:36px 0 140px}
+.hero{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,.9fr) minmax(400px,1.1fr);align-items:center;min-height:430px;background:var(--surface-2);border:1px solid var(--line);border-radius:24px;padding:42px 42px 34px;margin-bottom:28px}
+.hero-content{position:relative;z-index:2;max-width:395px;padding-bottom:8px}
+.eyebrow{display:inline-block;margin-bottom:16px;color:var(--accent);font-size:.76rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+h1{font-size:clamp(2.45rem,5vw,3.6rem);line-height:1.02;letter-spacing:-.045em;margin-bottom:18px}
+h1 span{color:var(--accent)!important}
+.hero-description{max-width:390px;color:var(--muted);font-size:clamp(.98rem,2vw,1.08rem);line-height:1.7}
+.science-graphic{position:relative;z-index:1;width:100%;height:auto;display:block;pointer-events:none;overflow:visible}
+.science-graphic *{animation:none!important}
+.science-graphic text{letter-spacing:.02em}
+.science-graphic [stroke="#222222"]{stroke:#303030}
+.science-graphic [stroke="#fa8112"]{stroke:var(--accent)}
+.science-graphic [fill="#fa8112"]{fill:var(--accent)}
+.science-graphic [fill="#f5e7c6"]{fill:#f4ecdf}
+.science-graphic [fill="#faf3e1"]{fill:#fffaf1}
+.content-card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:clamp(24px,5vw,42px);box-shadow:0 8px 28px rgba(37,37,37,.05)}
+.content-card h2{font-size:clamp(1.55rem,4vw,2.15rem);line-height:1.18;letter-spacing:-.025em;margin-bottom:22px}
+.intro{padding:18px 20px;margin-bottom:18px;background:var(--surface-2);border-left:3px solid var(--accent);border-radius:10px}
+.intro h3{margin-bottom:5px;font-size:1.08rem}.intro p{font-size:.94rem;line-height:1.62;color:#57524a}
+.card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:18px}
+.info-card{padding:17px 18px;background:#faf7f0;border:1px solid #e6dfd2;border-radius:12px;min-height:125px}
+.info-card:nth-child(2){background:#f4eee3}.info-card:nth-child(3){background:#fff8ef}.info-card:nth-child(4){background:#f4eee3}
+.info-card h3{margin-bottom:5px;font-size:.98rem;line-height:1.3}.info-card p{font-size:.86rem;line-height:1.55;color:#625d55}
+.takeaway{padding:20px;background:var(--dark);color:var(--surface);border-radius:13px}
+.takeaway-label{display:inline-block;margin-bottom:7px;color:#f2a15c;font-size:.76rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.takeaway p{font-size:1rem;line-height:1.55}
+strong{font-weight:850}
+.floating-nav{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:1000;display:flex;align-items:center;justify-content:center;gap:4px;padding:6px;background:var(--dark);border-radius:999px;box-shadow:0 8px 24px rgba(37,37,37,.18)}
+.nav-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-width:92px;height:40px;padding:0 14px;border:none;border-radius:999px;background:#f8f2e7;color:var(--dark);font:inherit;font-size:.84rem;font-weight:750;text-decoration:none;cursor:pointer;transition:background .18s ease,transform .18s ease}
+.nav-button:hover{background:#f0c39b;transform:translateY(-2px)}.nav-button:active{transform:translateY(0)}.nav-icon{font-size:1rem;line-height:1}
+@media(max-width:760px){.page{width:min(100% - 22px,980px);padding-top:20px;padding-bottom:125px}.hero{grid-template-columns:1fr;min-height:auto;padding:30px 26px 8px}.hero-content{max-width:100%;padding-bottom:0}.hero-description{max-width:620px}.science-graphic{width:min(100%,610px);justify-self:center;margin:0}.content-card{padding:24px 20px}}
+@media(max-width:520px){.hero{padding:27px 20px 6px;border-radius:18px}h1{font-size:2.42rem}.science-graphic{width:118%;margin-left:-9%;margin-top:2px;margin-bottom:4px}.card-grid{grid-template-columns:1fr}.floating-nav{bottom:10px;width:calc(100% - 20px);max-width:420px}.nav-button{flex:1;min-width:0;padding:0 8px;font-size:.77rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+
+</head>
+
+<body>
+
+  <main class="page">
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
+      <div class="hero-content">
+
+        <span class="eyebrow">
+          Biology • Cell Division
+        </span>
+
+        <h1>
+          When Cell Division
+          <span style="color: #fa8112;">Goes Wrong</span>
+        </h1>
+
+        <p class="hero-description">
+          Errors during mitosis or meiosis can disturb
+          normal cell behaviour, chromosome number,
+          development, and reproduction.
+        </p>
+
+      </div>
+
+
+      <!-- =========================
+           VECTOR GRAPHIC
+      ========================== -->
+
+      <svg
+        class="error-graphic"
+        viewBox="0 0 700 420"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-label="Vector illustration showing normal cell division contrasted with abnormal division"
+        role="img"
+      >
+<!-- =========================
+             NORMAL MITOSIS
+        ========================== -->
+
+        <g class="normal-cell">
+
+          <rect
+            x="30"
+            y="82"
+            width="170"
+            height="32"
+            rx="11"
+            fill="#222222"
+          />
+
+          <text
+            x="115"
+            y="103"
+            text-anchor="middle"
+            fill="#faf3e1"
+            font-size="13"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            NORMAL MITOSIS
+          </text>
+
+
+          <!-- Parent -->
+
+          <circle
+            cx="95"
+            cy="177"
+            r="47"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <circle
+            cx="95"
+            cy="177"
+            r="22"
+            fill="#faf3e1"
+            stroke="#fa8112"
+            stroke-width="4"
+          />
+
+          <path
+            d="M87 166 L95 175 L87 184
+               M103 166 L95 175 L103 184"
+            fill="none"
+            stroke="#222222"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+
+
+          <!-- Arrow -->
+
+          <path
+            d="M145 177 H195"
+            fill="none"
+            stroke="#222222"
+            stroke-width="4"
+            stroke-linecap="round"
+          />
+
+          <path
+            d="M184 167 L197 177 L184 187"
+            fill="none"
+            stroke="#fa8112"
+            stroke-width="4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+
+
+          <!-- Daughter cells -->
+
+          <circle
+            cx="230"
+            cy="150"
+            r="34"
+            fill="#faf3e1"
+            stroke="#222222"
+            stroke-width="4"
+          />
+
+          <circle
+            cx="230"
+            cy="204"
+            r="34"
+            fill="#faf3e1"
+            stroke="#222222"
+            stroke-width="4"
+          />
+
+          <circle
+            cx="230"
+            cy="150"
+            r="14"
+            fill="#f5e7c6"
+            stroke="#fa8112"
+            stroke-width="3"
+          />
+
+          <circle
+            cx="230"
+            cy="204"
+            r="14"
+            fill="#f5e7c6"
+            stroke="#fa8112"
+            stroke-width="3"
+          />
+
+          <!-- Check marks -->
+
+          <path
+            d="M224 150 L229 155 L239 143"
+            fill="none"
+            stroke="#222222"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+
+          <path
+            d="M224 204 L229 209 L239 197"
+            fill="none"
+            stroke="#222222"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+
+          <text
+            x="153"
+            y="258"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="10"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            CONTROLLED DIVISION
+          </text>
+
+        </g>
+
+
+        <!-- =========================
+             WARNING SYMBOL
+        ========================== -->
+
+        <g class="warning-pulse">
+
+          <path
+            d="M350 82 L382 139 H318 Z"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="3"
+            stroke-linejoin="round"
+          />
+
+          <rect
+            x="347"
+            y="100"
+            width="6"
+            height="22"
+            rx="3"
+            fill="#222222"
+          />
+
+          <circle
+            cx="350"
+            cy="130"
+            r="3.5"
+            fill="#222222"
+          />
+
+          <text
+            x="350"
+            y="160"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="10"
+            font-weight="950"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            ERROR
+          </text>
+
+        </g>
+
+
+        <!-- =========================
+             ABNORMAL DIVISION
+        ========================== -->
+
+        <g class="chaos-cell">
+
+          <rect
+            x="405"
+            y="82"
+            width="220"
+            height="32"
+            rx="11"
+            fill="#222222"
+          />
+
+          <text
+            x="515"
+            y="103"
+            text-anchor="middle"
+            fill="#faf3e1"
+            font-size="13"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            ABNORMAL DIVISION
+          </text>
+
+
+          <!-- Abnormal parent -->
+
+          <circle
+            cx="455"
+            cy="180"
+            r="48"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <circle
+            cx="455"
+            cy="180"
+            r="23"
+            fill="#faf3e1"
+            stroke="#fa8112"
+            stroke-width="4"
+          />
+
+          <!-- Disorganised chromosomes -->
+
+          <path
+            d="M441 164 L455 177 L442 190
+               M470 162 L458 178 L470 195
+               M449 196 L462 166"
+            fill="none"
+            stroke="#222222"
+            stroke-width="4"
+            stroke-linecap="round"
+          />
+
+          <!-- Broken division arrow -->
+
+          <path
+            d="M505 180 H548"
+            fill="none"
+            stroke="#222222"
+            stroke-width="4"
+            stroke-linecap="round"
+          />
+
+          <path
+            d="M536 169 L550 180 L536 191"
+            fill="none"
+            stroke="#fa8112"
+            stroke-width="4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+
+
+          <!-- Abnormal daughter cells -->
+
+          <circle
+            cx="585"
+            cy="150"
+            r="36"
+            fill="#faf3e1"
+            stroke="#222222"
+            stroke-width="4"
+          />
+
+          <circle
+            cx="585"
+            cy="215"
+            r="46"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <!-- Unequal chromosomes -->
+
+          <path
+            d="M575 139 L585 150 L575 160
+               M595 139 L585 150 L595 160"
+            fill="none"
+            stroke="#fa8112"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+
+          <path
+            d="M568 201 L578 213 L568 224
+               M588 201 L578 213 L588 224
+               M600 207 L610 219 L600 230"
+            fill="none"
+            stroke="#222222"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+
+          <!-- Tumour-like cluster -->
+
+          <g>
+            <circle
+              cx="505"
+              cy="280"
+              r="21"
+              fill="#fa8112"
+              stroke="#222222"
+              stroke-width="3"
+            />
+
+            <circle
+              cx="545"
+              cy="270"
+              r="27"
+              fill="#f5e7c6"
+              stroke="#222222"
+              stroke-width="3"
+            />
+
+            <circle
+              cx="575"
+              cy="291"
+              r="23"
+              fill="#fa8112"
+              stroke="#222222"
+              stroke-width="3"
+            />
+
+            <circle
+              cx="540"
+              cy="305"
+              r="25"
+              fill="#faf3e1"
+              stroke="#222222"
+              stroke-width="3"
+            />
+
+            <circle
+              cx="610"
+              cy="270"
+              r="18"
+              fill="#f5e7c6"
+              stroke="#222222"
+              stroke-width="3"
+            />
+
+            <text
+              x="555"
+              y="345"
+              text-anchor="middle"
+              fill="#222222"
+              font-size="10"
+              font-weight="950"
+              font-family="Inter, system-ui, sans-serif"
+            >
+              UNCONTROLLED GROWTH
+            </text>
+          </g>
+
+        </g>
+
+
+        <!-- =========================
+             MEIOSIS ERROR STRIP
+        ========================== -->
+
+        <rect
+          x="95"
+          y="330"
+          width="410"
+          height="55"
+          rx="16"
+          fill="#f5e7c6"
+          stroke="#222222"
+          stroke-width="3"
+        />
+
+        <text
+          x="300"
+          y="351"
+          text-anchor="middle"
+          fill="#222222"
+          font-size="10"
+          font-weight="950"
+          font-family="Inter, system-ui, sans-serif"
+        >
+          MEIOSIS ERROR
+        </text>
+
+        <text
+          x="300"
+          y="369"
+          text-anchor="middle"
+          fill="#222222"
+          font-size="9"
+          font-weight="800"
+          font-family="Inter, system-ui, sans-serif"
+        >
+          ABNORMAL CHROMOSOME NUMBER → GENETIC CONSEQUENCES
+        </text>
+
+      </svg>
+
+    </section>
+
+
+    <!-- =========================
+         CONTENT
+    ========================== -->
+
+    <section class="content-card">
+
+      <h2 id="block-37-errors-in-mitosis-and-meiosis">
+        Block 37: Errors in Mitosis and Meiosis
+      </h2>
+
+      <div class="error-sections">
+
+        <!-- Mitosis -->
+
+        <article class="error-box">
+
+          <h3>
+            <span class="error-icon">M</span>
+            Errors in Mitosis
+          </h3>
+
+          <ul class="content-points">
+
+            <li>
+              Leads to
+              <strong>uncontrolled cell division</strong>.
+            </li>
+
+            <li>
+              Causes <strong>tumours</strong> and abnormal
+              chromosome numbers.
+            </li>
+
+          </ul>
+
+        </article>
+
+
+        <!-- Meiosis -->
+
+        <article class="error-box meiosis-box">
+
+          <h3>
+            <span class="error-icon">μ</span>
+            Errors in Meiosis
+          </h3>
+
+          <ul class="content-points">
+
+            <li>
+              May result in
+              <strong>genetic disorders</strong>.
+            </li>
+
+            <li>
+              Linked to developmental problems or
+              distinctive physical features.
+            </li>
+
+            <li>
+              Can cause <strong>early pregnancy loss</strong>
+              or <strong>reduced fertility</strong>.
+            </li>
+
+          </ul>
+
+        </article>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FLOATING NAVIGATION
+  ========================== -->
+
+  <nav class="floating-nav" aria-label="Page navigation">
+
+    <a
+      class="nav-button"
+      href="main.html"
+      aria-label="Home"
+    >
+      <span class="nav-icon">⌂</span>
+      <span>Home</span>
+    </a>
+
+    <a
+      class="nav-button"
+      href="#block-37-errors-in-mitosis-and-meiosis"
+      aria-label="Previous block"
+      onclick="history.back(); return false;"
+    >
+      <span class="nav-icon">←</span>
+      <span>Back</span>
+    </a>
+
+    <a
+      class="nav-button"
+      href="38.html"
+      aria-label="Next block"
+    >
+      <span>Next</span>
+      <span class="nav-icon">→</span>
+    </a>
+
+  </nav>
+
+</body>
+</html>

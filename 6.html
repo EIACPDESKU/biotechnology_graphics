@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Block 6: Magnification and Microscopes</title>
+
+  
+<style>
+:root{--bg:#f6f1e7;--surface:#fffdf8;--surface-2:#f0e8d8;--ink:#252525;--muted:#6d685f;--accent:#d96f16;--line:#d8d0c2;--dark:#252525}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}
+.page{width:min(100% - 32px,980px);margin:0 auto;padding:36px 0 140px}
+
+.hero{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,.9fr) minmax(400px,1.1fr);align-items:center;min-height:430px;background:var(--surface-2);border:1px solid var(--line);border-radius:24px;padding:42px 42px 28px;margin-bottom:28px}
+.hero-content{position:relative;z-index:2;max-width:395px;padding-bottom:8px}
+.eyebrow{display:inline-block;margin-bottom:16px;color:var(--accent);font-size:.76rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+h1{font-size:clamp(2.45rem,5vw,3.6rem);line-height:1.02;letter-spacing:-.045em;margin-bottom:18px}
+.hero-description{max-width:390px;color:var(--muted);font-size:clamp(.98rem,2vw,1.08rem);line-height:1.7}
+
+.origin-graphic{position:relative!important;right:auto!important;bottom:auto!important;z-index:1;width:100%!important;max-width:560px;height:auto;display:block;justify-self:center;opacity:1!important;pointer-events:none;transform:none!important}
+.origin-graphic *{animation:none!important}
+.origin-graphic text{letter-spacing:.01em}
+.origin-graphic [stroke="#222222"]{stroke:#303030}
+.origin-graphic [stroke="#fa8112"]{stroke:var(--accent)}
+.origin-graphic [fill="#fa8112"]{fill:var(--accent)}
+.origin-graphic [fill="#f5e7c6"]{fill:#f4ecdf}
+.origin-graphic [fill="#faf3e1"]{fill:#fffaf1}
+
+.content-card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:clamp(24px,5vw,42px);box-shadow:0 8px 28px rgba(37,37,37,.05)}
+.content-card h2{font-size:clamp(1.55rem,4vw,2.15rem);line-height:1.18;letter-spacing:-.025em;margin-bottom:22px}
+.content-card ul{list-style:none;display:grid;gap:10px}
+.content-card li{position:relative;padding:15px 18px 15px 42px;background:#faf7f0;border:1px solid #e6dfd2;border-radius:12px;font-size:.95rem;line-height:1.58}
+.content-card li:nth-child(2){background:#f4eee3}
+.content-card li:nth-child(3){background:#fff8ef}
+.content-card li::before{content:"";position:absolute;left:17px;top:50%;transform:translateY(-50%);width:9px;height:9px;background:var(--accent);border-radius:50%}
+strong{font-weight:850}
+
+.floating-nav{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:1000;display:flex;align-items:center;justify-content:center;gap:4px;padding:6px;background:var(--dark);border-radius:999px;box-shadow:0 8px 24px rgba(37,37,37,.18)}
+.nav-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-width:92px;height:40px;padding:0 14px;border:none;border-radius:999px;background:#f8f2e7;color:var(--dark);font:inherit;font-size:.84rem;font-weight:750;text-decoration:none;cursor:pointer;transition:background .18s ease,transform .18s ease}
+.nav-button:hover{background:#f0c39b;transform:translateY(-2px)}
+.nav-button:active{transform:translateY(0)}
+.nav-icon{font-size:1rem;line-height:1}
+
+@media(max-width:760px){
+.page{width:min(100% - 22px,980px);padding-top:20px;padding-bottom:125px}
+.hero{grid-template-columns:1fr;min-height:auto;padding:30px 26px 6px}
+.hero-content{max-width:100%;padding-bottom:0}
+.hero-description{max-width:620px}
+.origin-graphic{width:min(100%,610px)!important;max-width:none;justify-self:center;margin:0}
+.content-card{padding:24px 20px}
+}
+@media(max-width:520px){
+.hero{padding:27px 20px 4px;border-radius:18px}
+h1{font-size:2.42rem}
+.origin-graphic{width:118%!important;max-width:none;margin-left:-9%;margin-top:2px;margin-bottom:4px}
+.content-card li{padding-left:38px}
+.floating-nav{bottom:10px;width:calc(100% - 20px);max-width:420px}
+.nav-button{flex:1;min-width:0;padding:0 8px;font-size:.77rem}
+}
+@media(prefers-reduced-motion:reduce){
+html{scroll-behavior:auto}
+*,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+
+</head>
+
+<body>
+
+  <main class="page">
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
+      <div class="hero-content">
+
+        <span class="eyebrow">
+          Biology • Microscopy
+        </span>
+
+        <h1>
+          Magnification and Microscopes
+        </h1>
+
+        <p class="hero-description">
+          Optical lenses enlarge tiny objects, allowing structures such
+          as cells to become visible when they are too small for the
+          unaided human eye.
+        </p>
+
+      </div>
+
+
+      <!--
+        Inline SVG vector illustration.
+
+        Concept:
+        Light → objective lens → specimen → eyepiece → enlarged image
+      -->
+
+      <svg
+        class="origin-graphic"
+        viewBox="0 0 400 300"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-label="Vector illustration of a microscope with objective lens, eyepiece, and magnified cell"
+        role="img"
+      >
+
+        <!-- =========================
+             MICROSCOPE BODY
+        ========================== -->
+
+        <!-- Eyepiece -->
+        <g >
+
+          <rect
+            x="253"
+            y="38"
+            width="34"
+            height="72"
+            rx="10"
+            fill="#222222"
+          />
+
+          <rect
+            x="258"
+            y="42"
+            width="24"
+            height="18"
+            rx="5"
+            fill="#faf3e1"
+          />
+
+        </g>
+
+
+        <!-- Microscope tube -->
+
+        <path
+          d="M247 95
+             L291 95
+             L314 160
+             L270 160 Z"
+          fill="#f5e7c6"
+          stroke="#222222"
+          stroke-width="3"
+        />
+
+
+        <!-- Objective lens -->
+
+        <g >
+
+          <path
+            d="M270 150
+               L309 150
+               L315 181
+               L264 181 Z"
+            fill="#faf3e1"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <circle
+            cx="290"
+            cy="181"
+            r="13"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+        </g>
+
+
+        <!-- Stage -->
+
+        <rect
+          x="218"
+          y="178"
+          width="135"
+          height="18"
+          rx="7"
+          fill="#222222"
+        />
+
+        <rect
+          x="245"
+          y="170"
+          width="70"
+          height="12"
+          rx="5"
+          fill="#faf3e1"
+          stroke="#222222"
+          stroke-width="3"
+        />
+
+
+        <!-- Specimen slide -->
+
+        <rect
+          x="245"
+          y="171"
+          width="70"
+          height="9"
+          rx="3"
+          fill="#f5e7c6"
+        />
+
+
+        <!-- Magnified cell on slide -->
+
+        <g >
+
+          <circle
+            cx="280"
+            cy="170"
+            r="12"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <circle
+            cx="280"
+            cy="170"
+            r="4"
+            fill="#faf3e1"
+          />
+
+        </g>
+
+
+        <!-- Microscope arm -->
+
+        <path
+          d="M222 178
+             C222 125 202 95 178 95
+             C156 95 145 115 145 140
+             L145 205"
+          fill="none"
+          stroke="#222222"
+          stroke-width="9"
+          stroke-linecap="round"
+        />
+
+
+        <!-- Base -->
+
+        <path
+          d="M115 207
+             C115 198 123 193 133 193
+             H235
+             C248 193 257 202 257 212
+             V225
+             H115 Z"
+          fill="#f5e7c6"
+          stroke="#222222"
+          stroke-width="3"
+        />
+
+
+        <!-- Focus knob -->
+
+        <circle
+          cx="191"
+          cy="126"
+          r="17"
+          fill="#fa8112"
+          stroke="#222222"
+          stroke-width="3"
+        />
+
+        <circle
+          cx="191"
+          cy="126"
+          r="6"
+          fill="#faf3e1"
+        />
+
+
+        <!-- =========================
+             LIGHT RAYS
+        ========================== -->
+
+        <g
+          
+          fill="none"
+          stroke="#fa8112"
+          stroke-width="3"
+          stroke-linecap="round"
+        >
+
+          <path d="M280 182 L280 220" />
+          <path d="M272 182 L258 220" />
+          <path d="M288 182 L302 220" />
+
+        </g>
+
+
+        <!-- =========================
+             MAGNIFIED CELL
+        ========================== -->
+
+        <g >
+
+          <!-- Connecting arrow -->
+          <path
+            d="M105 235
+               C125 225 140 215 155 203"
+            fill="none"
+            stroke="#222222"
+            stroke-width="3"
+            stroke-dasharray="7 5"
+          />
+
+          <path
+            d="M148 201 L157 201 L154 210"
+            fill="none"
+            stroke="#222222"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+
+
+          <!-- Large magnified cell -->
+
+          <circle
+            cx="75"
+            cy="115"
+            r="48"
+            fill="#faf3e1"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <circle
+            cx="75"
+            cy="115"
+            r="36"
+            fill="#f5e7c6"
+            stroke="#fa8112"
+            stroke-width="3"
+          />
+
+          <!-- Nucleus -->
+
+          <circle
+            cx="75"
+            cy="115"
+            r="15"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <!-- Organelles -->
+
+          <circle
+            cx="54"
+            cy="96"
+            r="5"
+            fill="#222222"
+          />
+
+          <circle
+            cx="99"
+            cy="101"
+            r="5"
+            fill="#222222"
+          />
+
+          <circle
+            cx="99"
+            cy="130"
+            r="5"
+            fill="#222222"
+          />
+
+        </g>
+
+
+        <!-- Magnification symbol -->
+
+        <circle
+          cx="63"
+          cy="55"
+          r="17"
+          fill="#fa8112"
+          stroke="#222222"
+          stroke-width="3"
+        />
+
+        <path
+          d="M75 67 L88 80"
+          stroke="#222222"
+          stroke-width="3"
+          stroke-linecap="round"
+        />
+
+        <text
+          x="63"
+          y="61"
+          text-anchor="middle"
+          fill="#222222"
+          font-size="17"
+          font-weight="900"
+          font-family="Inter, system-ui, sans-serif"
+        >
+          ×
+        </text>
+
+      </svg>
+
+    </section>
+
+
+    <!-- =========================
+         CONTENT
+    ========================== -->
+
+    <section class="content-card">
+
+      <h2 id="block-6-magnification-and-microscopes">
+        Block 6: Magnification and Microscopes
+      </h2>
+
+      <ul>
+
+        <li>
+          <strong>Convex lens</strong> or combination of lenses
+          used for <strong>magnification</strong>.
+        </li>
+
+        <li>
+          A microscope uses an
+          <strong>objective lens</strong> and an
+          <strong>eyepiece</strong>.
+        </li>
+
+        <li>
+          Cells are usually too small to be seen by the
+          <strong>unaided eye</strong>.
+        </li>
+
+      </ul>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FLOATING NAVIGATION
+  ========================== -->
+
+  <nav class="floating-nav" aria-label="Page navigation">
+
+    <a
+      class="nav-button"
+      href="main.html"
+      aria-label="Home"
+    >
+      <span class="nav-icon">⌂</span>
+      <span>Home</span>
+    </a>
+
+    <a
+      class="nav-button"
+      href="#block-6-magnification-and-microscopes"
+      aria-label="Previous block"
+      onclick="history.back(); return false;"
+    >
+      <span class="nav-icon">←</span>
+      <span>Back</span>
+    </a>
+
+    <a
+      class="nav-button"
+      href="7.html"
+      aria-label="Next block"
+    >
+      <span>Next</span>
+      <span class="nav-icon">→</span>
+    </a>
+
+  </nav>
+
+</body>
+</html>

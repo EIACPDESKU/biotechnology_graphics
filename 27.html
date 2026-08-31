@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Block 27: Lysosomes — The Clean-up System</title>
+
+  
+<style>
+:root{--bg:#f6f1e7;--surface:#fffdf8;--surface-2:#f0e8d8;--ink:#252525;--muted:#6d685f;--accent:#d96f16;--line:#d8d0c2;--dark:#252525}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}
+.page{width:min(100% - 32px,980px);margin:0 auto;padding:36px 0 140px}
+.hero{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,.9fr) minmax(400px,1.1fr);align-items:center;min-height:430px;background:var(--surface-2);border:1px solid var(--line);border-radius:24px;padding:42px 42px 34px;margin-bottom:28px}
+.hero-content{position:relative;z-index:2;max-width:395px;padding-bottom:8px}
+.eyebrow{display:inline-block;margin-bottom:16px;color:var(--accent);font-size:.76rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+h1{font-size:clamp(2.45rem,5vw,3.6rem);line-height:1.02;letter-spacing:-.045em;margin-bottom:18px}
+h1 span{color:var(--accent)!important}
+.hero-description{max-width:390px;color:var(--muted);font-size:clamp(.98rem,2vw,1.08rem);line-height:1.7}
+.science-graphic{position:relative;z-index:1;width:100%;height:auto;display:block;pointer-events:none;overflow:visible}
+.science-graphic *{animation:none!important}
+.science-graphic text{letter-spacing:.02em}
+.science-graphic [stroke="#222222"]{stroke:#303030}
+.science-graphic [stroke="#fa8112"]{stroke:var(--accent)}
+.science-graphic [fill="#fa8112"]{fill:var(--accent)}
+.science-graphic [fill="#f5e7c6"]{fill:#f4ecdf}
+.science-graphic [fill="#faf3e1"]{fill:#fffaf1}
+.content-card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:clamp(24px,5vw,42px);box-shadow:0 8px 28px rgba(37,37,37,.05)}
+.content-card h2{font-size:clamp(1.55rem,4vw,2.15rem);line-height:1.18;letter-spacing:-.025em;margin-bottom:22px}
+.intro{padding:18px 20px;margin-bottom:18px;background:var(--surface-2);border-left:3px solid var(--accent);border-radius:10px}
+.intro h3{margin-bottom:5px;font-size:1.08rem}
+.intro p{font-size:.94rem;line-height:1.62;color:#57524a}
+.card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:18px}
+.info-card{padding:17px 18px;background:#faf7f0;border:1px solid #e6dfd2;border-radius:12px;min-height:125px}
+.info-card:nth-child(2){background:#f4eee3}.info-card:nth-child(3){background:#fff8ef}.info-card:nth-child(4){background:#f4eee3}
+.info-card h3{margin-bottom:5px;font-size:.98rem;line-height:1.3}
+.info-card p{font-size:.86rem;line-height:1.55;color:#625d55}
+.takeaway{padding:20px;background:var(--dark);color:var(--surface);border-radius:13px}
+.takeaway-label{display:inline-block;margin-bottom:7px;color:#f2a15c;font-size:.76rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.takeaway p{font-size:1rem;line-height:1.55}
+strong{font-weight:850}
+.floating-nav{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:1000;display:flex;align-items:center;justify-content:center;gap:4px;padding:6px;background:var(--dark);border-radius:999px;box-shadow:0 8px 24px rgba(37,37,37,.18)}
+.nav-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-width:92px;height:40px;padding:0 14px;border:none;border-radius:999px;background:#f8f2e7;color:var(--dark);font:inherit;font-size:.84rem;font-weight:750;text-decoration:none;cursor:pointer;transition:background .18s ease,transform .18s ease}
+.nav-button:hover{background:#f0c39b;transform:translateY(-2px)}
+.nav-button:active{transform:translateY(0)}
+.nav-icon{font-size:1rem;line-height:1}
+@media(max-width:760px){
+.page{width:min(100% - 22px,980px);padding-top:20px;padding-bottom:125px}
+.hero{grid-template-columns:1fr;min-height:auto;padding:30px 26px 8px}
+.hero-content{max-width:100%;padding-bottom:0}
+.hero-description{max-width:620px}
+.science-graphic{width:min(100%,610px);justify-self:center;margin:0}
+.content-card{padding:24px 20px}
+}
+@media(max-width:520px){
+.hero{padding:27px 20px 6px;border-radius:18px}
+h1{font-size:2.42rem}
+.science-graphic{width:118%;margin-left:-9%;margin-top:2px;margin-bottom:4px}
+.card-grid{grid-template-columns:1fr}
+.floating-nav{bottom:10px;width:calc(100% - 20px);max-width:420px}
+.nav-button{flex:1;min-width:0;padding:0 8px;font-size:.77rem}
+}
+@media(prefers-reduced-motion:reduce){
+html{scroll-behavior:auto}
+*,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+
+</head>
+
+<body>
+
+  <main class="page">
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
+      <div class="hero-content">
+
+        <span class="eyebrow">
+          Biology • Cellular Recycling
+        </span>
+
+        <h1>
+          Lysosomes
+        </h1>
+
+        <p class="hero-description">
+          The cell's clean-up and recycling system —
+          breaking down unwanted materials and returning
+          useful components to the cytoplasm.
+        </p>
+
+      </div>
+
+
+      <!-- =========================
+           VECTOR GRAPHIC
+      ========================== -->
+
+      <svg
+        class="origin-graphic"
+        viewBox="0 0 660 400"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-label="Vector illustration of a lysosome breaking down cellular waste"
+        role="img"
+      >
+
+        <!-- =========================
+             HEADER LABEL
+        ========================== -->
+
+        <rect
+          x="22"
+          y="20"
+          width="265"
+          height="38"
+          rx="13"
+          fill="#fa8112"
+          stroke="#222222"
+          stroke-width="4"
+        />
+
+        <text
+          x="154"
+          y="45"
+          text-anchor="middle"
+          fill="#222222"
+          font-size="15"
+          font-weight="900"
+          font-family="Inter, system-ui, sans-serif"
+        >
+          CELLULAR CLEAN-UP SYSTEM
+        </text>
+
+
+        <!-- =========================
+             DAMAGED ORGANELLE
+        ========================== -->
+
+        <g class="waste-float">
+
+          <text
+            x="115"
+            y="93"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="13"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            CELLULAR WASTE
+          </text>
+
+          <!-- Broken organelle -->
+
+          <path
+            d="M55 145
+               C72 116 108 113 133 130
+               C159 147 163 176 145 198
+               C125 223 86 218 64 196
+               C45 177 42 161 55 145 Z"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <path
+            d="M75 150
+               C91 135 105 153 116 142
+               C130 128 145 145 137 158
+               C130 169 112 164 106 178
+               C100 191 82 186 76 175
+               C70 165 68 157 75 150 Z"
+            fill="none"
+            stroke="#222222"
+            stroke-width="4"
+          />
+
+          <!-- Waste fragments -->
+
+          <circle cx="49" cy="224" r="8" fill="#fa8112" stroke="#222222" stroke-width="3"/>
+          <circle cx="91" cy="239" r="10" fill="#fa8112" stroke="#222222" stroke-width="3"/>
+          <circle cx="140" cy="226" r="7" fill="#fa8112" stroke="#222222" stroke-width="3"/>
+
+        </g>
+
+
+        <!-- =========================
+             LYSOSOME
+        ========================== -->
+
+        <g class="lysosome-float">
+
+          <!-- Outer lysosome -->
+
+          <circle
+            cx="355"
+            cy="200"
+            r="102"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <!-- Inner lumen -->
+
+          <circle
+            cx="355"
+            cy="200"
+            r="76"
+            fill="#faf3e1"
+            stroke="#222222"
+            stroke-width="4"
+          />
+
+          <!-- Label -->
+
+          <text
+            x="355"
+            y="189"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="18"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            LYSOSOME
+          </text>
+
+          <text
+            x="355"
+            y="211"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="12"
+            font-weight="800"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            ENZYME-FILLED SAC
+          </text>
+
+
+          <!-- Enzymes -->
+
+          <g class="enzyme-pulse"
+             fill="#fa8112"
+             stroke="#222222"
+             stroke-width="2.5">
+
+            <circle cx="316" cy="157" r="9"/>
+            <circle cx="352" cy="147" r="9"/>
+            <circle cx="391" cy="163" r="9"/>
+            <circle cx="304" cy="199" r="9"/>
+            <circle cx="405" cy="204" r="9"/>
+            <circle cx="324" cy="237" r="9"/>
+            <circle cx="363" cy="251" r="9"/>
+            <circle cx="394" cy="236" r="9"/>
+
+          </g>
+
+          <!-- Enzyme labels -->
+
+          <text
+            x="355"
+            y="283"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="11"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            DIGESTIVE ENZYMES
+          </text>
+
+        </g>
+
+
+        <!-- =========================
+             WASTE → LYSOSOME ARROW
+        ========================== -->
+
+        <path
+          d="M165 180
+             C210 160 235 160 260 178"
+          fill="none"
+          stroke="#222222"
+          stroke-width="3"
+          stroke-linecap="round"
+        />
+
+        <path
+          d="M249 166 L264 180 L246 187"
+          fill="none"
+          stroke="#fa8112"
+          stroke-width="3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+
+        <text
+          x="212"
+          y="145"
+          text-anchor="middle"
+          fill="#222222"
+          font-size="11"
+          font-weight="850"
+          font-family="Inter, system-ui, sans-serif"
+        >
+          DIGEST
+        </text>
+
+
+        <!-- =========================
+             BREAKDOWN PRODUCTS
+        ========================== -->
+
+        <g>
+
+          <text
+            x="530"
+            y="93"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="13"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            REUSABLE PARTS
+          </text>
+
+          <!-- Protein -->
+
+          <circle
+            cx="520"
+            cy="140"
+            r="22"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="4"
+          />
+
+          <text
+            x="520"
+            y="145"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="10"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            P
+          </text>
+
+          <!-- Sugar -->
+
+          <rect
+            x="490"
+            y="188"
+            width="42"
+            height="42"
+            rx="10"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="4"
+          />
+
+          <text
+            x="511"
+            y="214"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="10"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            C
+          </text>
+
+          <!-- Fat -->
+
+          <ellipse
+            cx="558"
+            cy="210"
+            rx="25"
+            ry="16"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="4"
+          />
+
+          <text
+            x="558"
+            y="214"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="10"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            F
+          </text>
+
+          <!-- Reuse arrow -->
+
+          <path
+            d="M431 200
+               C458 177 473 164 490 148"
+            fill="none"
+            stroke="#222222"
+            stroke-width="4"
+            stroke-linecap="round"
+          />
+
+          <path
+            d="M480 148 L493 146 L489 158"
+            fill="none"
+            stroke="#fa8112"
+            stroke-width="4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+
+          <text
+            x="532"
+            y="267"
+            text-anchor="middle"
+            fill="#222222"
+            font-size="11"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            REUSE IN CYTOPLASM
+          </text>
+
+        </g>
+
+
+        <!-- =========================
+             SPERM SPECIAL FACT
+        ========================== -->
+
+        <g>
+
+          <!-- Sperm head -->
+
+          <circle
+            cx="137"
+            cy="335"
+            r="20"
+            fill="#f5e7c6"
+            stroke="#222222"
+            stroke-width="4"
+          />
+
+          <!-- Acrosomal cap -->
+
+          <path
+            d="M119 329
+               A20 20 0 0 1 155 329"
+            fill="#fa8112"
+            stroke="#222222"
+            stroke-width="3"
+          />
+
+          <!-- Tail -->
+
+          <path
+            d="M156 337
+               C185 319 201 352 225 332"
+            fill="none"
+            stroke="#222222"
+            stroke-width="4"
+            stroke-linecap="round"
+          />
+
+          <text
+            x="285"
+            y="339"
+            fill="#222222"
+            font-size="11"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            SPERM LYSOSOMAL
+          </text>
+
+          <text
+            x="285"
+            y="357"
+            fill="#222222"
+            font-size="11"
+            font-weight="900"
+            font-family="Inter, system-ui, sans-serif"
+          >
+            ENZYMES → EGG LAYER
+          </text>
+
+          <path
+            d="M160 330 H270"
+            stroke="#fa8112"
+            stroke-width="4"
+            stroke-linecap="round"
+          />
+
+          <path
+            d="M259 320 L273 330 L259 340"
+            fill="none"
+            stroke="#222222"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+
+        </g>
+
+      </svg>
+
+    </section>
+
+
+    <!-- =========================
+         CONTENT
+    ========================== -->
+
+    <section class="content-card">
+
+      <h2 id="block-27-lysosomes">
+        Block 27: Lysosomes — The Clean-up System
+      </h2>
+
+      <ul class="content-points">
+
+        <li>
+          <strong>Lysosomes</strong>:
+          single membrane-bound sacs filled with
+          <strong>enzymes</strong>.
+        </li>
+
+        <li>
+          Function:
+          break down unwanted
+          <strong>proteins, carbohydrates, fats</strong>,
+          and damaged organelles.
+        </li>
+
+        <li>
+          Breakdown products are released into the
+          cytoplasm for <strong>reuse</strong>.
+        </li>
+
+        <li class="special-fact">
+          <strong>Special fact:</strong>
+          Human sperm cells contain lysosomal enzymes
+          that help break down the egg's outer layer
+          during fertilisation.
+        </li>
+
+      </ul>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FLOATING NAVIGATION
+  ========================== -->
+
+  <nav class="floating-nav" aria-label="Page navigation">
+
+    <a
+      class="nav-button"
+      href="main.html"
+      aria-label="Home"
+    >
+      <span class="nav-icon">⌂</span>
+      <span>Home</span>
+    </a>
+
+    <a
+      class="nav-button"
+      href="#block-27-lysosomes"
+      aria-label="Previous block"
+      onclick="history.back(); return false;"
+    >
+      <span class="nav-icon">←</span>
+      <span>Back</span>
+    </a>
+
+    <a
+      class="nav-button"
+      href="28.html"
+      aria-label="Next block"
+    >
+      <span>Next</span>
+      <span class="nav-icon">→</span>
+    </a>
+
+  </nav>
+
+</body>
+</html>
