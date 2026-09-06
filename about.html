@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Green Skill Development Programme, EIACP and EIACP at University of Kalyani — research dashboard">
+<title>GSDP • EIACP • University of Kalyani</title>
+<style>
+:root{
+  --ink:#102020;
+  --deep:#2D4C4F;
+  --teal:#78B4B7;
+  --mist:#D9E9E9;
+  --accent:#83241E;
+  --white:#fff;
+  --muted:#5b6d6e;
+  --line:#bfd0d1;
+  --shadow:0 14px 40px rgba(16,32,32,.10);
+  --radius:20px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:linear-gradient(180deg,#f7fbfb 0%,#fff 40%,#f5f9f9 100%);
+  color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  line-height:1.6;
+}
+a{color:var(--accent)}
+.container{width:min(1180px,92%);margin:auto}
+header{
+  background:var(--ink);color:#fff;position:relative;overflow:hidden;
+  border-bottom:5px solid var(--accent);
+}
+header:before,header:after{
+  content:"";position:absolute;border:1px solid rgba(120,180,183,.28);border-radius:50%;
+}
+header:before{width:420px;height:420px;right:-160px;top:-210px}
+header:after{width:620px;height:620px;left:-380px;bottom:-470px}
+.nav{
+  display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 0;
+  position:relative;z-index:2
+}
+.back-btn{
+  display:inline-flex;align-items:center;gap:7px;
+  color:#fff!important;text-decoration:none;font-weight:800;font-size:.86rem;
+  padding:8px 13px;border:1px solid rgba(217,233,233,.35);border-radius:999px;
+  background:rgba(120,180,183,.10);transition:.2s ease;
+}
+.back-btn:hover{
+  background:var(--teal);color:var(--ink)!important;border-color:var(--teal);
+  transform:translateX(-2px);
+}
+.brand{font-weight:800;letter-spacing:.04em}
+.nav a{color:#fff;text-decoration:none;font-size:.88rem;margin-left:18px;opacity:.88}
+.nav a:hover{opacity:1;color:var(--teal)}
+.hero{padding:58px 0 72px;position:relative;z-index:2}
+.eyebrow{color:var(--teal);font-weight:800;text-transform:uppercase;letter-spacing:.14em;font-size:.76rem}
+h1{font-size:clamp(2.2rem,6vw,4.8rem);line-height:1.02;margin:12px 0 18px;max-width:900px}
+.hero p{font-size:clamp(1rem,2vw,1.22rem);max-width:780px;color:#d7e5e5;margin:0}
+.hero-grid{display:grid;grid-template-columns:1.5fr .8fr;gap:32px;align-items:end}
+.hero-card{
+  background:rgba(217,233,233,.09);border:1px solid rgba(217,233,233,.22);
+  padding:24px;border-radius:18px;backdrop-filter:blur(5px)
+}
+.hero-card strong{display:block;font-size:2.4rem;color:var(--teal);line-height:1}
+.hero-card span{font-size:.9rem;color:#d7e5e5}
+main{padding:42px 0 80px}
+section{margin:0 0 58px}
+.section-title{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:22px}
+h2{font-size:clamp(1.55rem,3vw,2.35rem);margin:0;color:var(--deep)}
+.lead{color:var(--muted);max-width:780px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;
+  box-shadow:var(--shadow)
+}
+.card h3{margin:0 0 8px;color:var(--deep)}
+.card p{margin:0;color:#4e6061}
+.tag{
+  display:inline-block;background:var(--mist);color:var(--deep);font-weight:800;
+  padding:4px 9px;border-radius:999px;font-size:.72rem;margin-bottom:12px
+}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.stat{background:var(--mist);border-left:5px solid var(--teal);padding:20px;border-radius:14px}
+.stat b{display:block;font-size:2rem;color:var(--deep);line-height:1.1}
+.stat span{font-size:.83rem;color:#506364}
+.callout{
+  background:var(--deep);color:#fff;padding:28px;border-radius:var(--radius);box-shadow:var(--shadow)
+}
+.callout strong{color:var(--teal)}
+.timeline{position:relative;margin:28px 0 0;padding-left:28px}
+.timeline:before{content:"";position:absolute;left:7px;top:5px;bottom:5px;width:2px;background:var(--teal)}
+.event{position:relative;margin:0 0 26px}
+.event:before{
+  content:"";position:absolute;left:-27px;top:7px;width:12px;height:12px;border-radius:50%;
+  background:var(--accent);border:3px solid #fff;box-shadow:0 0 0 2px var(--accent)
+}
+.event .date{font-weight:900;color:var(--accent);font-size:.85rem}
+.event h3{margin:2px 0 3px;color:var(--deep)}
+.event p{margin:0;color:var(--muted)}
+.flow{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:8px;align-items:center
+}
+.node{
+  min-height:118px;background:#fff;border:2px solid var(--teal);border-radius:16px;
+  padding:16px;text-align:center;display:flex;flex-direction:column;justify-content:center;
+  box-shadow:0 8px 22px rgba(16,32,32,.07)
+}
+.node b{color:var(--deep)}
+.arrow{text-align:center;font-size:1.8rem;color:var(--accent)}
+.bar-chart{display:grid;gap:14px;margin-top:20px}
+.bar-row{display:grid;grid-template-columns:180px 1fr 70px;gap:12px;align-items:center}
+.bar-label{font-size:.9rem;font-weight:700;color:var(--deep)}
+.bar-track{height:18px;background:var(--mist);border-radius:99px;overflow:hidden}
+.bar-fill{height:100%;background:var(--teal);border-radius:99px}
+.bar-value{font-weight:900;color:var(--deep);text-align:right}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:16px;background:#fff}
+table{width:100%;border-collapse:collapse;min-width:720px}
+th,td{padding:14px 16px;text-align:left;border-bottom:1px solid #e2ebeb}
+th{background:var(--deep);color:#fff}
+tr:last-child td{border-bottom:0}
+.note{font-size:.86rem;color:var(--muted);margin-top:12px}
+.sources{display:grid;gap:10px}
+.source{
+  padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:#fff
+}
+.source a{font-weight:800;text-decoration:none}
+footer{background:var(--ink);color:#c8d8d8;padding:30px 0}
+footer p{margin:4px 0;font-size:.85rem}
+.badge{color:#fff;background:var(--accent);padding:5px 9px;border-radius:999px;font-size:.72rem;font-weight:800}
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr}
+  .cards{grid-template-columns:1fr 1fr}
+  .stat-grid{grid-template-columns:1fr 1fr}
+  .flow{grid-template-columns:1fr}
+  .arrow{transform:rotate(90deg)}
+}
+@media(max-width:620px){
+  .nav{align-items:flex-start}.nav-links{display:none}
+  .hero{padding:42px 0 50px}
+  .cards,.stat-grid{grid-template-columns:1fr}
+  .bar-row{grid-template-columns:1fr;gap:5px}
+  .bar-value{text-align:left}
+  h1{font-size:2.45rem}
+  main{padding-top:30px}
+  .card,.callout{padding:20px}
+}
+@media print{
+  body{background:#fff}
+  header{color:#000;background:#fff;border-bottom:2px solid #000}
+  .nav a{display:none}.hero p{color:#333}.hero-card{border:1px solid #aaa;color:#000}
+  main{padding:20px 0}.card{box-shadow:none;break-inside:avoid}
+  section{break-inside:avoid}
+  footer{background:#fff;color:#333;border-top:1px solid #aaa}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <nav class="nav">
+      <a class="back-btn" href="main.html" aria-label="Back to main page">← Back</a>
+      <div class="brand">GSDP × EIACP</div>
+      <div class="nav-links">
+        <a href="#overview">Overview</a><a href="#kalyani">Kalyani</a><a href="#admin">Administration</a>
+        <a href="#timeline">Timeline</a><a href="#evidence">Evidence</a>
+      </div>
+    </nav>
+    <div class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">Research dashboard • India • 2026</div>
+          <h1>Green Skill Development Programme</h1>
+          <p>GSDP under the Environmental Information, Awareness, Capacity Building and Livelihood Programme (EIACP), with a focused profile of the EIACP Centre on Environmental Biotechnology at the University of Kalyani.</p>
+        </div>
+        <div class="hero-card">
+          <strong>2017 → 2026</strong>
+          <span>From national GSDP pilot to continuing specialised training at Kalyani University.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<div class="container">
+
+<section id="overview">
+  <div class="section-title">
+    <div><h2>At a glance</h2><p class="lead">The programme connects environmental knowledge, vocational skills and livelihood opportunities through the national EIACP/ENVIS network.</p></div>
+  </div>
+  <div class="stat-grid">
+    <div class="stat"><b>2017</b><span>GSDP pilot launched by MoEFCC</span></div>
+    <div class="stat"><b>44</b><span>GSDP courses reported nationally by 2023</span></div>
+    <div class="stat"><b>87</b><span>Reported training locations nationally by 2023</span></div>
+    <div class="stat"><b>246</b><span>Pilot trainees who completed the two initial biodiversity courses</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="cards">
+    <article class="card"><span class="tag">PURPOSE</span><h3>Green employment</h3><p>Build technical environmental skills that can support gainful employment and self-employment, especially among youth and school dropouts.</p></article>
+    <article class="card"><span class="tag">ALIGNMENT</span><h3>Sustainable development</h3><p>GSDP was designed to contribute to India's environmental and development commitments, including NDCs, SDGs, biodiversity targets and waste-management goals.</p></article>
+    <article class="card"><span class="tag">DELIVERY</span><h3>Distributed expertise</h3><p>MoEFCC uses the ENVIS/EIACP network and specialist institutions to deliver practical courses across biodiversity, pollution monitoring, waste, water, forests and related fields.</p></article>
+  </div>
+</section>
+
+<section>
+  <div class="section-title"><div><h2>What GSDP covers</h2><p class="lead">The course portfolio is deliberately broad, combining environmental science with applied operational skills.</p></div></div>
+  <div class="bar-chart">
+    <div class="bar-row"><div class="bar-label">Pollution monitoring</div><div class="bar-track"><div class="bar-fill" style="width:94%"></div></div><div class="bar-value">Air • Water • Soil</div></div>
+    <div class="bar-row"><div class="bar-label">Waste & treatment</div><div class="bar-track"><div class="bar-fill" style="width:86%"></div></div><div class="bar-value">STP • ETP • CETP</div></div>
+    <div class="bar-row"><div class="bar-label">Biodiversity</div><div class="bar-track"><div class="bar-fill" style="width:82%"></div></div><div class="bar-value">PBR • Taxonomy</div></div>
+    <div class="bar-row"><div class="bar-label">Forests & wildlife</div><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div><div class="bar-value">Management</div></div>
+    <div class="bar-row"><div class="bar-label">Livelihood skills</div><div class="bar-track"><div class="bar-fill" style="width:62%"></div></div><div class="bar-value">Enterprise</div></div>
+  </div>
+  <p class="note">The bars are a visual categorisation of the documented course domains, not a quantitative measure of course volume.</p>
+</section>
+
+<section id="admin">
+  <div class="section-title"><div><h2>Administrative architecture</h2><p class="lead">A simple view of how national policy and institutional delivery connect.</p></div></div>
+  <div class="flow">
+    <div class="node"><b>MoEFCC</b><span>Policy, funding & programme direction</span></div>
+    <div class="arrow">→</div>
+    <div class="node"><b>EIACP / ENVIS Network</b><span>Environmental information & capacity-building ecosystem</span></div>
+    <div class="arrow">→</div>
+    <div class="node"><b>University of Kalyani</b><span>Host institution / DESKU EIACP</span></div>
+  </div>
+  <div class="flow" style="margin-top:14px">
+    <div class="node"><b>Department / Centre</b><span>Academic & technical coordination</span></div>
+    <div class="arrow">→</div>
+    <div class="node"><b>GSDP Course</b><span>Classroom + practical / field-oriented training</span></div>
+    <div class="arrow">→</div>
+    <div class="node"><b>Trainees</b><span>Green skills → employment / enterprise</span></div>
+  </div>
+  <p class="note"><span class="badge">Evidence note</span> Publicly available material does not provide a complete Kalyani-specific organisational chart, staffing structure, budget statement or placement database. The diagram therefore distinguishes the documented institutional relationship from details that remain unpublished.</p>
+</section>
+
+<section id="kalyani">
+  <div class="section-title"><div><h2>EIACP at University of Kalyani</h2><p class="lead">The Kalyani centre is identified as an EIACP Centre on Environmental Biotechnology and is associated with the University's Department of Environmental Science.</p></div></div>
+  <div class="cards">
+    <article class="card"><span class="tag">CENTRE</span><h3>Environmental Biotechnology</h3><p>The former ENVIS Resource Partner was renamed under EIACP; the centre is reported as having shifted to the S. N. Bose Innovation Building on the University of Kalyani campus.</p></article>
+    <article class="card"><span class="tag">GSDP 2019</span><h3>People's Biodiversity Registers</h3><p>Kalyani's EIACP activity included a Green Skill Development Programme on People's Biodiversity Registers (PBRs), linking biodiversity documentation with community-level conservation work.</p></article>
+    <article class="card"><span class="tag">GSDP 2026</span><h3>Soil Pollution Monitoring Specialist</h3><p>The University announced a 75-day GSDP course, tentatively commencing in the first week of September 2026, focused on soil pollution monitoring.</p></article>
+  </div>
+</section>
+
+<section>
+  <div class="section-title"><div><h2>Known Kalyani GSDP courses</h2></div></div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Course</th><th>Evidence</th><th>Duration</th><th>Core orientation</th><th>Outcome</th></tr></thead>
+      <tbody>
+        <tr><td><strong>People's Biodiversity Registers (PBRs)</strong></td><td>University/EIACP research evidence</td><td>Not reliably reported</td><td>Biodiversity documentation, local knowledge and conservation information</td><td>GSDP certificate framework</td></tr>
+        <tr><td><strong>Soil Pollution Monitoring Specialist</strong></td><td>University announcement</td><td>75 days</td><td>Soil pollution monitoring and applied environmental skills</td><td>GSDP training / certification framework</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="timeline">
+  <div class="section-title"><div><h2>Timeline</h2><p class="lead">Selected milestones connecting national GSDP development with Kalyani University activity.</p></div></div>
+  <div class="timeline">
+    <div class="event"><div class="date">JUNE 2017</div><h3>National GSDP pilot</h3><p>MoEFCC launched pilot training for Biodiversity Conservationists and Para-taxonomists at 10 locations across nine biogeographic regions.</p></div>
+    <div class="event"><div class="date">2018</div><h3>Scale-up announced</h3><p>MoEFCC announced more than 30 skilling programmes at 84 institutions, with a stated target of 80,000 people and later ambitions for much larger coverage.</p></div>
+    <div class="event"><div class="date">2019</div><h3>Kalyani: PBR training</h3><p>The Kalyani EIACP centre was associated with GSDP training on People's Biodiversity Registers.</p></div>
+    <div class="event"><div class="date">2023</div><h3>National footprint</h3><p>A published account reported 44 GSDP courses at 87 locations, with course durations broadly ranging from 80 to 550 hours.</p></div>
+    <div class="event"><div class="date">SEPTEMBER 2026</div><h3>Kalyani: soil pollution course</h3><p>The University announced a 75-day Soil Pollution Monitoring Specialist GSDP course, tentatively beginning in the first week of September 2026.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="callout">
+    <h2 style="color:#fff;margin-top:0">What the evidence says about achievement</h2>
+    <p><strong>Nationally:</strong> the pilot produced 246 successful completions — 94 Biodiversity Conservationists and 152 Para-taxonomists. The programme subsequently expanded into a much wider course portfolio.</p>
+    <p><strong>At Kalyani:</strong> the strongest public evidence demonstrates continuing institutional delivery through specialised courses. However, publicly accessible sources identified for this research do <strong>not</strong> provide a verified Kalyani-wide total of trainees, completion rate, placement rate, income change, or quantified livelihood outcomes.</p>
+    <p style="margin-bottom:0"><strong>Interpretation:</strong> continuity of specialised training is a positive institutional indicator, but it should not be presented as proof of employment impact without alumni and placement data.</p>
+  </div>
+</section>
+
+<section id="evidence">
+  <div class="section-title"><div><h2>Evidence & research limitations</h2><p class="lead">A responsible institutional profile should separate documented facts from inference.</p></div></div>
+  <div class="cards">
+    <article class="card"><span class="tag">DOCUMENTED</span><h3>National programme design</h3><p>MoEFCC's public material documents the purpose, target groups, pilot results, course domains, NSQF compliance and national scale-up ambitions.</p></article>
+    <article class="card"><span class="tag">DOCUMENTED</span><h3>Kalyani's programme notices</h3><p>University material documents the DESKU EIACP centre and the 2026 Soil Pollution Monitoring Specialist course announcement.</p></article>
+    <article class="card"><span class="tag" style="background:#f2d9d7;color:var(--accent)">NOT PUBLICLY VERIFIED</span><h3>Outcome statistics</h3><p>Course-wise enrolment, completion, placement, income, employer linkage, detailed expenditure and a complete staffing chart were not found in the evidence assembled for this page.</p></article>
+  </div>
+</section>
+
+<section>
+  <div class="section-title"><div><h2>Recommendations for stronger impact reporting</h2></div></div>
+  <div class="cards">
+    <article class="card"><h3>1. Publish a course dashboard</h3><p>Report seats, applicants, selected trainees, attendance, completion and certification by course and year.</p></article>
+    <article class="card"><h3>2. Track alumni outcomes</h3><p>Follow trainees for 6–24 months and record employment, self-employment, internships and environmental project participation.</p></article>
+    <article class="card"><h3>3. Build employer linkages</h3><p>Formalise links with pollution-control, biodiversity, laboratories, waste-management, environmental consulting and conservation organisations.</p></article>
+  </div>
+</section>
+
+<section>
+  <div class="section-title"><div><h2>Primary sources</h2><p class="lead">Selected sources used for the research synthesis.</p></div></div>
+  <div class="sources">
+    <div class="source"><a href="https://www.pib.gov.in/PressReleasePage.aspx?PRID=1532062" target="_blank" rel="noopener">Press Information Bureau — Green Skill Development Programme (MoEFCC)</a><br><span class="note">National objectives, pilot results, scale-up, course domains and NSQF/certification statements.</span></div>
+    <div class="source"><a href="https://klyuniv.ac.in/page/50/" target="_blank" rel="noopener">University of Kalyani — official announcements</a><br><span class="note">Announcement of the DESKU EIACP programmes and the 75-day Soil Pollution Monitoring Specialist GSDP course.</span></div>
+    <div class="source"><a href="https://kuesaa.com/?page_id=167" target="_blank" rel="noopener">Kalyani University Environmental Science Alumni Association — ENVIS Centre profile</a><br><span class="note">Background on the former ENVIS Resource Partner / EIACP Centre on Environmental Biotechnology and its location.</span></div>
+    <div class="source"><a href="https://euroasiapub.org/wp-content/uploads/IJRESS6April23-An.pdf" target="_blank" rel="noopener">Published research account — GSDP national footprint</a><br><span class="note">Reported 44 courses, 87 locations and course-duration range as of the cited period.</span></div>
+  </div>
+</section>
+
+</div>
+</main>
+
+<footer>
+<div class="container">
+  <p><strong>GSDP • EIACP • University of Kalyani</strong></p>
+  <p>Research-based institutional profile • Prepared September 2026</p>
+  <p>This page is an evidence synthesis, not an official publication of MoEFCC or the University of Kalyani.</p>
+</div>
+</footer>
+</body>
+</html>

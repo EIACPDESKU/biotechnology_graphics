@@ -1,0 +1,1137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Responsive visual index for Handbook of Biotechnology PDF sections.">
+<title>Handbook of Biotechnology — Contents</title>
+<style>
+  :root {
+    --primary:#2a7c13;
+    --secondary:#76c457;
+    --cream:#fff8cf;
+    --peach:#fbe6c2;
+    --ink:#193313;
+    --muted:#5f6f57;
+    --glass:rgba(255,248,207,.78);
+    --line:rgba(255,255,255,.82);
+    --shadow:0 16px 48px rgba(42,124,19,.14);
+  }
+
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    margin:0;
+    min-height:100vh;
+    color:var(--ink);
+    font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    background:var(--cream);
+    overflow-x:hidden;
+    -webkit-text-size-adjust:100%;
+  }
+
+  .bg {
+    position:fixed;
+    inset:-30px;
+    z-index:-2;
+    background:
+      linear-gradient(135deg,rgba(255,248,207,.92),rgba(251,230,194,.82)),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='900' viewBox='0 0 1200 900'%3E%3Cdefs%3E%3Cfilter id='b'%3E%3CfeGaussianBlur stdDeviation='12'/%3E%3C/filter%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%232a7c13'/%3E%3Cstop offset='.5' stop-color='%2376c457'/%3E%3Cstop offset='1' stop-color='%23fff8cf'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg filter='url(%23b)' opacity='.72'%3E%3Cellipse cx='180' cy='180' rx='210' ry='120' fill='%2376c457'/%3E%3Cellipse cx='980' cy='190' rx='260' ry='160' fill='%232a7c13'/%3E%3Cellipse cx='680' cy='690' rx='360' ry='190' fill='%23fbe6c2'/%3E%3Cpath d='M100 650 C260 420 380 780 570 530 S910 320 1120 610' fill='none' stroke='url(%23g)' stroke-width='90' stroke-linecap='round'/%3E%3Cg fill='none' stroke='%23fff8cf' stroke-width='24' opacity='.72'%3E%3Cpath d='M250 80 C470 210 310 360 530 490 S570 760 790 850'/%3E%3Cpath d='M340 70 C560 200 400 350 620 480 S660 750 880 840'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-size:cover;
+    background-position:center;
+    filter:blur(2px);
+    transform:scale(1.03);
+  }
+
+  .wash {
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    background:linear-gradient(180deg,rgba(255,248,207,.25),rgba(251,230,194,.82));
+    pointer-events:none;
+  }
+
+  .shell {
+    width:min(1120px,calc(100% - 32px));
+    margin:auto;
+    padding:28px 0 80px;
+  }
+
+  header {
+    position:relative;
+    overflow:hidden;
+    padding:42px clamp(22px,5vw,58px);
+    border:1px solid var(--line);
+    border-radius:30px;
+    background:rgba(255,248,207,.72);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    box-shadow:var(--shadow);
+  }
+
+  header::after {
+    content:"";
+    position:absolute;
+    width:240px;
+    height:240px;
+    right:-80px;
+    top:-110px;
+    border-radius:50%;
+    background:rgba(118,196,87,.28);
+    filter:blur(5px);
+  }
+
+  .eyebrow {
+    display:inline-flex;
+    gap:9px;
+    align-items:center;
+    padding:7px 12px;
+    border-radius:999px;
+    color:var(--primary);
+    background:rgba(255,255,255,.68);
+    font-size:.78rem;
+    font-weight:800;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+  }
+
+  .dot {
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--primary);
+    box-shadow:0 0 0 5px rgba(42,124,19,.12);
+  }
+
+  h1 {
+    margin:18px 0 10px;
+    max-width:780px;
+    font-size:clamp(2rem,5vw,4.2rem);
+    line-height:.98;
+    letter-spacing:-.045em;
+  }
+
+  .intro {
+    max-width:690px;
+    margin:0;
+    color:var(--muted);
+    font-size:clamp(.98rem,1.6vw,1.12rem);
+    line-height:1.7;
+  }
+
+  .dna {
+    position:absolute;
+    right:48px;
+    bottom:18px;
+    width:155px;
+    opacity:.42;
+  }
+
+  .section-head {
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    gap:18px;
+    margin:34px 4px 16px;
+  }
+
+  .section-head h2 { margin:0; font-size:1.3rem; }
+  .section-head p { margin:0; color:var(--muted); font-size:.9rem; }
+
+  .grid {
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:14px;
+  }
+
+  .chapter-card {
+    display:flex;
+    align-items:center;
+    gap:15px;
+    min-width:0;
+    min-height:86px;
+    padding:15px 17px;
+    color:inherit;
+    text-decoration:none;
+    border:1px solid rgba(255,255,255,.9);
+    border-radius:20px;
+    background:var(--glass);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    box-shadow:0 8px 28px rgba(42,124,19,.09);
+    transition:transform .2s ease,box-shadow .2s ease,background .2s ease;
+    -webkit-tap-highlight-color:transparent;
+  }
+
+  .chapter-card:hover,.chapter-card:focus-visible {
+    transform:translateY(-4px);
+    background:rgba(255,255,255,.88);
+    box-shadow:0 16px 35px rgba(42,124,19,.16);
+    outline:none;
+  }
+
+  .pdf-icon {
+    flex:0 0 48px;
+    width:48px;
+    height:48px;
+    display:grid;
+    place-items:center;
+    border-radius:15px;
+    color:var(--primary);
+    background:linear-gradient(145deg,rgba(42,124,19,.12),rgba(118,196,87,.24));
+  }
+
+  .pdf-icon svg { width:27px; height:27px; }
+  .chapter-text { min-width:0; flex:1; }
+  .chapter-text strong {
+    display:block;
+    font-size:.98rem;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .chapter-text small {
+    display:block;
+    margin-top:5px;
+    color:var(--muted);
+    font-size:.84rem;
+  }
+
+  .arrow {
+    flex:0 0 35px;
+    width:35px;
+    height:35px;
+    display:grid;
+    place-items:center;
+    border-radius:50%;
+    color:var(--primary);
+    background:rgba(42,124,19,.09);
+    font-size:1.15rem;
+    transition:transform .2s ease;
+  }
+
+  .chapter-card:hover .arrow { transform:translate(2px,-2px); }
+
+  .about {
+    position:fixed;
+    right:22px;
+    bottom:22px;
+    z-index:10;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    border:0;
+    border-radius:999px;
+    padding:13px 18px;
+    color:#fff;
+    background:linear-gradient(135deg,var(--primary),#4f9d32);
+    font-weight:800;
+    cursor:pointer;
+    box-shadow:0 14px 32px rgba(42,124,19,.28);
+    touch-action:manipulation;
+  }
+
+  .about:hover { transform:translateY(-2px); }
+
+  .modal {
+    position:fixed;
+    inset:0;
+    z-index:20;
+    display:none;
+    place-items:center;
+    padding:20px;
+    background:rgba(25,51,19,.42);
+    backdrop-filter:blur(8px);
+  }
+
+  .modal.show { display:grid; }
+
+  .modal-card {
+    width:min(520px,100%);
+    max-height:min(90vh,720px);
+    overflow:auto;
+    padding:30px;
+    border-radius:26px;
+    background:rgba(255,248,207,.96);
+    box-shadow:0 25px 80px rgba(0,0,0,.22);
+  }
+
+  .modal-card h3 { margin:0 0 10px; font-size:1.6rem; }
+  .modal-card p { color:var(--muted); line-height:1.65; }
+
+  .close {
+    float:right;
+    width:36px;
+    height:36px;
+    border:0;
+    border-radius:50%;
+    background:var(--peach);
+    color:var(--ink);
+    cursor:pointer;
+    font-size:1.1rem;
+  }
+
+  footer {
+    margin-top:30px;
+    text-align:center;
+    color:#65745d;
+    font-size:.82rem;
+  }
+
+  /* Tablets and small laptops */
+  @media (max-width:900px) {
+    .shell { width:min(100% - 28px,760px); }
+    header { padding:34px 30px; }
+    .dna { right:24px; width:125px; opacity:.28; }
+    .grid { grid-template-columns:1fr 1fr; }
+  }
+
+  /* Phones */
+  @media (max-width:720px) {
+    .shell {
+      width:100%;
+      padding:10px 10px 88px;
+    }
+
+    header {
+      padding:27px 20px;
+      border-radius:22px;
+    }
+
+    header::after { width:170px; height:170px; right:-80px; top:-80px; }
+
+    .eyebrow { font-size:.7rem; letter-spacing:.09em; }
+    h1 {
+      margin-top:15px;
+      font-size:clamp(2rem,11vw,3.2rem);
+      line-height:1;
+    }
+
+    .intro {
+      font-size:.94rem;
+      line-height:1.58;
+    }
+
+    .dna { display:none; }
+
+    .section-head {
+      align-items:flex-start;
+      flex-direction:column;
+      gap:5px;
+      margin:26px 3px 13px;
+    }
+
+    .section-head h2 { font-size:1.15rem; }
+    .section-head p { font-size:.82rem; }
+
+    .grid {
+      grid-template-columns:1fr;
+      gap:10px;
+    }
+
+    .chapter-card {
+      min-height:70px;
+      padding:11px 12px;
+      gap:11px;
+      border-radius:17px;
+    }
+
+    .pdf-icon {
+      flex-basis:42px;
+      width:42px;
+      height:42px;
+      border-radius:13px;
+    }
+
+    .pdf-icon svg { width:23px; height:23px; }
+
+    .chapter-text strong {
+      font-size:.92rem;
+      white-space:normal;
+      line-height:1.25;
+    }
+
+    .chapter-text small {
+      margin-top:3px;
+      font-size:.76rem;
+    }
+
+    .arrow {
+      flex-basis:32px;
+      width:32px;
+      height:32px;
+      font-size:1rem;
+    }
+
+    .about {
+      right:12px;
+      bottom:max(12px,env(safe-area-inset-bottom));
+      padding:11px 14px;
+      font-size:.88rem;
+    }
+
+    .modal { padding:12px; }
+    .modal-card {
+      padding:22px 18px;
+      border-radius:20px;
+    }
+  }
+
+  /* Very narrow phones */
+  @media (max-width:380px) {
+    .shell { padding-left:7px; padding-right:7px; }
+    header { padding:23px 16px; }
+    .chapter-card { padding:10px; }
+    .pdf-icon { flex-basis:38px; width:38px; height:38px; }
+    .arrow { flex-basis:29px; width:29px; height:29px; }
+    .chapter-text strong { font-size:.87rem; }
+  }
+
+  @media (hover:none) {
+    .chapter-card:hover { transform:none; }
+    .about:hover { transform:none; }
+  }
+
+  @media (prefers-reduced-motion:reduce) {
+    *,*::before,*::after {
+      scroll-behavior:auto !important;
+      transition:none !important;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="wash" aria-hidden="true"></div>
+
+<main class="shell">
+  <header>
+    <div class="eyebrow"><span class="dot"></span> Digital Library</div>
+    <h1>Handbook of<br>Biotechnology</h1>
+    <p class="intro">A visual, responsive index of the KNOWLEDGE sections shown in your source list. Select any page range to open its corresponding section.</p>
+    <svg class="dna" viewBox="0 0 180 180" fill="none" aria-hidden="true">
+      <path d="M35 18C130 42 130 138 35 162M145 18C50 42 50 138 145 162" stroke="#087f73" stroke-width="4" stroke-linecap="round"/>
+      <path d="M56 35h68M45 58h90M45 84h90M45 110h90M56 137h68" stroke="#5aa96f" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="90" cy="84" r="72" stroke="#087f73" stroke-opacity=".16"/>
+    </svg>
+  </header>
+
+  <div class="section-head">
+    <div>
+      <h2>Content Sections</h2>
+      <p>45 sections · click a card to open the Content</p>
+    </div>
+  </div>
+
+  <section class="grid" aria-label="Unit of Life">
+          <a class="chapter-card" href="1.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Origin of Life</strong>
+              <small>Block 1</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="2.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>First Protective Membrane</strong>
+              <small>Block 2</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="3.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Unicellular vs Multicellular</strong>
+              <small>Block 3</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="4.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Cells to Organ Systems</strong>
+              <small>Block 4</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="5.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Limit of Resolution</strong>
+              <small>Block 5</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="6.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Magnification and Microscopes</strong>
+              <small>Block 6</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="7.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Robert Hooke & the Discovery of Cells</strong>
+              <small>Block 7</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="8.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Parts of a Light Microscope</strong>
+              <small>Block 8</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="9.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Estimating Cell Size</strong>
+              <small>Block 9</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="10.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Total Magnification</strong>
+              <small>Block 10</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="11.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Improvements in Microscopy</strong>
+              <small>Block 11</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="12.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Electron Microscope</strong>
+              <small>Block 12</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="13.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>The Cell Membrane</strong>
+              <small>Block 13</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="14.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Potato Osmosis Experiment</strong>
+              <small>Block 14</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="15.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Osmosis vs Diffusion</strong>
+              <small>Block 15</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="16.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>What Happens to a Cell?</strong>
+              <small>Block 16</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="17.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>The Fluid-Mosaic Model</strong>
+              <small>Block 17</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="18.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>The Cell Wall</strong>
+              <small>Block 18</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="19.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Wall vs Membrane</strong>
+              <small>Block 19</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="20.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Three Parts of a Cell</strong>
+              <small>Block 20</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="21.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Prokaryotic vs Eukaryotic</strong>
+              <small>Block 21</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="22.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Nucleus</strong>
+              <small>Block 22</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="23.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Nucleoid & RBC Exception</strong>
+              <small>Block 23</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="24.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Ribosomes</strong>
+              <small>Block 24</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="25.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Endoplasmic Reticulum</strong>
+              <small>Block 25</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="26.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Golgi Apparatus</strong>
+              <small>Block 26</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="27.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Lysosomes</strong>
+              <small>Block 27</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="28.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Mitochondria</strong>
+              <small>Block 28</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="29.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Plastids</strong>
+              <small>Block 29</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="30.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Evolutionary Link</strong>
+              <small>Block 30</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="31.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Chromoplasts & Leucoplasts</strong>
+              <small>Block 31</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="32.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Vacuoles</strong>
+              <small>Block 32</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="33.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Cell Division</strong>
+              <small>Block 33</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="34.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Mitosis</strong>
+              <small>Block 34</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="35.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Meiosis</strong>
+              <small>Block 35</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="36.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Mitosis vs Meiosis</strong>
+              <small>Block 36</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="37.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>When Cell Division Goes Wrong</strong>
+              <small>Block 37</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="38.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>The Cell Theory</strong>
+              <small>Block 38</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="39.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Cells Grow, Stop & Renew</strong>
+              <small>Block 39</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="40.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Death by Design</strong>
+              <small>Block 40</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="41.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>When Growth Loses Control</strong>
+              <small>Block 41</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="42.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>One Cell, A Whole Plant</strong>
+              <small>Block 42</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="43.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>Cells Under Culture</strong>
+              <small>Block 43</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="44.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>DNA Takes Control</strong>
+              <small>Block 44</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="chapter-card" href="45.html" target="_blank" rel="noopener">
+            <span class="pdf-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M8 3.5h11l5 5V28.5H8z" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M19 3.5v6h5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M11 20.5h10M11 24h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M11 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="chapter-text">
+              <strong>The Cell At a Glance</strong>
+              <small>Block 45</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+  </section>
+
+  <footer>Handbook of Biotechnology · Responsive HTML index</footer>
+</main>
+
+<a class="about" href="about.html">
+  <span>ⓘ</span> About Us
+</a>
+
+<div class="modal" id="aboutModal" role="dialog" aria-modal="true" aria-labelledby="aboutTitle">
+  <div class="modal-card">
+    <button class="close" id="closeBtn" type="button" aria-label="Close">×</button>
+    <h3 id="aboutTitle">About this library</h3>
+    <p>This interface transforms the PDF list from the supplied reference image into a responsive visual index. The cards are ready to open the corresponding PDF files when those files are placed in the same folder as this HTML.</p>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById('aboutModal');
+  const aboutBtn = document.getElementById('aboutBtn');
+  const closeBtn = document.getElementById('closeBtn');
+
+  aboutBtn.addEventListener('click', () => {
+    modal.classList.add('show');
+    closeBtn.focus();
+  });
+  closeBtn.addEventListener('click', () => modal.classList.remove('show'));
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) modal.classList.remove('show');
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') modal.classList.remove('show');
+  });
+</script>
+</body>
+</html>
